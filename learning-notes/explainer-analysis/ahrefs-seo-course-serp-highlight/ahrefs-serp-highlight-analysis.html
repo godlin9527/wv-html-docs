@@ -117,6 +117,17 @@
       height: auto;
       background: #000;
     }
+    .zoom-link {
+      display: block;
+      cursor: zoom-in;
+    }
+    .zoom-link img {
+      transition: filter 160ms ease, transform 160ms ease;
+    }
+    .zoom-link:hover img {
+      filter: contrast(1.04) saturate(1.04);
+      transform: translateY(-1px);
+    }
     iframe {
       aspect-ratio: 16 / 9;
       border: 0;
@@ -197,28 +208,40 @@
       <p>下面每张图按 30 秒抽一帧。粗看可以先不读细节，只看画面类型怎样轮换：蓝底课程页、真实网页、Ahrefs 工具界面、Google SERP、简单图解和章节重置。</p>
       <div class="grid-2">
         <div class="media">
-          <img src="full_coarse_30s/coarse-sheet-01.jpg" alt="0:00-20:30 全片粗抽帧" />
-          <div class="caption">0:00-20:30：开场、SEO 定义、关键词研究与搜索意图。蓝底课程页和真实界面开始交替。</div>
+          <a class="zoom-link" href="full_coarse_30s/coarse-sheet-01.jpg" target="_blank" rel="noopener">
+            <img src="full_coarse_30s/coarse-sheet-01.jpg" alt="0:00-20:30 全片粗抽帧" />
+          </a>
+          <div class="caption">0:00-20:30：开场、SEO 定义、关键词研究与搜索意图。蓝底课程页和真实界面开始交替。点击图片查看原图。</div>
         </div>
         <div class="media">
-          <img src="full_coarse_30s/coarse-sheet-02.jpg" alt="21:00-41:30 全片粗抽帧" />
-          <div class="caption">21:00-41:30：关键词研究工具操作密集，表格、SERP、蓝底总结页形成稳定节奏。</div>
+          <a class="zoom-link" href="full_coarse_30s/coarse-sheet-02.jpg" target="_blank" rel="noopener">
+            <img src="full_coarse_30s/coarse-sheet-02.jpg" alt="21:00-41:30 全片粗抽帧" />
+          </a>
+          <div class="caption">21:00-41:30：关键词研究工具操作密集，表格、SERP、蓝底总结页形成稳定节奏。点击图片查看原图。</div>
         </div>
         <div class="media">
-          <img src="full_coarse_30s/coarse-sheet-03.jpg" alt="42:00-1:02:30 全片粗抽帧" />
-          <div class="caption">42:00-1:02:30：On-page SEO。网页样例、图表、工具界面与概念页交替。</div>
+          <a class="zoom-link" href="full_coarse_30s/coarse-sheet-03.jpg" target="_blank" rel="noopener">
+            <img src="full_coarse_30s/coarse-sheet-03.jpg" alt="42:00-1:02:30 全片粗抽帧" />
+          </a>
+          <div class="caption">42:00-1:02:30：On-page SEO。网页样例、图表、工具界面与概念页交替。点击图片查看原图。</div>
         </div>
         <div class="media">
-          <img src="full_coarse_30s/coarse-sheet-04.jpg" alt="1:03:00-1:23:30 全片粗抽帧" />
-          <div class="caption">1:03:00-1:23:30：Link Building。开始出现更多插画、邮件编辑器、真实页面和流程图。</div>
+          <a class="zoom-link" href="full_coarse_30s/coarse-sheet-04.jpg" target="_blank" rel="noopener">
+            <img src="full_coarse_30s/coarse-sheet-04.jpg" alt="1:03:00-1:23:30 全片粗抽帧" />
+          </a>
+          <div class="caption">1:03:00-1:23:30：Link Building。开始出现更多插画、邮件编辑器、真实页面和流程图。点击图片查看原图。</div>
         </div>
         <div class="media">
-          <img src="full_coarse_30s/coarse-sheet-05.jpg" alt="1:24:00-1:44:30 全片粗抽帧" />
-          <div class="caption">1:24:00-1:44:30：外链拓展和邮件示例。真实工作界面与蓝底教学页继续循环。</div>
+          <a class="zoom-link" href="full_coarse_30s/coarse-sheet-05.jpg" target="_blank" rel="noopener">
+            <img src="full_coarse_30s/coarse-sheet-05.jpg" alt="1:24:00-1:44:30 全片粗抽帧" />
+          </a>
+          <div class="caption">1:24:00-1:44:30：外链拓展和邮件示例。真实工作界面与蓝底教学页继续循环。点击图片查看原图。</div>
         </div>
         <div class="media">
-          <img src="full_coarse_30s/coarse-sheet-06.jpg" alt="1:45:00-1:56:30 全片粗抽帧" />
-          <div class="caption">1:45:00-1:56:30：Technical SEO 和收尾。更多技术概念被压成蓝底简图，最后回到课程封面。</div>
+          <a class="zoom-link" href="full_coarse_30s/coarse-sheet-06.jpg" target="_blank" rel="noopener">
+            <img src="full_coarse_30s/coarse-sheet-06.jpg" alt="1:45:00-1:56:30 全片粗抽帧" />
+          </a>
+          <div class="caption">1:45:00-1:56:30：Technical SEO 和收尾。更多技术概念被压成蓝底简图，最后回到课程封面。点击图片查看原图。</div>
         </div>
       </div>
     </section>
@@ -320,8 +343,10 @@
         <div class="caption">YouTube 原片嵌入，从 18:30 开始。精拉片使用下方逐秒抽帧，不在 Pages 中发布本地视频文件。</div>
       </div>
       <div class="media">
-        <img src="contact-1110-1230-1s.jpg" alt="Ahrefs 18:30-20:30 逐秒抽帧总览" />
-        <div class="caption">18:30-20:30：前半段是 SERP / Ahrefs 表格录屏，后半段切到蓝底课程章节页。这个片段适合细看“录屏标注如何服务判断”。</div>
+        <a class="zoom-link" href="contact-1110-1230-1s.jpg" target="_blank" rel="noopener">
+          <img src="contact-1110-1230-1s.jpg" alt="Ahrefs 18:30-20:30 逐秒抽帧总览" />
+        </a>
+        <div class="caption">18:30-20:30：前半段是 SERP / Ahrefs 表格录屏，后半段切到蓝底课程章节页。这个片段适合细看“录屏标注如何服务判断”。点击图片查看原图。</div>
       </div>
     </section>
 
@@ -395,20 +420,28 @@
       <h2>细拉片接触表</h2>
       <div class="grid-2">
         <div class="media">
-          <img src="contact-0-30-1s.jpg" alt="18:30-19:00 contact sheet" />
-          <div class="caption">18:30-19:00：关键词高亮 + 短暂网页证据镜头。</div>
+          <a class="zoom-link" href="contact-0-30-1s.jpg" target="_blank" rel="noopener">
+            <img src="contact-0-30-1s.jpg" alt="18:30-19:00 contact sheet" />
+          </a>
+          <div class="caption">18:30-19:00：关键词高亮 + 短暂网页证据镜头。点击图片查看原图。</div>
         </div>
         <div class="media">
-          <img src="contact-30-60-1s.jpg" alt="19:00-19:30 contact sheet" />
-          <div class="caption">19:00-19:30：切换 query，行级高亮表达结果类型。</div>
+          <a class="zoom-link" href="contact-30-60-1s.jpg" target="_blank" rel="noopener">
+            <img src="contact-30-60-1s.jpg" alt="19:00-19:30 contact sheet" />
+          </a>
+          <div class="caption">19:00-19:30：切换 query，行级高亮表达结果类型。点击图片查看原图。</div>
         </div>
         <div class="media">
-          <img src="contact-60-90-1s.jpg" alt="19:30-20:00 contact sheet" />
-          <div class="caption">19:30-20:00：混合 SERP 判断，行块和词块交替出现。</div>
+          <a class="zoom-link" href="contact-60-90-1s.jpg" target="_blank" rel="noopener">
+            <img src="contact-60-90-1s.jpg" alt="19:30-20:00 contact sheet" />
+          </a>
+          <div class="caption">19:30-20:00：混合 SERP 判断，行块和词块交替出现。点击图片查看原图。</div>
         </div>
         <div class="media">
-          <img src="contact-90-120-1s.jpg" alt="20:00-20:30 contact sheet" />
-          <div class="caption">20:00-20:30：章节切换，蓝底课程页重置视觉节奏。</div>
+          <a class="zoom-link" href="contact-90-120-1s.jpg" target="_blank" rel="noopener">
+            <img src="contact-90-120-1s.jpg" alt="20:00-20:30 contact sheet" />
+          </a>
+          <div class="caption">20:00-20:30：章节切换，蓝底课程页重置视觉节奏。点击图片查看原图。</div>
         </div>
       </div>
     </section>
