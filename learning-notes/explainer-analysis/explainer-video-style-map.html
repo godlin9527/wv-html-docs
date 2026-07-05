@@ -2389,7 +2389,7 @@ function embedUrl(caseItem) {
     return `https://www.youtube-nocookie.com/embed/${caseItem.videoId}?rel=0&modestbranding=1`;
   }
   if (caseItem.provider === "bilibili") {
-    return `https://player.bilibili.com/player.html?bvid=${caseItem.bvid}&page=1&as_wide=1&high_quality=1`;
+    return `https://player.bilibili.com/player.html?bvid=${caseItem.bvid}&page=1&as_wide=1&high_quality=1&autoplay=0`;
   }
   if (caseItem.provider === "vimeo") {
     const hash = caseItem.videoHash ? `?h=${caseItem.videoHash}` : "";
@@ -2599,7 +2599,7 @@ function renderCases() {
     return `
       <article class="panel case-card">
         <div class="player-wrap">
-          <iframe src="${embedUrl(item)}" title="${item.title}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <iframe src="${embedUrl(item)}" title="${item.title}" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
         <div class="case-body">
           <div class="case-top">
