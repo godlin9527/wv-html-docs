@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wealth Inequality in America 拉片</title>
+  <style>
+    :root {
+      --bg: #f7f3ea;
+      --paper: #fffdf7;
+      --ink: #171717;
+      --muted: #6f6a61;
+      --line: #1b1b1b;
+      --soft-line: #dfd8ca;
+      --accent: #df5a3f;
+      --green: #7aa36b;
+      --blue: #4d74a6;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background:
+        linear-gradient(rgba(23, 23, 23, .035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(23, 23, 23, .035) 1px, transparent 1px),
+        var(--bg);
+      background-size: 28px 28px;
+      color: var(--ink);
+      font: 18px/1.65 -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    main {
+      width: min(1480px, calc(100vw - 56px));
+      margin: 0 auto;
+      padding: 48px 0 72px;
+    }
+
+    h1, h2, h3, p { margin: 0; }
+
+    h1 {
+      max-width: 980px;
+      font-size: clamp(40px, 5.5vw, 82px);
+      line-height: .96;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top: 4px solid var(--line);
+      font-size: 32px;
+      line-height: 1.15;
+    }
+
+    h3 {
+      margin-top: 28px;
+      font-size: 22px;
+      line-height: 1.25;
+    }
+
+    .lead {
+      max-width: 900px;
+      margin-top: 24px;
+      font-size: 22px;
+      color: var(--muted);
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      border: 2px solid var(--line);
+      padding: 5px 10px;
+      background: var(--paper);
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 28px;
+    }
+
+    .card {
+      border: 4px solid var(--line);
+      background: var(--paper);
+      padding: 24px;
+      box-shadow: 10px 10px 0 rgba(23, 23, 23, .12);
+    }
+
+    .video {
+      aspect-ratio: 16 / 9;
+      width: 100%;
+      border: 4px solid var(--line);
+      background: #111;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border: 0;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+      background: var(--paper);
+      border: 4px solid var(--line);
+    }
+
+    th, td {
+      vertical-align: top;
+      padding: 16px 18px;
+      border-bottom: 2px solid var(--soft-line);
+      text-align: left;
+    }
+
+    th {
+      width: 18%;
+      color: var(--accent);
+      font-size: 16px;
+      white-space: nowrap;
+    }
+
+    td strong { color: var(--ink); }
+
+    .score {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .score div {
+      border: 3px solid var(--line);
+      background: var(--paper);
+      padding: 16px;
+      min-height: 128px;
+    }
+
+    .score b {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--accent);
+    }
+
+    figure {
+      margin: 28px 0 0;
+      border: 4px solid var(--line);
+      background: var(--paper);
+      padding: 14px;
+      box-shadow: 10px 10px 0 rgba(23, 23, 23, .12);
+    }
+
+    figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+      cursor: zoom-in;
+    }
+
+    figcaption {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .fine-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 24px;
+    }
+
+    .note {
+      border-left: 8px solid var(--accent);
+      background: rgba(255, 253, 247, .75);
+      padding: 18px 22px;
+      margin-top: 24px;
+      font-weight: 750;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      background: rgba(0, 0, 0, .82);
+      z-index: 20;
+    }
+
+    .lightbox.open { display: flex; }
+
+    .lightbox img {
+      max-width: 96vw;
+      max-height: 94vh;
+      object-fit: contain;
+      border: 3px solid #fff;
+      background: #fff;
+    }
+
+    @media (max-width: 920px) {
+      main { width: min(100% - 24px, 760px); padding-top: 28px; }
+      .grid, .fine-grid, .score { grid-template-columns: 1fr; }
+      th, td { display: block; width: 100%; }
+      th { padding-bottom: 4px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Wealth Inequality in America 拉片</h1>
+    <p class="lead">这是一个更准确的参考样本：faceless、presentation-style、数据图表驱动，主要靠数字、标签、比例尺和图表变形完成解释。它不是 HBR Blue Ocean 那种白板/MG 隐喻片。</p>
+    <div class="meta">
+      <span class="tag">Faceless</span>
+      <span class="tag">Animated Presentation</span>
+      <span class="tag">Data Explainer</span>
+      <span class="tag">Typography / Labels</span>
+      <span class="tag">适合 HyperFrames 复刻</span>
+    </div>
+
+    <h2>原片</h2>
+    <div class="video">
+      <iframe src="https://www.youtube-nocookie.com/embed/QPKKQnijnsM?rel=0&modestbranding=1" title="Wealth Inequality in America" allowfullscreen></iframe>
+    </div>
+
+    <h2>为什么这次选它</h2>
+    <div class="grid">
+      <section class="card">
+        <h3>它符合我们要找的方向</h3>
+        <p>全片没有主持人，也几乎不靠角色表演。核心画面是标题、图例、堆叠条形图、人数图标、巨大分布图和数字标注。这就是很典型的“像演示文稿，但用运动把论证展开”的 explainer。</p>
+      </section>
+      <section class="card">
+        <h3>它比 HBR Blue Ocean 更贴近目标</h3>
+        <p>HBR Blue Ocean 更偏白板图解和 MG 隐喻；这个片子则把“图表”本身当叙事主角。它的运动不是装饰，而是在做比较、揭示比例、改变尺度。</p>
+      </section>
+    </div>
+
+    <h2>风格判定</h2>
+    <div class="score">
+      <div><b>Faceless</b>非常强。没有真人出镜，画面完全由信息图和标签构成。</div>
+      <div><b>Animated Presentation</b>非常强。每个段落都像一页幻灯片，但页面元素会持续重排和变形。</div>
+      <div><b>Kinetic Typography</b>中等偏强。文字不是唯一主角，但标题、标签、百分比和词组承担节奏。</div>
+      <div><b>Whiteboard</b>很弱。没有手绘推演，也没有白板演讲感。</div>
+      <div><b>HyperFrames 难度</b>中等。主要是 SVG 图表、文字、缩放和遮罩，资产压力小。</div>
+    </div>
+
+    <h2>全片粗拉片</h2>
+    <figure>
+      <img src="contact-full-10s.jpg" alt="全片每 10 秒抽帧拼图">
+      <figcaption>每 10 秒抽一帧。可以看到全片始终围绕同一套图表语言展开：堆叠条、颜色图例、美国地图、财富分布曲线、百分比 callout。</figcaption>
+    </figure>
+
+    <table>
+      <tr>
+        <th>0:00-0:40</th>
+        <td><strong>建立题目和图例。</strong>标题、美国地图、五个财富阶层颜色块出现。画面像 presentation title slide，但有轻微镜头推进和元素淡入。</td>
+      </tr>
+      <tr>
+        <th>0:40-1:30</th>
+        <td><strong>建立“以为”和“理想”。</strong>What Americans THINK 与 IDEAL 两条堆叠条出现，颜色和标签保持一致，观众先学会读图规则。</td>
+      </tr>
+      <tr>
+        <th>1:30-2:20</th>
+        <td><strong>现实开始冲击。</strong>ACTUAL/REALITY 加入后，顶层财富段突然拉长，黑色区块和手部/剪刀式动作强化“比例超出预期”。</td>
+      </tr>
+      <tr>
+        <th>2:20-3:30</th>
+        <td><strong>从条形图变成分布图。</strong>财富总量、美国地图、底部人群图标和分布曲线合并成一个更大的统计画面。</td>
+      </tr>
+      <tr>
+        <th>3:30-5:10</th>
+        <td><strong>现实曲线被放大。</strong>绿色财富柱在右侧变得极高，画面用尺度差制造“看不下全貌”的震撼。</td>
+      </tr>
+      <tr>
+        <th>5:10-6:23</th>
+        <td><strong>用人物图标和数字收束。</strong>CEO/普通工人、百分比、分布标签回到可理解的局部比较，最后把 THINK / REALITY 的差距留下。</td>
+      </tr>
+    </table>
+
+    <h2>细拉片：0:40-3:20</h2>
+    <p class="note">我选这一段细拉，是因为它完整展示了这个风格最值得学的东西：先建立图表语法，再让同一套语法变形，最后用尺度变化制造认知冲击。</p>
+    <div class="fine-grid">
+      <figure>
+        <img src="fine_sheets/contact-040-069.jpg" alt="0:40-1:09 细抽帧">
+        <figcaption>0:40-1:09：THINK 堆叠条出现。颜色、图例、人群图标一起建立读图规则。</figcaption>
+      </figure>
+      <figure>
+        <img src="fine_sheets/contact-070-099.jpg" alt="1:10-1:39 细抽帧">
+        <figcaption>1:10-1:39：IDEAL 与 REALITY 接入。重点不是换场景，而是把第三条数据插进同一套版式里。</figcaption>
+      </figure>
+      <figure>
+        <img src="fine_sheets/contact-100-129.jpg" alt="1:40-2:09 细抽帧">
+        <figcaption>1:40-2:09：条形图被压缩、拉长、重映射为一排人和财富分布，开始从“对比条”过渡到“尺度图”。</figcaption>
+      </figure>
+      <figure>
+        <img src="fine_sheets/contact-130-159.jpg" alt="2:10-2:39 细抽帧">
+        <figcaption>2:10-2:39：美国地图和 54 trillion dollars 建立总量背景，底部颜色条继续承担图例功能。</figcaption>
+      </figure>
+      <figure>
+        <img src="fine_sheets/contact-160-189.jpg" alt="2:40-3:09 细抽帧">
+        <figcaption>2:40-3:09：从 “dreaded socialism” 到 IDEAL distribution。画面用同一坐标系统切换观点，而不是切换素材。</figcaption>
+      </figure>
+      <figure>
+        <img src="fine_sheets/contact-190-199.jpg" alt="3:10-3:19 细抽帧">
+        <figcaption>3:10-3:19：IDEAL 曲线继续推进，为后面 THINK 与 ACTUAL 的巨大反差做铺垫。</figcaption>
+      </figure>
+    </div>
+
+    <h2>可学的制作方法</h2>
+    <table>
+      <tr>
+        <th>核心不是“动很多”</th>
+        <td>它一直复用同一批视觉元素：颜色块、标签、条形图、人群图标、地图。变化来自重新排列和重新标定尺度。</td>
+      </tr>
+      <tr>
+        <th>每个运动都服务理解</th>
+        <td>条形图横向生长，是为了让比例可见；曲线变高，是为了让差距可见；标签跟随数据，是为了降低读图成本。</td>
+      </tr>
+      <tr>
+        <th>Presentation-like 但不是 PPT</th>
+        <td>PPT 常常是一页一页换；这里是一套图表系统在连续变形。观众感觉不是翻页，而是在看一个论证逐步展开。</td>
+      </tr>
+      <tr>
+        <th>适合 HyperFrames</th>
+        <td>大部分画面可以用 HTML/SVG/CSS/GSAP 做：堆叠条、数字标签、曲线、遮罩、缩放、图例和字幕。真正难的是信息设计，不是资产制作。</td>
+      </tr>
+    </table>
+
+    <h2>对我们找案例的修正</h2>
+    <p class="note">如果目标是 “faceless explainer + animated presentation + typography”，不要优先找白板动画，也不要优先找角色 MG。应该找这种：画面像信息图/幻灯片，但运动承担论证，数字和标签承担节奏。</p>
+  </main>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <img alt="">
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = lightbox.querySelector('img');
+
+    document.querySelectorAll('figure img').forEach((image) => {
+      image.addEventListener('click', () => {
+        lightboxImage.src = image.src;
+        lightboxImage.alt = image.alt;
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+      });
+    });
+
+    lightbox.addEventListener('click', () => {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      lightboxImage.removeAttribute('src');
+    });
+  </script>
+</body>
+</html>
