@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>三条工作型 Explainer 拉片</title>
+  <style>
+    :root {
+      --bg: #f7f4ed;
+      --panel: #fffdf8;
+      --ink: #181715;
+      --muted: #706a61;
+      --line: #ded8ca;
+      --accent: #df6046;
+      --blue: #276b9f;
+      --green: #35805d;
+      --warn: #b86f10;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        linear-gradient(rgba(24, 23, 21, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(24, 23, 21, 0.035) 1px, transparent 1px),
+        var(--bg);
+      background-size: 28px 28px;
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", system-ui, sans-serif;
+      line-height: 1.62;
+    }
+    a { color: inherit; }
+    .wrap {
+      width: min(1440px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 44px 0 84px;
+    }
+    header {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
+      gap: 32px;
+      border: 3px solid var(--ink);
+      background: var(--panel);
+      padding: 34px;
+      box-shadow: 8px 8px 0 rgba(24, 23, 21, 0.12);
+    }
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(34px, 5vw, 70px);
+      line-height: 0.98;
+      letter-spacing: -0.03em;
+      font-weight: 900;
+    }
+    h2 {
+      margin: 0 0 16px;
+      font-size: clamp(26px, 3vw, 42px);
+      line-height: 1.1;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+    h3 {
+      margin: 0 0 12px;
+      font-size: 24px;
+      line-height: 1.18;
+    }
+    h4 {
+      margin: 22px 0 8px;
+      font-size: 16px;
+      color: var(--accent);
+      letter-spacing: 0.03em;
+    }
+    p { margin: 0 0 12px; }
+    .lead {
+      font-size: 22px;
+      color: var(--muted);
+      max-width: 860px;
+    }
+    .callout {
+      border-left: 8px solid var(--accent);
+      background: #fff6eb;
+      padding: 16px 18px;
+      font-weight: 760;
+    }
+    .nav {
+      display: grid;
+      gap: 10px;
+      align-content: start;
+    }
+    .nav a {
+      text-decoration: none;
+      border: 2px solid var(--ink);
+      background: #fff;
+      padding: 12px 14px;
+      font-weight: 850;
+      box-shadow: 4px 4px 0 rgba(24, 23, 21, 0.1);
+    }
+    section {
+      margin-top: 34px;
+      border: 3px solid var(--ink);
+      background: var(--panel);
+      padding: 30px;
+      box-shadow: 8px 8px 0 rgba(24, 23, 21, 0.1);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 16px;
+      background: white;
+    }
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 13px 12px;
+      vertical-align: top;
+      text-align: left;
+    }
+    th {
+      border-bottom: 3px solid var(--ink);
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .tag {
+      display: inline-block;
+      border: 1.8px solid var(--ink);
+      background: #fff;
+      padding: 2px 7px;
+      margin: 0 4px 5px 0;
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .bad { color: #9a2d22; }
+    .ok { color: var(--green); }
+    .mid { color: var(--warn); }
+    .video {
+      aspect-ratio: 16 / 9;
+      background: #111;
+      border: 3px solid var(--ink);
+      overflow: hidden;
+      margin: 18px 0;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+    .grid2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin: 18px 0 10px;
+    }
+    figure {
+      margin: 0;
+      border: 2px solid var(--ink);
+      background: white;
+      padding: 12px;
+    }
+    figure img {
+      width: 100%;
+      display: block;
+      cursor: zoom-in;
+      border: 1px solid var(--line);
+      background: #eee;
+    }
+    figcaption {
+      margin-top: 10px;
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 750;
+    }
+    .cols {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .note {
+      border-top: 2px solid var(--line);
+      padding-top: 12px;
+      color: var(--muted);
+      font-weight: 650;
+    }
+    ul {
+      margin: 8px 0 0;
+      padding-left: 1.15em;
+    }
+    li { margin-bottom: 6px; }
+    .verdict {
+      font-size: 20px;
+      font-weight: 850;
+    }
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.86);
+      z-index: 50;
+      padding: 28px;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 96vw;
+      max-height: 92vh;
+      object-fit: contain;
+      background: #fff;
+      cursor: zoom-out;
+    }
+    @media (max-width: 980px) {
+      header, .grid2, .cols { grid-template-columns: 1fr; }
+      .wrap { width: min(100% - 24px, 720px); padding-top: 18px; }
+      section, header { padding: 18px; }
+      table { font-size: 14px; }
+      th, td { padding: 10px 8px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <div>
+        <h1>三条工作型 Explainer 拉片</h1>
+        <p class="lead">这次不是为了找“完全符合目标风格”的案例，而是先拆三条工作型视频：Ahrefs、秋芝2046、小林说。结论先放前面：它们都不是我们要找的低素材 faceless 文字卡片型，但各自有值得借的结构方法。</p>
+      </div>
+      <nav class="nav" aria-label="页面导航">
+        <a href="#target">目标校准</a>
+        <a href="#compare">三条对比</a>
+        <a href="#ahrefs">Ahrefs</a>
+        <a href="#qiuzhi">秋芝2046</a>
+        <a href="#xiaolin">小林说</a>
+        <a href="#takeaway">下一步</a>
+      </nav>
+    </header>
+
+    <section id="target">
+      <h2>先校准目标</h2>
+      <div class="callout">
+        我们现在真正要找的是：faceless、少真实照片/视频素材、少录屏，主要靠文字、图形、卡片、简单图标和排版讲清楚观点。它应该适合 HyperFrames 复刻，也适合普通人的工作表达。
+      </div>
+      <p class="note">所以这三条视频的价值，不是“照着做”，而是拆出能迁移的部分：信息节奏、卡片抽象、概念转译、章节组织、视觉锚点。</p>
+    </section>
+
+    <section id="compare">
+      <h2>三条视频的定位</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>案例</th>
+            <th>是否 faceless</th>
+            <th>录屏依赖</th>
+            <th>真实照片/视频依赖</th>
+            <th>可学价值</th>
+            <th>是否适合直接复刻</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Ahrefs SEO 2025</strong></td>
+            <td class="bad">否，真人口播明显</td>
+            <td class="bad">高</td>
+            <td class="mid">中</td>
+            <td>证据截图 -> 高亮 -> 抽象卡片 -> 工具验证的闭环</td>
+            <td class="mid">只适合借局部节奏</td>
+          </tr>
+          <tr>
+            <td><strong>秋芝2046 讲 Codex</strong></td>
+            <td class="bad">否，真人/人格很强</td>
+            <td class="bad">很高</td>
+            <td class="mid">中</td>
+            <td>教程分章、对比矩阵、黑底章节卡、屏幕讲解节奏</td>
+            <td class="mid">适合借教程结构，不适合照搬视觉</td>
+          </tr>
+          <tr>
+            <td><strong>小林说 GDP</strong></td>
+            <td class="bad">否，主持人是核心</td>
+            <td class="ok">低</td>
+            <td class="bad">高</td>
+            <td>反常识开头、生活例子、测验卡、概念拆解</td>
+            <td class="mid">适合借叙事，不适合低素材复刻</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="ahrefs">
+      <h2>01. Ahrefs: 证据闭环型教程</h2>
+      <p><span class="tag">教程</span><span class="tag">录屏</span><span class="tag">高亮</span><span class="tag">卡片抽象</span></p>
+      <div class="video">
+        <iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/vE_A4IhmkKQ?rel=0&modestbranding=1" title="Ahrefs SEO 2025" allowfullscreen></iframe>
+      </div>
+      <div class="grid2">
+        <figure>
+          <img src="ahrefs-seo-2025/contact-coarse.jpg" alt="Ahrefs 全片粗抽帧" />
+          <figcaption>全片粗抽帧：真人口播、SERP 截图、蓝色抽象卡片、工具界面反复切换。</figcaption>
+        </figure>
+        <figure>
+          <img src="ahrefs-seo-2025/fine-intro-000-180.jpg" alt="Ahrefs 前三分钟细抽帧" />
+          <figcaption>0-3 分钟细抽帧：先给承诺，再给搜索证据，再抽象成判断框架。</figcaption>
+        </figure>
+      </div>
+      <div class="cols">
+        <div>
+          <h4>结构</h4>
+          <ul>
+            <li>开头用真人直接给出承诺：几分钟内学会一个可执行方法。</li>
+            <li>随后进入搜索结果、网页、关键词高亮，用现实证据建立可信度。</li>
+            <li>再切到蓝底/橙色卡片，把网页证据抽象成可复用清单。</li>
+          </ul>
+        </div>
+        <div>
+          <h4>可借鉴</h4>
+          <ul>
+            <li>每次讲概念前，先让观众看到“这个问题真实存在”。</li>
+            <li>高亮不是装饰，是视觉指针：告诉观众眼睛该看哪里。</li>
+            <li>卡片负责把杂乱网页变成可记住的方法。</li>
+          </ul>
+        </div>
+        <div>
+          <h4>不适合照搬</h4>
+          <ul>
+            <li>大量依赖 Ahrefs 工具界面和真实网页。</li>
+            <li>真人口播和屏幕录制承担了很大信息量。</li>
+            <li>如果要做 faceless，必须把“证据截图”压缩成更少、更干净的图形证据。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="qiuzhi">
+      <h2>02. 秋芝2046: 工具教程型表达</h2>
+      <p><span class="tag">中文教程</span><span class="tag">章节卡</span><span class="tag">对比矩阵</span><span class="tag">屏幕 walkthrough</span></p>
+      <div class="video">
+        <iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/vmjbsobC3NI?rel=0&modestbranding=1" title="秋芝2046 Codex 教程" allowfullscreen></iframe>
+      </div>
+      <div class="grid2">
+        <figure>
+          <img src="qiuzhi-codex/contact-coarse.jpg" alt="秋芝2046 全片粗抽帧" />
+          <figcaption>全片粗抽帧：黑底标题、对比表、代码/工具界面、真人小窗交替出现。</figcaption>
+        </figure>
+        <figure>
+          <img src="qiuzhi-codex/fine-intro-000-180.jpg" alt="秋芝2046 前三分钟细抽帧" />
+          <figcaption>0-3 分钟细抽帧：先解释为什么值得学，再分章，再进入实际演示。</figcaption>
+        </figure>
+      </div>
+      <div class="cols">
+        <div>
+          <h4>结构</h4>
+          <ul>
+            <li>开头先给“你能学到什么”，并用强标题制造教程价值感。</li>
+            <li>进入正式内容前，先做工具对比和学习路线定位。</li>
+            <li>主体是章节卡 + 屏幕演示 + 旁白解释。</li>
+          </ul>
+        </div>
+        <div>
+          <h4>可借鉴</h4>
+          <ul>
+            <li>黑底大字章节卡很清楚，适合切换模块。</li>
+            <li>对比矩阵可以快速建立“为什么要看这个视频”。</li>
+            <li>教程不是一上来演示，而是先解决定位和预期。</li>
+          </ul>
+        </div>
+        <div>
+          <h4>不适合照搬</h4>
+          <ul>
+            <li>大量屏幕操作，对 faceless 低素材目标不是最优路径。</li>
+            <li>真人头像和个人表达承担了信任感。</li>
+            <li>HyperFrames 可复刻的是章节卡和矩阵，不是完整录屏形态。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="xiaolin">
+      <h2>03. 小林说: 主持人驱动的概念科普</h2>
+      <p><span class="tag">经济科普</span><span class="tag">反常识</span><span class="tag">生活例子</span><span class="tag">测验卡</span></p>
+      <div class="video">
+        <iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/P-NmMX9rlYQ?rel=0&modestbranding=1" title="小Lin说 GDP" allowfullscreen></iframe>
+      </div>
+      <div class="grid2">
+        <figure>
+          <img src="xiaolin-gdp/contact-coarse.jpg" alt="小林说 GDP 全片粗抽帧" />
+          <figcaption>全片粗抽帧：主持人、真实素材、图表、定义卡、生活例子频繁混剪。</figcaption>
+        </figure>
+        <figure>
+          <img src="xiaolin-gdp/fine-intro-000-180.jpg" alt="小林说 GDP 前三分钟细抽帧" />
+          <figcaption>0-3 分钟细抽帧：用反直觉问题切入，再用生活物件解释抽象概念。</figcaption>
+        </figure>
+      </div>
+      <div class="cols">
+        <div>
+          <h4>结构</h4>
+          <ul>
+            <li>先提出一个普通人以为懂、但其实容易误解的问题。</li>
+            <li>用生活例子降低概念门槛，再逐步引入定义和边界。</li>
+            <li>用测验式卡片维持参与感。</li>
+          </ul>
+        </div>
+        <div>
+          <h4>可借鉴</h4>
+          <ul>
+            <li>反常识开头适合传播：观众先被“我是不是理解错了”抓住。</li>
+            <li>生活例子比定义更早出现，观众更容易进入。</li>
+            <li>测验卡可以替代纯讲述，让信息变成问题。</li>
+          </ul>
+        </div>
+        <div>
+          <h4>不适合照搬</h4>
+          <ul>
+            <li>真人主持和大量 b-roll 是这条视频的主要质感来源。</li>
+            <li>素材调度复杂，HyperFrames 低成本复刻性不高。</li>
+            <li>如果要借它，只借“反常识问题 + 生活例子 + 测验卡”的叙事骨架。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="takeaway">
+      <h2>下一步判断</h2>
+      <p class="verdict">这三条都不是最终目标风格本身。它们更像三块参照物：Ahrefs 证明“证据闭环”有效；秋芝证明“教程分章”有效；小林证明“反常识 + 日常例子”有效。</p>
+      <table>
+        <thead>
+          <tr>
+            <th>我们真正要找的案例</th>
+            <th>应该满足</th>
+            <th>应该避免</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>工作型 faceless explainer</td>
+            <td>文字卡片、简单图形、少量图标、清晰转场、可被 HTML/SVG 复刻</td>
+            <td>真人口播、大量 b-roll、大量真实照片、大段不可控录屏</td>
+          </tr>
+          <tr>
+            <td>低素材观点表达</td>
+            <td>一个观点拆成几张卡，每张卡只完成一个信息动作</td>
+            <td>把 PPT 直接搬上来、每页塞满字、所有句子都做动画</td>
+          </tr>
+          <tr>
+            <td>HyperFrames 性价比高的方向</td>
+            <td>排版、图形、箭头、高亮、列表、时间线、对比矩阵、简单 diagram</td>
+            <td>3D 复杂角色、真实场景摄影、复杂 UI 自动识别、真人表演</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <img alt="" />
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+    document.querySelectorAll('figure img').forEach((img) => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+      });
+    });
+    lightbox.addEventListener('click', () => {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      lightboxImg.src = '';
+    });
+  </script>
+</body>
+</html>
