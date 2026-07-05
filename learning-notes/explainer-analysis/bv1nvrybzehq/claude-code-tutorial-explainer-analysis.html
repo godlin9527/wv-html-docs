@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Claude Code 教程 Explainer 拉片</title>
+  <style>
+    :root {
+      --bg: #f6f2ea;
+      --paper: #fffdf8;
+      --ink: #171717;
+      --muted: #6f6a61;
+      --line: #ded7cb;
+      --accent: #e85b3f;
+      --accent-2: #86d84b;
+      --dark: #111;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background:
+        linear-gradient(rgba(25, 25, 25, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(25, 25, 25, 0.035) 1px, transparent 1px),
+        var(--bg);
+      background-size: 28px 28px;
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      line-height: 1.55;
+    }
+
+    main {
+      width: min(1440px, calc(100vw - 64px));
+      margin: 0 auto;
+      padding: 48px 0 80px;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 32px;
+      align-items: end;
+      border-bottom: 4px solid var(--ink);
+      padding-bottom: 28px;
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(40px, 6vw, 84px);
+      line-height: 0.95;
+      letter-spacing: 0;
+      font-weight: 900;
+    }
+
+    h2 {
+      margin: 56px 0 18px;
+      font-size: 28px;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      line-height: 1.25;
+    }
+
+    p { margin: 0 0 12px; }
+
+    .meta {
+      display: grid;
+      gap: 8px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .meta span {
+      display: block;
+      border-top: 1px solid var(--line);
+      padding-top: 8px;
+    }
+
+    .tagline {
+      font-size: 22px;
+      font-weight: 800;
+      max-width: 720px;
+    }
+
+    .callout {
+      background: var(--dark);
+      color: #fff;
+      padding: 24px 28px;
+      margin: 28px 0;
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .callout strong {
+      display: block;
+      color: #ffe06a;
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .media {
+      background: var(--paper);
+      border: 4px solid var(--ink);
+      box-shadow: 10px 10px 0 rgba(23, 23, 23, 0.12);
+      padding: 16px;
+      margin: 22px 0;
+    }
+
+    .media video,
+    .media img {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: #000;
+    }
+
+    .caption {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin: 18px 0;
+    }
+
+    .card {
+      background: var(--paper);
+      border: 2px solid var(--ink);
+      padding: 20px;
+      box-shadow: 6px 6px 0 rgba(23, 23, 23, 0.10);
+    }
+
+    .card b {
+      color: var(--accent);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--paper);
+      border: 4px solid var(--ink);
+      box-shadow: 10px 10px 0 rgba(23, 23, 23, 0.12);
+      margin: 18px 0 42px;
+    }
+
+    th, td {
+      border-bottom: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      padding: 16px 18px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: var(--dark);
+      color: #fff;
+      font-size: 15px;
+      letter-spacing: 0;
+    }
+
+    td:first-child {
+      width: 112px;
+      color: var(--accent);
+      font-weight: 900;
+      font-size: 22px;
+      white-space: nowrap;
+    }
+
+    td { font-size: 16px; }
+
+    ul {
+      margin: 0;
+      padding-left: 1.1em;
+    }
+
+    li { margin: 0 0 8px; }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .quote {
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 1.3;
+      padding-left: 18px;
+      border-left: 8px solid var(--accent);
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      main { width: min(100vw - 28px, 760px); padding-top: 28px; }
+      header, .callout, .grid-2, .split, .cards { grid-template-columns: 1fr; }
+      table { display: block; overflow-x: auto; }
+      th, td { min-width: 220px; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <h1>Claude Code 教程拉片</h1>
+      <p class="tagline">这不是纯 MG 片，而是“真人讲解 + 动态标注 + 课程路线图 + 屏幕演示”的教程型 explainer。</p>
+    </div>
+    <div class="meta">
+      <span>视频：全网最全！60分钟全面掌握 Claude Code</span>
+      <span>UP：秋芝2046</span>
+      <span>范围：精拉 0:00-2:00，全片做 2 分钟间隔概览</span>
+      <span>来源：<a href="https://www.bilibili.com/video/BV1NvRyBzEhq/">BV1NvRyBzEhq</a></span>
+    </div>
+  </header>
+
+  <section class="callout">
+    <div>
+      <strong>一句话判断</strong>
+      <p>它好看的核心不是“画面多高级”，而是每 10 秒都在解决观众的一个疑虑：我为什么要看、我能不能学会、这 60 分钟会讲什么、我应该从哪里开始。</p>
+    </div>
+    <div>
+      <strong>对我们最有用的点</strong>
+      <p>如果做工具教程或 AI 工作流科普，可以学它的“信任锚点 + 承诺标签 + 路线图”结构；如果做纯 MG explainer，不要照抄真人和屏录，而要把这些功能转译成图形语言。</p>
+    </div>
+  </section>
+
+  <h2>素材</h2>
+  <div class="media">
+    <video src="clip-000-120.mp4" controls></video>
+    <div class="caption">0:00-2:00 样片。注意开头不是直接教学，而是先建立“为什么值得看”和“这期怎么学”。</div>
+  </div>
+
+  <div class="media">
+    <img src="contact-overview-120s.jpg" alt="full video overview every 120 seconds">
+    <div class="caption">全片概览：真人讲解、章节卡、屏幕演示、局部动画和列表说明反复切换。它是长教程，不是短广告。</div>
+  </div>
+
+  <div class="grid-2">
+    <div class="media">
+      <img src="contact-000-030-1s.jpg" alt="0-30s contact sheet">
+      <div class="caption">0:00-0:30：开场钩子、目标人群、课程菜单。</div>
+    </div>
+    <div class="media">
+      <img src="contact-030-060-1s.jpg" alt="30-60s contact sheet">
+      <div class="caption">0:30-1:00：Next Level、路线图、降低观看门槛。</div>
+    </div>
+    <div class="media">
+      <img src="contact-060-090-1s.jpg" alt="60-90s contact sheet">
+      <div class="caption">1:00-1:30：小白友好、网络友好、资料打包。</div>
+    </div>
+    <div class="media">
+      <img src="contact-090-120-1s.jpg" alt="90-120s contact sheet">
+      <div class="caption">1:30-2:00：正式进入“什么是 Claude Code”。</div>
+    </div>
+  </div>
+
+  <h2>它属于什么风格</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>Creator-led tutorial explainer</h3>
+      <p>真人是信任入口。观众不是先被动画吸住，而是先相信这个人能讲明白。</p>
+    </div>
+    <div class="card">
+      <h3>Overlay-heavy course video</h3>
+      <p>大量黄色、绿色、白色标签不是装饰，而是在替观众做笔记。</p>
+    </div>
+    <div class="card">
+      <h3>Roadmap-first teaching</h3>
+      <p>先把课程地图摊出来，再进入知识点。长视频因此不显得散。</p>
+    </div>
+  </div>
+
+  <h2>0-2 分钟精拉</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>时间</th>
+        <th>叙事任务</th>
+        <th>画面手法</th>
+        <th>为什么有效</th>
+        <th>可迁移到我们的片子</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>0:00-0:08</td>
+        <td>先抛出主题强度：Claude Code 是近期非常值得关注的 AI Agent。</td>
+        <td>真人中景开场，背后紫色灯光形成频道识别；随后叠加大号 Claude Code 字样、网页截图和多张海外教程缩略图。</td>
+        <td>真人保证亲近，外部截图证明热度。开头没有抽象讲概念，而是先告诉观众“这东西已经很火”。</td>
+        <td>Loop Engineering 开头也应该先建立“它为什么突然值得讲”，再进入定义。</td>
+      </tr>
+      <tr>
+        <td>0:08-0:13</td>
+        <td>明确目标观众：不只程序员，其他脑力工作者也相关。</td>
+        <td>右侧跳出荧光黄标签“程序员”“其他脑力工作者”，真人手势指向画面空间。</td>
+        <td>标签非常直白，观众不用从口播里猜自己是否属于受众。荧光色有短视频平台的强提醒感。</td>
+        <td>我们的受众也要被明确点名：用 ChatGPT、Codex、Claude Code 工作和创作的人。</td>
+      </tr>
+      <tr>
+        <td>0:14-0:29</td>
+        <td>给出课程承诺：从零了解、安装、配置、管理、个性化、高级扩展。</td>
+        <td>切到白底课程卡，左侧保留真人小窗，右侧列表逐条填入，标题像文档大纲。</td>
+        <td>60 分钟教程最怕观众觉得“太长太乱”。这里用菜单先降焦虑：你会知道接下来会获得什么。</td>
+        <td>如果做 Loop Engineering 长一点的解释，开头也需要一张“这期讲什么”的路线图，而不是一直口播铺垫。</td>
+      </tr>
+      <tr>
+        <td>0:30-0:34</td>
+        <td>制造结果感：看完会进入下一层级。</td>
+        <td>真人画面后方放大 “Next Level”，随后单独切成黑底发光字。</td>
+        <td>这是情绪性承诺，不解释知识点，只给观众一个结果想象。</td>
+        <td>可以用于片尾或章节转折，但要克制。我们的片子如果太早喊结果，会显得营销。</td>
+      </tr>
+      <tr>
+        <td>0:35-0:40</td>
+        <td>承认内容很长，同时说明怎么学。</td>
+        <td>黑底路线图，多个节点从左到右排列；小头像在左下角持续讲解；节点上方出现“初步上手 / 掌控管理 / 个性化 / 能力扩展”等标签。</td>
+        <td>这是一张“导航图”。它把长教程变成一条路，观众知道自己正在第几站。</td>
+        <td>如果我们做系列或长视频，路线图比单纯分镜更重要。每章要让观众知道自己在哪里。</td>
+      </tr>
+      <tr>
+        <td>0:41-0:52</td>
+        <td>降低难度预期：会尽量讲简单，可以暂停、跟练。</td>
+        <td>回到真人；穿插屏幕演示窗口、小游戏式过关画面、黑底总结卡。</td>
+        <td>它没有只说“很简单”，而是用“可跟练”的视觉暗示告诉观众：这是一个可以操作的教程。</td>
+        <td>我们的 explainer 如果不是教程，可以少用屏幕演示；但要学它的“把承诺可视化”。</td>
+      </tr>
+      <tr>
+        <td>0:55-1:01</td>
+        <td>处理国内用户疑虑：小白友好、网络友好。</td>
+        <td>荧光标签在右侧竖排出现，真人继续正面讲解。</td>
+        <td>这是痛点标签。它命中观众最容易关掉视频的理由：怕学不会、怕网络环境麻烦。</td>
+        <td>Loop Engineering 也需要类似痛点标签：不是“概念新”，而是“你正在调度 AI 到很累”。</td>
+      </tr>
+      <tr>
+        <td>1:02-1:08</td>
+        <td>短暂拔高：Claude Code 代表新的工作方式。</td>
+        <td>插入三段偏电影感的素材：深夜电脑、手机、人物侧脸。色调从紫色房间切到青绿色夜景。</td>
+        <td>这几秒不是讲知识，是给“AI 正在进入工作”制造现实感。它让教程不只是软件说明书。</td>
+        <td>纯 MG 片也需要这种“现实落点”。抽象概念讲太久，观众会失去代入。</td>
+      </tr>
+      <tr>
+        <td>1:09-1:30</td>
+        <td>提示已有经验者可以跳看，并说明资料已打包。</td>
+        <td>大字“收获满满”出现；右侧依次出现“资料 / 文字教程 / 打包在文档了”。</td>
+        <td>它对不同层级的观众都给了入口：新手完整看，老手跳到高级章节，收藏党拿资料。</td>
+        <td>对于我们的研究型视频，也可以给观众“看完能拿走什么”，但不要过度做成卖课感。</td>
+      </tr>
+      <tr>
+        <td>1:31-1:40</td>
+        <td>把观众从开场带进第一章：认识 CC。</td>
+        <td>真人做点赞/关注引导后，切到黑底像素路线图；小人走到第一个节点“认识 CC”。</td>
+        <td>这是一种明确的章节门。前面是开场，进入黑底路线图后，观众知道教程正式开始。</td>
+        <td>我们的样片也需要章节门：从“热词和痛点”切到“问题是什么”。</td>
+      </tr>
+      <tr>
+        <td>1:41-2:00</td>
+        <td>定义 Claude Code：Anthropic、2025 年 2 月、终端里的 Agent 程序。</td>
+        <td>黑底卡片，像素风 Claude Code 标题，右侧逐项出现 Anthropic / 2025 年 2 月 / 专供编程 / 终端运行；左下角保留头像讲解。</td>
+        <td>这里建立了后续教学模板：主概念居中，事实标签在右侧，讲解者头像保留在边角。信息密度高但不散。</td>
+        <td>定义类段落可以用这种固定模板：主词 + 3 个事实标签 + 讲解声音。不要每句都换风格。</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>为什么它看起来有效</h2>
+  <div class="split">
+    <div class="card">
+      <h3>1. 先解决观看动机，再解决知识点</h3>
+      <p>前 100 秒几乎没有真正教学，它在做四件事：证明主题重要，点名受众，列出路线图，降低学习门槛。</p>
+      <p>这对长教程尤其关键。观众不是不知道知识点重要，而是不确定自己有没有必要花一小时。</p>
+    </div>
+    <div class="card">
+      <h3>2. 真人和图形各司其职</h3>
+      <p>真人负责信任、语气、陪伴感；图形负责压缩信息、做重点、给结构。</p>
+      <p>所以它不是“真人加一点装饰”，而是“真人讲解 + 视觉笔记系统”。</p>
+    </div>
+    <div class="card">
+      <h3>3. 标签是观众的心理锚点</h3>
+      <p>“程序员”“其他脑力工作者”“小白友好”“网络友好”这些词并不复杂，但非常有效。</p>
+      <p>它们不断回答观众心里的问题：这和我有关吗？我能学会吗？我现在要不要继续看？</p>
+    </div>
+    <div class="card">
+      <h3>4. 路线图让长内容变短</h3>
+      <p>黑底路线图不是为了炫动画，而是为了把 60 分钟切成可理解的旅程。</p>
+      <p>观众只要知道当前在第几站，长视频就不会显得像一团信息。</p>
+    </div>
+  </div>
+
+  <h2>和上一条 ISO 纯 MG 参考的区别</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>维度</th>
+        <th>Claude Code 教程</th>
+        <th>ISO 技术 MG 片</th>
+        <th>我们怎么取舍</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>信任来源</td>
+        <td>真人出镜、语气、UP 主人设。</td>
+        <td>视觉质感、图解严谨、旁白控制。</td>
+        <td>如果我们不出镜，就要用更强的图解逻辑和材料可信度补信任。</td>
+      </tr>
+      <tr>
+        <td>节奏</td>
+        <td>高频标签、教程菜单、口播推进。</td>
+        <td>慢一点，靠物体运动和镜头变化推进。</td>
+        <td>短视频开头可以学高频标签，解释核心概念时要学 ISO 片的克制。</td>
+      </tr>
+      <tr>
+        <td>画面复杂度</td>
+        <td>信息密度高，适合教程。</td>
+        <td>元素少，适合抽象概念。</td>
+        <td>Loop Engineering 如果做纯 MG，不应堆太多词；如果做教程，可接受更高信息密度。</td>
+      </tr>
+      <tr>
+        <td>可复制性</td>
+        <td>更容易复制：真人、标签、路线图、屏录。</td>
+        <td>更难复制：需要统一的视觉隐喻和精细动画。</td>
+        <td>生产效率优先时学 Claude Code 教程；精品 MG 优先时学 ISO 片。</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>可提炼的方法</h2>
+  <div class="quote">教程型 explainer 的开头，不是先讲知识，而是先让观众相信：这期值得看、我能看懂、看完有收获。</div>
+  <div class="cards">
+    <div class="card">
+      <h3>开头 30 秒</h3>
+      <p><b>主题热度</b> + <b>目标人群</b> + <b>课程承诺</b>。不要急着定义概念。</p>
+    </div>
+    <div class="card">
+      <h3>30-60 秒</h3>
+      <p><b>路线图</b> + <b>学习方式</b>。承认内容长，但告诉观众怎么消化。</p>
+    </div>
+    <div class="card">
+      <h3>60-120 秒</h3>
+      <p><b>降低阻力</b> + <b>进入第一章</b>。先处理观众顾虑，再正式教学。</p>
+    </div>
+  </div>
+
+  <h2>对 Loop Engineering 样片的建议</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>问题</th>
+        <th>从这条片子学到的解决办法</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>开头只讲概念，容易像科普论文。</td>
+        <td>先用一句强痛点点名观众：你以为 AI 在替你干活，实际上你在一轮一轮调度 AI。然后再讲 Loop Engineering。</td>
+      </tr>
+      <tr>
+        <td>抽象术语太多，观众不知道和自己有什么关系。</td>
+        <td>像它一样使用受众标签，但画面保持极简：一个人、一个 AI、一个循环。不要把 Codex、Claude Code 都画出来。</td>
+      </tr>
+      <tr>
+        <td>长解释容易散。</td>
+        <td>需要一张路线图，提前告诉观众：热词怎么来的、旧模式怎么卡住、循环工程改变了什么、边界在哪里。</td>
+      </tr>
+      <tr>
+        <td>纯 MG 容易缺少信任。</td>
+        <td>用真实来源补信任：Boris / Peter / Addy 的事件线可以承担真人出镜的“可信锚点”。</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="small">说明：本拉片使用本地抽帧和 0-2 分钟样片分析；字幕转写为自动识别，仅作为辅助，不作为逐字引用依据。</p>
+</main>
+</body>
+</html>

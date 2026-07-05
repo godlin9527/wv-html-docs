@@ -1,0 +1,344 @@
+{
+  "version": 3,
+  "generated_at": "2026-07-04T02:49:24.449Z",
+  "pinned_hyperframes_version": "0.7.26",
+  "cli_version_line": "0.7.26",
+  "npx_prefix": "npx --yes hyperframes@0.7.26",
+  "gates_clean": true,
+  "gates": {
+    "lint": {
+      "ok": true,
+      "exit_code": 0,
+      "duration_s": 3,
+      "errors": null,
+      "warnings": null,
+      "info": null,
+      "output_tail": "◆  Linting yubo-demystification-explainer/8 files\n\n◇  0 errors, 0 warnings\n"
+    },
+    "validate": {
+      "ok": true,
+      "exit_code": 0,
+      "duration_s": 8.31,
+      "errors": null,
+      "warnings": null,
+      "info": null,
+      "output_tail": "◆  Validating yubo-demystification-explainer in headless Chrome\n◇  No console errors · 25 text elements pass WCAG AA\n"
+    },
+    "inspect": {
+      "ok": true,
+      "exit_code": 0,
+      "duration_s": 10.35,
+      "errors": null,
+      "warnings": null,
+      "info": null,
+      "output_tail": "◆  Inspecting layout for yubo-demystification-explainer (18 timeline samples)\n\n◇  0 layout issues across 18 sample(s)\n"
+    }
+  },
+  "bgm": {
+    "enabled": false,
+    "path": null,
+    "ready": false,
+    "status_file": "bgm_status.json",
+    "status": "disabled",
+    "provider": "seed-audio-inline",
+    "mode": "included-in-full-track",
+    "log": null,
+    "pid": null,
+    "target_duration_s": null,
+    "seed_duration_s": null,
+    "loop_count": null,
+    "message": "BGM not requested or disabled in audio_meta.json."
+  },
+  "overlap": {
+    "status": "ok",
+    "canvas": {
+      "width": 1920,
+      "height": 1080
+    },
+    "probe_ratios": [
+      0.4,
+      0.7,
+      0.92
+    ],
+    "min_overlap_px": 4,
+    "scenes_scanned": 3,
+    "scenes_skipped": 6,
+    "scenes_no_timeline": 0,
+    "violations": [],
+    "transients": []
+  },
+  "caption_keepout": {
+    "enabled": true,
+    "canvas_height_px": 1080,
+    "caption_band_top_y": 900,
+    "fail_threshold_bottom_px": 180,
+    "suggested_min_bottom_px": 200,
+    "scenes_scanned": 6,
+    "violations": []
+  },
+  "anomalies": [],
+  "preflight_clean": true,
+  "deterministic_fixes_applied": [],
+  "snapshot_times_s": [
+    3.09,
+    6.18,
+    10.36,
+    12.45,
+    13.704,
+    14.79,
+    18.04,
+    19.79,
+    20.84,
+    21.765,
+    25.22,
+    27.06,
+    28.164,
+    28.9,
+    33.99,
+    36.535,
+    38.062,
+    39.255,
+    42.83,
+    46.805,
+    50.91,
+    53.075,
+    54.374,
+    55.465,
+    59.85,
+    62.155,
+    63.538,
+    64.46,
+    69.754,
+    72.401,
+    73.989
+  ],
+  "total_duration_s": 75.048,
+  "scenes": [
+    {
+      "scene_id": "scene_1",
+      "start_s": 0,
+      "duration_s": 6.18,
+      "midpoint_s": 3.09,
+      "high_risk_extras_s": [],
+      "high_risk": false,
+      "effects": [
+        "kinetic-beat-slam",
+        "physics-press-reaction",
+        "sine-wave-loop"
+      ]
+    },
+    {
+      "scene_id": "scene_2",
+      "start_s": 6.18,
+      "duration_s": 8.36,
+      "midpoint_s": 10.36,
+      "high_risk_extras_s": [
+        12.45,
+        13.704
+      ],
+      "high_risk": true,
+      "effects": [
+        "stat-bars-and-fills",
+        "svg-path-draw",
+        "counting-dynamic-scale",
+        "sine-wave-loop"
+      ]
+    },
+    {
+      "scene_id": "scene_3",
+      "start_s": 14.54,
+      "duration_s": 7,
+      "midpoint_s": 18.04,
+      "high_risk_extras_s": [
+        19.79,
+        20.84
+      ],
+      "high_risk": true,
+      "effects": [
+        "discrete-text-sequence",
+        "css-marker-patterns",
+        "scale-swap-transition"
+      ]
+    },
+    {
+      "scene_id": "scene_4",
+      "start_s": 21.54,
+      "duration_s": 7.36,
+      "midpoint_s": 25.22,
+      "high_risk_extras_s": [
+        27.06,
+        28.164
+      ],
+      "high_risk": true,
+      "effects": [
+        "vertical-spring-ticker",
+        "card-morph-anchor",
+        "svg-icon-enrichment",
+        "sine-wave-loop"
+      ]
+    },
+    {
+      "scene_id": "scene_5",
+      "start_s": 28.9,
+      "duration_s": 10.18,
+      "midpoint_s": 33.99,
+      "high_risk_extras_s": [
+        36.535,
+        38.062
+      ],
+      "high_risk": true,
+      "effects": [
+        "counting-dynamic-scale",
+        "card-morph-anchor",
+        "css-marker-patterns",
+        "svg-path-draw"
+      ]
+    },
+    {
+      "scene_id": "scene_6",
+      "start_s": 39.08,
+      "duration_s": 7.5,
+      "midpoint_s": 42.83,
+      "high_risk_extras_s": [],
+      "high_risk": false,
+      "effects": [
+        "physics-press-reaction",
+        "stat-bars-and-fills",
+        "counting-dynamic-scale"
+      ]
+    },
+    {
+      "scene_id": "scene_7",
+      "start_s": 46.58,
+      "duration_s": 8.66,
+      "midpoint_s": 50.91,
+      "high_risk_extras_s": [
+        53.075,
+        54.374
+      ],
+      "high_risk": true,
+      "effects": [
+        "split-tilt-cards",
+        "3d-text-depth-layers",
+        "scale-swap-transition",
+        "sine-wave-loop"
+      ]
+    },
+    {
+      "scene_id": "scene_8",
+      "start_s": 55.24,
+      "duration_s": 9.22,
+      "midpoint_s": 59.85,
+      "high_risk_extras_s": [
+        62.155,
+        63.538
+      ],
+      "high_risk": true,
+      "effects": [
+        "avatar-cloud-network",
+        "svg-path-draw",
+        "orbit-3d-entry",
+        "sine-wave-loop"
+      ]
+    },
+    {
+      "scene_id": "scene_9",
+      "start_s": 64.46,
+      "duration_s": 10.588,
+      "midpoint_s": 69.754,
+      "high_risk_extras_s": [
+        72.401,
+        73.989
+      ],
+      "high_risk": true,
+      "effects": [
+        "discrete-text-sequence",
+        "css-marker-patterns",
+        "sine-wave-loop"
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "from": "group_w1",
+      "to": "scene_3",
+      "from_scene": "scene_2",
+      "to_scene": "scene_3",
+      "type": "blur-crossfade",
+      "direction": null,
+      "duration_s": 0.5,
+      "tier": "b",
+      "seam_mid_s": 14.79
+    },
+    {
+      "from": "scene_3",
+      "to": "group_w3",
+      "from_scene": "scene_3",
+      "to_scene": "scene_4",
+      "type": "push-slide",
+      "direction": "LEFT",
+      "duration_s": 0.45,
+      "tier": "b",
+      "seam_mid_s": 21.765
+    },
+    {
+      "from": "group_w3",
+      "to": "scene_6",
+      "from_scene": "scene_5",
+      "to_scene": "scene_6",
+      "type": "crossfade",
+      "direction": null,
+      "duration_s": 0.35,
+      "tier": "b",
+      "seam_mid_s": 39.255
+    },
+    {
+      "from": "scene_6",
+      "to": "scene_7",
+      "from_scene": "scene_6",
+      "to_scene": "scene_7",
+      "type": "zoom-through",
+      "direction": null,
+      "duration_s": 0.45,
+      "tier": "b",
+      "seam_mid_s": 46.805
+    },
+    {
+      "from": "scene_7",
+      "to": "group_w6",
+      "from_scene": "scene_7",
+      "to_scene": "scene_8",
+      "type": "push-slide",
+      "direction": "LEFT",
+      "duration_s": 0.45,
+      "tier": "b",
+      "seam_mid_s": 55.465
+    }
+  ],
+  "internal_seams": [
+    {
+      "from_scene": "scene_1",
+      "to_scene": "scene_2",
+      "visual_id": "group_w1",
+      "worker_id": "w1",
+      "seam_s": 6.18,
+      "local_time_s": 6.18
+    },
+    {
+      "from_scene": "scene_4",
+      "to_scene": "scene_5",
+      "visual_id": "group_w3",
+      "worker_id": "w3",
+      "seam_s": 28.9,
+      "local_time_s": 7.36
+    },
+    {
+      "from_scene": "scene_8",
+      "to_scene": "scene_9",
+      "visual_id": "group_w6",
+      "worker_id": "w6",
+      "seam_s": 64.46,
+      "local_time_s": 9.22
+    }
+  ]
+}

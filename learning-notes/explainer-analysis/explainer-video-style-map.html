@@ -1,0 +1,2664 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Explainer Video 案例库</title>
+  <style>
+    :root {
+      --bg: #f5f1e8;
+      --paper: #fffdf8;
+      --ink: #171717;
+      --muted: #6e675d;
+      --line: #ded7cb;
+      --soft: #ece5d8;
+      --accent: #e35d3f;
+      --green: #2f8f68;
+      --blue: #315fba;
+      --yellow: #f3c94b;
+      --shadow: rgba(23, 23, 23, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background:
+        linear-gradient(rgba(23, 23, 23, .035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(23, 23, 23, .035) 1px, transparent 1px),
+        var(--bg);
+      background-size: 28px 28px;
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      line-height: 1.55;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .app {
+      width: min(1560px, calc(100vw - 56px));
+      margin: 0 auto;
+      padding: 44px 0 80px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 36px;
+      align-items: end;
+      padding-bottom: 28px;
+      border-bottom: 4px solid var(--ink);
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(42px, 6vw, 92px);
+      line-height: .92;
+      font-weight: 950;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 44px 0 18px;
+      font-size: 28px;
+      line-height: 1.2;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      font-size: 22px;
+      line-height: 1.25;
+    }
+
+    p { margin: 0 0 10px; }
+
+    .lead {
+      max-width: 820px;
+      font-size: 21px;
+      font-weight: 800;
+      color: #25211d;
+    }
+
+    .meta {
+      display: grid;
+      gap: 10px;
+      color: var(--muted);
+      font-weight: 750;
+    }
+
+    .meta span {
+      display: block;
+      padding-top: 9px;
+      border-top: 1px solid var(--line);
+    }
+
+    .notice {
+      margin: 24px 0 34px;
+      padding: 18px 20px;
+      background: var(--ink);
+      color: #fff;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .notice strong {
+      color: var(--yellow);
+      font-size: 20px;
+    }
+
+    .method {
+      margin: -14px 0 34px;
+      padding: 18px 20px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .method b {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: .03em;
+    }
+
+    .method p {
+      color: var(--muted);
+      font-weight: 760;
+    }
+
+    .replication {
+      margin: 0 0 34px;
+      padding: 22px;
+    }
+
+    .replication-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 420px;
+      gap: 24px;
+      align-items: start;
+      margin-bottom: 18px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .replication-head h2 {
+      margin: 0 0 8px;
+    }
+
+    .replication-head p {
+      color: var(--muted);
+      font-weight: 760;
+    }
+
+    .replication-score {
+      display: grid;
+      gap: 8px;
+      padding: 14px;
+      background: var(--soft);
+      border: 2px solid var(--line);
+      font-weight: 850;
+      color: var(--muted);
+    }
+
+    .replication-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-weight: 780;
+    }
+
+    .replication-table th,
+    .replication-table td {
+      padding: 13px 12px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .replication-table th {
+      color: var(--accent);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .03em;
+      background: #fffaf0;
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .replication-table td:first-child {
+      color: var(--accent);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 24px;
+      font-weight: 950;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .replication-table td:nth-child(2) {
+      font-weight: 920;
+      color: var(--ink);
+    }
+
+    .replication-table .why {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 340px minmax(0, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .panel {
+      background: var(--paper);
+      border: 3px solid var(--ink);
+      box-shadow: 7px 7px 0 var(--shadow);
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 18px;
+      padding: 18px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .filter-group {
+      display: grid;
+      gap: 10px;
+    }
+
+    .filter-title {
+      font-size: 14px;
+      font-weight: 900;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .03em;
+    }
+
+    .filter-button {
+      width: 100%;
+      border: 2px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      padding: 10px 12px;
+      text-align: left;
+      font: inherit;
+      font-weight: 800;
+      cursor: pointer;
+      border-radius: 0;
+    }
+
+    .filter-button:hover,
+    .filter-button.active {
+      border-color: var(--ink);
+      background: #111;
+      color: #fff;
+    }
+
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag-button,
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 4px 10px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .tier {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      min-height: 30px;
+      padding: 4px 10px;
+      border: 2px solid var(--ink);
+      background: var(--yellow);
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 950;
+    }
+
+    .tier.supplemental {
+      background: #fff;
+      border-color: var(--line);
+      color: var(--muted);
+    }
+
+    .tag-button {
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .tag-button.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .search {
+      width: 100%;
+      border: 2px solid var(--ink);
+      background: #fff;
+      color: var(--ink);
+      padding: 11px 12px;
+      font: inherit;
+      font-weight: 750;
+      outline: none;
+    }
+
+    .style-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .style-overview-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 18px;
+      margin: 44px 0 18px;
+    }
+
+    .style-overview-head h2 {
+      margin: 0;
+    }
+
+    .style-overview-head .case-note {
+      max-width: 620px;
+      text-align: right;
+    }
+
+    .selected-style-panel {
+      margin-bottom: 18px;
+      padding: 20px;
+    }
+
+    .selected-style-panel h2 {
+      margin: 0 0 8px;
+    }
+
+    .selected-style-panel p {
+      color: var(--muted);
+      font-weight: 760;
+    }
+
+    .selected-style-panel .style-meta {
+      margin-top: 14px;
+    }
+
+    .style-card {
+      padding: 18px;
+      cursor: pointer;
+      min-height: 230px;
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+
+    .style-card:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 10px 10px 0 var(--shadow);
+    }
+
+    .style-card.active {
+      border-color: var(--accent);
+      box-shadow: 7px 7px 0 rgba(227, 93, 63, .20);
+    }
+
+    .style-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    .style-num {
+      color: var(--accent);
+      font-size: 32px;
+      font-weight: 950;
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1;
+    }
+
+    .style-count {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    .style-card p {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .style-meta {
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .style-evidence {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+      font-weight: 760;
+    }
+
+    .style-evidence b {
+      color: var(--accent);
+    }
+
+    .evidence-links {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .evidence-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      padding: 3px 8px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .evidence-link:hover {
+      border-color: var(--ink);
+      text-decoration: none;
+    }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin: 18px 0;
+      padding: 14px 0;
+      border-top: 2px solid var(--ink);
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .result-title {
+      font-weight: 950;
+      font-size: 24px;
+    }
+
+    .case-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .case-card {
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: auto 1fr;
+    }
+
+    .player-wrap {
+      background: #111;
+      border-bottom: 3px solid var(--ink);
+    }
+
+    .player-wrap iframe {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 0;
+      background: #111;
+    }
+
+    .case-body {
+      padding: 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .case-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .case-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .case-note {
+      color: var(--muted);
+      font-weight: 720;
+    }
+
+    .case-detail {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--line);
+    }
+
+    .case-detail div {
+      background: var(--soft);
+      padding: 10px 12px;
+      min-height: 82px;
+    }
+
+    .case-detail b {
+      display: block;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .case-evidence {
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-weight: 720;
+    }
+
+    .case-evidence b {
+      color: var(--ink);
+      margin-right: 8px;
+    }
+
+    .external {
+      display: inline-flex;
+      width: fit-content;
+      padding: 8px 10px;
+      background: var(--ink);
+      color: #fff;
+      font-weight: 900;
+    }
+
+    .resources {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .resource-card {
+      padding: 18px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .resource-kind {
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    .empty {
+      padding: 34px;
+      background: var(--paper);
+      border: 3px dashed var(--line);
+      color: var(--muted);
+      font-weight: 850;
+      text-align: center;
+    }
+
+    @media (max-width: 1180px) {
+      .hero,
+      .replication-head,
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+      }
+
+      .style-grid,
+      .resources {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 820px) {
+      .app { width: calc(100vw - 28px); padding-top: 28px; }
+      .notice,
+      .method,
+      .style-grid,
+      .case-grid,
+      .resources,
+      .case-detail {
+        grid-template-columns: 1fr;
+      }
+      .toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .replication {
+        overflow-x: auto;
+      }
+
+      .replication-table {
+        min-width: 860px;
+      }
+    }
+  </style>
+</head>
+<body>
+<main class="app">
+  <header class="hero">
+    <div>
+      <h1>Explainer Video 案例库</h1>
+      <p class="lead">把风格、案例、资源分开管理：风格是解释方式，案例是可播放的视频，资源是书、课程、网站和案例库。先做客观调研，再谈具体项目怎么选型。</p>
+    </div>
+    <div class="meta">
+      <span>实体：Style / Case / Resource</span>
+      <span>规则：每个 Case 都必须嵌入播放器</span>
+      <span>建议：用 localhost 打开，避免 YouTube 在 file:// 下报错</span>
+      <span>更新：2026-07-05</span>
+    </div>
+  </header>
+
+  <section class="notice">
+    <strong>播放说明</strong>
+    <p>如果看到 YouTube 错误 153，通常是因为用 <code>file://</code> 打开。请用本地 HTTP 服务访问本页，例如 <code>http://localhost:8787/explainer-video-style-map.html</code>。</p>
+  </section>
+
+  <section class="panel method">
+    <div>
+      <b>风格标准</b>
+      <p>优先使用行业文章、制作公司、课程或案例库中真实出现的英文说法，不使用我们临时发明的分类名。</p>
+    </div>
+    <div>
+      <b>分类层级</b>
+      <p>有些是视觉语言，有些是生产方式、媒体体裁或动画技术；同一个案例可以跨类，但 core 只代表它最能定义的一面。</p>
+    </div>
+    <div>
+      <b>核心代表作</b>
+      <p>优先选择被多个案例库引用、由标杆创作者/品牌发布、或能清楚代表该风格方法的可播放案例。</p>
+    </div>
+    <div>
+      <b>补充参考</b>
+      <p>用于补齐细分方向、中文语境或生产方式。它们有参考价值，但不等同于该风格最经典样本。</p>
+    </div>
+  </section>
+
+  <section class="panel replication">
+    <div class="replication-head">
+      <div>
+        <h2>HyperFrames 复刻性价比</h2>
+        <p>这个排序不是行业地位排序，而是制作选型排序：如果目标是用 HyperFrames 复刻经典风格，同时兼顾难度、效果和可量产性，建议按下面顺序练习。</p>
+      </div>
+      <div class="replication-score">
+        <span>判断维度：复刻难度 / 表现效果 / 可复用组件 / 对 HyperFrames 的适配度</span>
+        <span>原则：先做可控、可复用、能快速产出专业感的类型，再挑战高资产、高制作难度的风格。</span>
+      </div>
+    </div>
+    <table class="replication-table">
+      <thead>
+        <tr>
+          <th>优先级</th>
+          <th>风格</th>
+          <th>难度</th>
+          <th>效果</th>
+          <th>性价比</th>
+          <th>为什么适合 / 不适合先做</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>01</td>
+          <td>Screencast / Software Demo / UI Animation</td>
+          <td>低-中</td>
+          <td>中-高</td>
+          <td>最高</td>
+          <td class="why">最适合 HyperFrames：屏幕录制、浏览器框、缩放、高亮、箭头、步骤卡、章节标题都能组件化。适合先建立可量产的教程型 explainer 基础。</td>
+        </tr>
+        <tr>
+          <td>02</td>
+          <td>Animated Presentation / Presentation-style</td>
+          <td>低-中</td>
+          <td>中</td>
+          <td>很高</td>
+          <td class="why">接近动态课件，但比 PPT 更强调 reveal、停顿、镜头移动和信息节奏。HyperFrames 可以快速复用标题页、概念卡、流程图、对比图和列表组件。</td>
+        </tr>
+        <tr>
+          <td>03</td>
+          <td>Typography / Kinetic Typography</td>
+          <td>中</td>
+          <td>高</td>
+          <td>高</td>
+          <td class="why">适合做开头爆点、金句、转场和情绪段落。全片都做文字动效会累，但作为模块非常有传播感，也容易用 CSS/SVG/GSAP 控制。</td>
+        </tr>
+        <tr>
+          <td>04</td>
+          <td>Infographic Video / Data Visualization</td>
+          <td>中</td>
+          <td>高</td>
+          <td>高</td>
+          <td class="why">适合解释观点、数据、比例和趋势。难点在信息设计，不是资产绘制；一旦建立图表、数字、比例尺组件，复用价值很高。</td>
+        </tr>
+        <tr>
+          <td>05</td>
+          <td>Motion Graphics / Graphic Animation</td>
+          <td>中-高</td>
+          <td>高</td>
+          <td>中高</td>
+          <td class="why">最像传统 MG 的核心能力，适合流程、结构、抽象概念。难点是每个镜头都要有清楚的运动语义，不能只是图形乱飞。</td>
+        </tr>
+        <tr>
+          <td>06</td>
+          <td>Plain English / Common Craft Cutout</td>
+          <td>中</td>
+          <td>中高</td>
+          <td>中高</td>
+          <td class="why">风格强、解释清楚，但真正的手工纸片感需要纹理、阴影、手部动作和低保真构图。可以用 HTML/SVG 仿，但要避免变成普通扁平插画。</td>
+        </tr>
+        <tr>
+          <td>07</td>
+          <td>Whiteboard Animation / Visual Scribing</td>
+          <td>中-高</td>
+          <td>中高</td>
+          <td>中</td>
+          <td class="why">经典、清楚，但需要大量线稿路径、绘制顺序和画布组织。HyperFrames 能做，但产能不如软件演示和动态课件。</td>
+        </tr>
+        <tr>
+          <td>08</td>
+          <td>Editorial Explainer / Explainer Journalism</td>
+          <td>高</td>
+          <td>高</td>
+          <td>中</td>
+          <td class="why">难点主要在资料、观点、证据链和叙事结构，不只是动画。适合成熟后做，但不适合作为第一批复刻训练。</td>
+        </tr>
+        <tr>
+          <td>09</td>
+          <td>Live Action / Live Action + Animation</td>
+          <td>高</td>
+          <td>高</td>
+          <td>中低</td>
+          <td class="why">效果依赖真人拍摄、表演、场景和剪辑。HyperFrames 可以加动画包装，但不能替代拍摄资产本身。</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td>2D Animation / Illustrated Animation</td>
+          <td>高</td>
+          <td>高</td>
+          <td>中低</td>
+          <td class="why">需要原创插画、角色资产、镜头调度和一致世界观。适合做高完成度作品，不适合快速复刻大量案例。</td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td>Stop Motion</td>
+          <td>很高</td>
+          <td>中高</td>
+          <td>低</td>
+          <td class="why">真正的定格动画依赖真实材料和逐帧拍摄；如果只用 HTML 模拟，很容易失去手工质感。更适合作为风格参考，不适合早期复刻。</td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td>3D Animation / Scientific & Product CG</td>
+          <td>很高</td>
+          <td>很高</td>
+          <td>低</td>
+          <td class="why">视觉上限高，但需要 3D 建模、材质、灯光、相机和渲染。HyperFrames 可承载 Three.js，但复刻经典 CG 的成本远高于当前收益。</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="layout">
+    <aside class="panel sidebar">
+      <div class="filter-group">
+        <div class="filter-title">搜索案例</div>
+        <input id="searchInput" class="search" placeholder="搜索标题、作者、标签..." />
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-title">风格筛选</div>
+        <div id="styleFilter"></div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-title">代表性</div>
+        <div id="tierFilter"></div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-title">标签筛选</div>
+        <div id="tagFilter" class="tag-cloud"></div>
+      </div>
+    </aside>
+
+    <section>
+      <div id="styleOverview"></div>
+
+      <div id="caseToolbar" class="toolbar">
+        <div>
+          <div id="resultTitle" class="result-title">全部案例</div>
+          <div id="resultMeta" class="case-note"></div>
+        </div>
+        <button id="resetButton" class="filter-button" style="width:auto;">清除筛选</button>
+      </div>
+
+      <div id="caseGrid" class="case-grid"></div>
+
+      <h2>理论与资源</h2>
+      <div id="resourceGrid" class="resources"></div>
+    </section>
+  </section>
+</main>
+
+<script>
+const styles = [
+  {
+    id: "plain-english",
+    name: "Plain English / Common Craft Cutout",
+    kind: "解释传统 / 视觉方法",
+    summary: "更严格地说，这一路不是泛泛的纸片风，而是 Common Craft 代表的 Plain English 解释传统：真人手工纸片、白底、低复杂度画面、强问题-例子-解决方案结构。核心案例优先收录 Common Craft 官方页、官方频道或 Classics / In Plain English 系列；只受其影响的商业视频会标成影响样本。",
+    bestFor: "新产品、新概念、基础科普、教育场景",
+    pptLike: "高",
+    motion: "拿起、放下、替换、连接、指向",
+    evidence: "GraphicMama: Cut Out Animation；Blue Carrot: Cutout；Common Craft Classics: In Plain English",
+    evidenceLinks: [{ label: "GraphicMama", url: "https://graphicmama.com/blog/best-explainer-video-styles/" }, { label: "Blue Carrot", url: "https://bluecarrot.io/blog/types-of-explainer-videos-best-examples/" }, { label: "Common Craft", url: "https://commoncraft.com/" }, { label: "Common Craft Classics", url: "https://www.youtube.com/playlist?list=PLcOSiZT4b8vj_H-q0MgsOCroA4uv-3Xel" }]
+  },
+  {
+    id: "whiteboard",
+    name: "Whiteboard Animation / Visual Scribing",
+    kind: "视觉方法 / 演讲可视化",
+    summary: "白板动画是成熟行业分类：实时绘制或模拟实时绘制线稿，通常配旁白，用逐步长出来的图形解释观点。",
+    bestFor: "演讲观点、理论、科学直觉、教育",
+    pptLike: "中高",
+    motion: "画线、圈重点、扩展画布、连接概念",
+    evidence: "GraphicMama: Whiteboard Explainer Video Style；Blue Carrot: Whiteboard；RSA Animate / Cognitive Media visual scribing",
+    evidenceLinks: [{ label: "GraphicMama", url: "https://graphicmama.com/blog/best-explainer-video-styles/" }, { label: "Blue Carrot", url: "https://bluecarrot.io/blog/types-of-explainer-videos-best-examples/" }, { label: "RSA Animate", url: "https://www.youtube.com/watch?v=zDZFcDGpL4U" }, { label: "IdeaRocket history", url: "https://idearocketanimation.com/15321-whiteboard-animation-history/" }]
+  },
+  {
+    id: "slide-explainer",
+    name: "Animated Presentation / Presentation-style",
+    kind: "生产方式 / 动态课件",
+    summary: "不把它叫 Slide Explainer。更稳妥的业界说法是 animated presentation、presentation-style video 或 presentation video。它不是一个像 whiteboard 那样稳定的单一流派，而是一种把幻灯片、课程页、界面页、图表和逐步 reveal 做成视频的解释方式。",
+    bestFor: "课程、工具教学、SaaS onboarding、培训、数据和概念分解",
+    pptLike: "最高",
+    motion: "逐层 reveal、章节门、路线图、列表填充、重点高亮、镜头推拉",
+    evidence: "Creative Faze: Presentation Style Videos；Powtoon: Animated Presentations；Loom: Presentation Video",
+    evidenceLinks: [{ label: "Creative Faze", url: "https://www.creativefaze.com/presentation-style-videos/" }, { label: "Powtoon", url: "https://www.powtoon.com/blog/how-to-create-an-animated-presentation-in-5-easy-steps/" }, { label: "Loom", url: "https://www.loom.com/powerpoint-presentation" }]
+  },
+  {
+    id: "icon-system",
+    name: "Motion Graphics / Graphic Animation",
+    kind: "视觉语言 / 图形动效",
+    summary: "Motion graphics / graphic animation 是行业高频说法：用抽象图形、图标、文字、转场和变形解释流程、结构和复杂概念。",
+    bestFor: "制度、经济、组织、复杂因果、AI 系统",
+    pptLike: "中",
+    motion: "节点连接、循环、缩放、因果链推进",
+    evidence: "Blue Carrot: Motion graphic；GraphicMama: Graphic Animation；Piehole: Motion Graphic Explainer Videos",
+    evidenceLinks: [{ label: "Blue Carrot", url: "https://bluecarrot.io/blog/types-of-explainer-videos-best-examples/" }, { label: "GraphicMama", url: "https://graphicmama.com/blog/best-explainer-video-styles/" }, { label: "Piehole TV", url: "https://piehole.tv/explainer-video-examples/" }]
+  },
+  {
+    id: "editorial",
+    name: "Editorial Explainer / Explainer Journalism",
+    kind: "媒体体裁 / 选题方法",
+    summary: "Editorial explainer 和 explainer journalism 都是真实说法。这里的核心不是某一种画法，而是媒体式选题：用采访、资料、地图、图表、档案材料或论证结构解释新闻、商业、历史或社会议题背后的 how / why。不是所有“有观点”的动画都放进来；RSA Animate 这类演讲可视化主要归入 whiteboard / visual scribing。",
+    bestFor: "新闻、社会议题、商业事件线、历史解释",
+    pptLike: "中高",
+    motion: "裁切、标注、地图推进、证据叠加",
+    evidence: "FIPP: Explainer journalism；Venture Videos / Wyzowl: Editorial explainer；Vox: explainer journalism",
+    evidenceLinks: [{ label: "FIPP", url: "https://www.fipp.com/news/what-is-explainer-journalism/" }, { label: "Vox", url: "https://www.youtube.com/watch?v=-ZDZtBRTyeI" }, { label: "Wyzowl", url: "https://www.wyzowl.com/explainer-video-examples/" }]
+  },
+  {
+    id: "data",
+    name: "Infographic Video / Data Visualization",
+    kind: "信息表达 / 数据叙事",
+    summary: "Infographic video 是成熟分类：图表、数字、比例、趋势和事实不是配图，而是解释本身。",
+    bestFor: "趋势、规模、统计误读、财务、科学数据",
+    pptLike: "高",
+    motion: "数值增长、排序、坐标轴展开、对比高亮",
+    evidence: "GraphicMama: Infographic Video；Wyzowl: explainer video examples；Piehole: infographic-style",
+    evidenceLinks: [{ label: "GraphicMama", url: "https://graphicmama.com/blog/best-explainer-video-styles/" }, { label: "Wyzowl", url: "https://www.wyzowl.com/explainer-video-examples/" }, { label: "Piehole TV", url: "https://piehole.tv/explainer-video-examples/" }]
+  },
+  {
+    id: "illustrated",
+    name: "2D Animation / Illustrated Animation",
+    kind: "动画形式 / 插画叙事",
+    summary: "2D animation 是最常见的 explainer 分类之一。它可以是角色动画、扁平插画、手绘风或图形叙事，用故事和场景降低理解门槛。",
+    bestFor: "人文、心理、历史、教育短片、情绪表达",
+    pptLike: "低到中",
+    motion: "角色动作、场景转换、隐喻变形",
+    evidence: "GraphicMama: 2D Animation Explainer Video；Blue Carrot: 2D animation video；Yum Yum: 2D animation",
+    evidenceLinks: [{ label: "GraphicMama", url: "https://graphicmama.com/blog/best-explainer-video-styles/" }, { label: "Blue Carrot", url: "https://bluecarrot.io/blog/types-of-explainer-videos-best-examples/" }, { label: "Yum Yum Videos", url: "https://www.yumyumvideos.com/blog/best-explainer-video-examples/" }]
+  },
+  {
+    id: "science-mg",
+    name: "3D Animation / Scientific & Product CG",
+    kind: "动画技术 / CG 可视化",
+    summary: "3D animation / CG 3D 是行业标准分类。它常用于产品结构、技术设备、医学/科学可视化、建筑、工业和更高预算的品牌解释。",
+    bestFor: "硬件、医学、工业、建筑、产品结构、高预算品牌片",
+    pptLike: "低",
+    motion: "镜头运动、空间旋转、材质展示、分解装配",
+    evidence: "GraphicMama: 3D Animation Explainer Video；Blue Carrot: CG 3D；Piehole TV: 3D examples；XVIVO scientific animation",
+    evidenceLinks: [{ label: "GraphicMama", url: "https://graphicmama.com/blog/best-explainer-video-styles/" }, { label: "Blue Carrot", url: "https://bluecarrot.io/blog/types-of-explainer-videos-best-examples/" }, { label: "Piehole TV", url: "https://piehole.tv/explainer-video-examples/" }, { label: "XVIVO", url: "https://xvivo.com/examples/the-inner-life-of-the-cell/" }]
+  },
+  {
+    id: "talking-head",
+    name: "Screencast / Software Demo / UI Animation",
+    kind: "生产方式 / 软件演示",
+    summary: "Screencast、screen capture、software demo video 都是软件解释里的真实说法。核心不是真人出镜，而是让界面、操作路径、状态变化和旁白一起解释产品怎么解决问题。",
+    bestFor: "软件教程、工具教学、产品 onboarding、低预算 SaaS 说明",
+    pptLike: "很高",
+    motion: "屏幕聚焦、鼠标路径、步骤高亮、UI 状态切换、微交互",
+    evidence: "GraphicMama: Screen Capture Explainer Video Style；Blue Carrot: Screencasts；Wyzowl: Software Demo Videos；Vimeo: Software video demos",
+    evidenceLinks: [{ label: "GraphicMama", url: "https://graphicmama.com/blog/best-explainer-video-styles/" }, { label: "Blue Carrot", url: "https://bluecarrot.io/blog/types-of-explainer-videos-best-examples/" }, { label: "Wyzowl Software Demos", url: "https://wyzowl.com/software-demos/" }, { label: "Vimeo", url: "https://vimeo.com/blog/post/software-video-demos" }]
+  },
+  {
+    id: "live-action",
+    name: "Live Action / Live Action + Animation",
+    kind: "拍摄形式 / 混合动画",
+    summary: "Live action 和 live action + animation 都是常见 explainer 说法：真人负责信任、表演和场景，动画负责补充抽象信息。",
+    bestFor: "消费品、品牌发布、幽默传播、客户故事",
+    pptLike: "低",
+    motion: "剪辑节奏、表演转场、图形叠加",
+    evidence: "GraphicMama: Live Action + Animation；Wyzowl: live action examples",
+    evidenceLinks: [{ label: "GraphicMama", url: "https://graphicmama.com/blog/best-explainer-video-styles/" }, { label: "Wyzowl", url: "https://www.wyzowl.com/explainer-video-examples/" }, { label: "Yum Yum Videos", url: "https://www.yumyumvideos.com/blog/best-explainer-video-examples/" }]
+  },
+  {
+    id: "typography",
+    name: "Typography / Kinetic Typography",
+    kind: "视觉语言 / 文字动效",
+    summary: "Typography explainer 或 kinetic typography 是真实行业分类：文字本身成为画面主角，通过大小、位置、节奏和变形驱动理解与情绪。",
+    bestFor: "观点宣言、公益传播、数据口号、强节奏短片",
+    pptLike: "中高",
+    motion: "文字入场、重排、强调、节奏切分",
+    evidence: "GraphicMama: Typography Explainer Video Style；Wyzowl: kinetic typography examples",
+    evidenceLinks: [{ label: "GraphicMama", url: "https://graphicmama.com/blog/best-explainer-video-styles/" }, { label: "Wyzowl", url: "https://www.wyzowl.com/explainer-video-examples/" }, { label: "Wyzowl", url: "https://wyzowl.com/kinetic-typography/" }]
+  },
+  {
+    id: "stop-motion",
+    name: "Stop Motion",
+    kind: "动画技术 / 定格动画",
+    summary: "Stop motion 是成熟动画技术，也被 explainer 行业作为风格类型使用：逐帧拍摄真实物体、纸片、黏土或模型，形成手工感和记忆点。需要注意：很多最有名的 stop-motion 作品其实是广告或艺术短片，不是严格 explainer，所以本库会把“解释型样本”和“工艺经典”分开标注。",
+    bestFor: "品牌故事、消费品、手作感、温暖或幽默传播",
+    pptLike: "低",
+    motion: "逐帧替换、物体位移、手工质感、场景搭建",
+    evidence: "GraphicMama: Stop Motion Explainer Video；Blue Carrot: Stop motion；i-Presentations: Stop-Motion Explainer Videos；B2W: stop motion examples",
+    evidenceLinks: [{ label: "GraphicMama", url: "https://graphicmama.com/blog/best-explainer-video-styles/" }, { label: "Blue Carrot", url: "https://bluecarrot.io/blog/types-of-explainer-videos-best-examples/" }, { label: "i-Presentations", url: "https://i-presentations.co.uk/stop-motion-explainer-videos/" }, { label: "B2W", url: "https://www.b2w.tv/blog/best-stop-motion-animation-videos" }]
+  }
+];
+
+const cases = [
+  {
+    id: "yumyum-styles",
+    title: "14 Explainer Video Styles",
+    creator: "Yum Yum Videos",
+    year: "2024",
+    provider: "youtube",
+    videoId: "F96q9CiOtq8",
+    sourceUrl: "https://www.youtube.com/watch?v=F96q9CiOtq8",
+    styles: ["illustrated", "whiteboard", "live-action"],
+    tags: ["风格分类", "商业案例", "入门"],
+    summary: "一个适合建立风格词汇表的入口视频，快速展示 explainer video 常见制作类型。",
+    whyClassic: "它不是单个作品经典，而是分类入口经典，适合用来校准各种风格的边界。",
+    learn: "看它如何把 explainer 按视觉形态拆开，但不要把分类当成唯一标准。",
+    caseEvidenceLinks: [{ label: "Yum Yum 案例库", url: "https://www.yumyumvideos.com/blog/best-explainer-video-examples/" }, { label: "YouTube", url: "https://www.youtube.com/watch?v=F96q9CiOtq8" }]
+  },
+  {
+    id: "commoncraft-explainer",
+    title: "What is an explainer?",
+    creator: "Common Craft",
+    year: "2024",
+    provider: "youtube",
+    videoId: "ECDL1i7TCwA",
+    sourceUrl: "https://www.youtube.com/watch?v=ECDL1i7TCwA",
+    styles: ["plain-english"],
+    tags: ["Common Craft", "方法论", "解释理论"],
+    summary: "Common Craft 自己解释什么是 explainer，以及他们为什么长期围绕解释做产品和服务。",
+    whyClassic: "它是 Common Craft 对自身解释方法的自我介绍，适合作为理解 Plain English 风格的入口。",
+    learn: "看它如何把 explanation 当作一种技能，而不是单纯的视频包装。",
+    caseEvidenceLinks: [{ label: "Common Craft Academy", url: "https://commoncraft.com/academy" }, { label: "Common Craft", url: "https://commoncraft.com/" }]
+  },
+  {
+    id: "commoncraft-way",
+    title: "The Common Craft Way",
+    creator: "Common Craft",
+    year: "2016",
+    provider: "youtube",
+    videoId: "esSfYzG7rg0",
+    sourceUrl: "https://www.youtube.com/watch?v=esSfYzG7rg0",
+    styles: ["plain-english"],
+    tags: ["Common Craft", "纸片", "方法论"],
+    summary: "Common Craft 介绍自己如何让普通人也能做出清楚的 explainer video。",
+    whyClassic: "它直接展示了 Common Craft 的低复杂度解释哲学。",
+    learn: "学它的克制：少元素、强顺序、低装饰。",
+    caseEvidenceLinks: [{ label: "Common Craft Academy", url: "https://commoncraft.com/academy" }, { label: "Common Craft YouTube", url: "https://www.youtube.com/user/leelefever" }]
+  },
+  {
+    id: "rss-in-plain-english",
+    tier: "core",
+    title: "RSS in Plain English",
+    creator: "Common Craft",
+    year: "2007",
+    provider: "youtube",
+    videoId: "0klgLsSxGsU",
+    sourceUrl: "https://www.youtube.com/watch?v=0klgLsSxGsU",
+    styles: ["plain-english"],
+    tags: ["Common Craft", "In Plain English", "早期经典", "互联网基础"],
+    summary: "用“每天主动访问网站”这个旧方式，对比 RSS 订阅这个新方式，把一个技术概念讲成生活效率问题。",
+    whyClassic: "Lee LeFever 后来回顾说，RSS in Plain English 在 2007 年发布后迅速传播，并改变了 Common Craft 的工作方向；它是 Plain English 系列的起点级样本。",
+    learn: "经典结构：先给旧方式贴上低效痛点，再让新方式作为自然解法出现。",
+    caseEvidenceLinks: [{ label: "Common Craft 官方页", url: "https://commoncraft.com/video/rss" }, { label: "Lee LeFever 回顾", url: "https://leelefever.medium.com/10-years-ago-today-everything-changed-26e702c71df5" }, { label: "YouTube", url: "https://www.youtube.com/watch?v=0klgLsSxGsU" }]
+  },
+  {
+    id: "wikis-in-plain-english",
+    tier: "core",
+    title: "Wikis in Plain English",
+    creator: "Common Craft",
+    year: "2007",
+    provider: "youtube",
+    videoId: "-dnL00TdmLY",
+    sourceUrl: "https://www.youtube.com/watch?v=-dnL00TdmLY",
+    styles: ["plain-english"],
+    tags: ["Common Craft", "In Plain English", "协作", "互联网基础"],
+    summary: "用一群朋友准备露营清单的例子，解释 wiki 为什么比邮件更适合多人协作。",
+    whyClassic: "它是 Common Craft 最早期、传播最广的 In Plain English 作品之一，官方页完整保留了 camping trip 的脚本结构。",
+    learn: "把抽象工具翻译成一个人人都懂的集体任务，画面只服务“编辑-保存-接力”的动作。",
+    caseEvidenceLinks: [{ label: "Common Craft 官方页", url: "https://commoncraft.com/video/wikis" }, { label: "Common Craft 视频库", url: "https://commoncraft.com/video-library" }, { label: "YouTube", url: "https://www.youtube.com/watch?v=-dnL00TdmLY" }]
+  },
+  {
+    id: "social-networking-in-plain-english",
+    tier: "core",
+    title: "Social Networking in Plain English",
+    creator: "Common Craft",
+    year: "2007",
+    provider: "youtube",
+    videoId: "6a_KF7TYKVc",
+    sourceUrl: "https://www.youtube.com/watch?v=6a_KF7TYKVc",
+    styles: ["plain-english"],
+    tags: ["Common Craft", "In Plain English", "社交网络", "互联网基础"],
+    summary: "用简单人物关系和连接关系解释社交网络，而不是从网站功能或术语定义开始。",
+    whyClassic: "它属于 Common Craft Classics / In Plain English 系列里的早期高传播样本，也是解释社交产品时很典型的低保真关系图做法。",
+    learn: "当主题本身是“关系”时，画面不要堆界面，而要把人和连接关系做成主角。",
+    caseEvidenceLinks: [{ label: "Common Craft 视频库", url: "https://commoncraft.com/video-library" }, { label: "Wayne Barry 早期引用", url: "https://www.waynebarry.com/2007/09/18/social-networking-in-plain-english/" }, { label: "YouTube", url: "https://www.youtube.com/watch?v=6a_KF7TYKVc" }]
+  },
+  {
+    id: "twitter-in-plain-english",
+    tier: "core",
+    title: "Twitter in Plain English",
+    creator: "Common Craft",
+    year: "2008",
+    provider: "youtube",
+    videoId: "ddO9idmax0o",
+    sourceUrl: "https://www.youtube.com/watch?v=ddO9idmax0o",
+    styles: ["plain-english"],
+    tags: ["Common Craft", "In Plain English", "社交媒体", "产品解释"],
+    summary: "把 Twitter 解释成“日常小更新如何让人保持连接”，而不是解释关注、时间线、140 字这些功能点。",
+    whyClassic: "Common Craft 官方页称它是对 Twitter/X 的短介绍；Common Craft 词条也把 Twitter in Plain English 作为代表性高播放作品。",
+    learn: "新产品解释不一定先讲功能名，先讲它改变了什么日常行为。",
+    caseEvidenceLinks: [{ label: "Common Craft 官方页", url: "https://commoncraft.com/video/twitter" }, { label: "Open Culture 推荐", url: "https://www.openculture.com/2009/03/twitter_in_plain_english.html" }, { label: "YouTube", url: "https://www.youtube.com/watch?v=ddO9idmax0o" }]
+  },
+  {
+    id: "twitter-search-in-plain-english",
+    tier: "core",
+    title: "Twitter Search in Plain English",
+    creator: "Common Craft",
+    year: "2009",
+    provider: "youtube",
+    videoId: "jGbLWQYJ6iM",
+    sourceUrl: "https://www.youtube.com/watch?v=jGbLWQYJ6iM",
+    styles: ["plain-english"],
+    tags: ["Common Craft", "In Plain English", "社交媒体", "搜索"],
+    summary: "延续 Twitter in Plain English 的方式，把 Twitter Search 解释成一种跟上实时讨论和公共话题的工具。",
+    whyClassic: "它出现在 Common Craft 官方 Classics / In Plain English 播放列表中，是该系列从单个产品介绍扩展到具体使用场景的样本。",
+    learn: "同一个产品可以先讲“它是什么”，再用另一支片讲“它解决哪类具体问题”。",
+    caseEvidenceLinks: [{ label: "Common Craft Classics 播放列表", url: "https://www.youtube.com/playlist?list=PLcOSiZT4b8vj_H-q0MgsOCroA4uv-3Xel" }, { label: "YouTube", url: "https://www.youtube.com/watch?v=jGbLWQYJ6iM" }]
+  },
+  {
+    id: "blogs-in-plain-english",
+    tier: "core",
+    title: "Blogs in Plain English",
+    creator: "Common Craft",
+    year: "2007",
+    provider: "youtube",
+    videoId: "NN2I1pWXjXI",
+    sourceUrl: "https://www.youtube.com/watch?v=NN2I1pWXjXI",
+    styles: ["plain-english"],
+    tags: ["Common Craft", "In Plain English", "博客", "互联网基础"],
+    summary: "把 blog 从网页技术解释成普通人发布、订阅和连接想法的一种新方式。",
+    whyClassic: "它是 Common Craft Classics / In Plain English 系列里反复被教育技术博客引用的基础主题案例。",
+    learn: "对于已经过时但曾经新鲜的概念，观察它如何抓住当时用户真正不懂的那一点。",
+    caseEvidenceLinks: [{ label: "Common Craft 视频库", url: "https://commoncraft.com/video-library" }, { label: "CIAOPS 回顾", url: "https://blog.ciaops.com/2009/08/15/plain-english/" }, { label: "YouTube", url: "https://www.youtube.com/watch?v=NN2I1pWXjXI" }]
+  },
+  {
+    id: "social-media-in-plain-english",
+    tier: "core",
+    title: "Social Media in Plain English",
+    creator: "Common Craft",
+    year: "2008",
+    provider: "youtube",
+    videoId: "MpIOClX1jPE",
+    sourceUrl: "https://www.youtube.com/watch?v=MpIOClX1jPE",
+    styles: ["plain-english"],
+    tags: ["Common Craft", "In Plain English", "社交媒体", "概念解释"],
+    summary: "用低保真纸片解释 social media 的传播逻辑，让观众先理解机制，再理解平台。",
+    whyClassic: "它是 Common Craft 社交媒体主题里的代表作品，官方 Social Media 页也把相关主题长期放在视频库中。",
+    learn: "当概念容易被平台名带偏时，用抽象但可见的关系机制来讲。",
+    caseEvidenceLinks: [{ label: "Common Craft 官方页", url: "https://commoncraft.com/video/social-media" }, { label: "Common Craft 视频库", url: "https://commoncraft.com/video-library" }, { label: "YouTube", url: "https://www.youtube.com/watch?v=MpIOClX1jPE" }]
+  },
+  {
+    id: "net-neutrality-commoncraft",
+    tier: "core",
+    title: "Net Neutrality Explained by Common Craft",
+    creator: "Common Craft",
+    year: "Common Craft library",
+    provider: "youtube",
+    videoId: "q0NloyxJhOk",
+    sourceUrl: "https://commoncraft.com/video/net-neutrality",
+    styles: ["plain-english"],
+    tags: ["Common Craft", "公共议题", "互联网基础", "官方视频库"],
+    summary: "用 Common Craft 的纸片和低复杂度语言解释 net neutrality：不是从技术协议讲起，而是先让观众理解网络规则会如何影响普通使用者。",
+    whyClassic: "这是 Common Craft 官方视频库中的公共议题解释案例，YouTube 元数据也标注为 Common Craft Explainer Videos 发布。",
+    learn: "当主题有政策和技术两层复杂性时，先把利益相关者和影响路径简化成可见关系。",
+    caseEvidenceLinks: [{ label: "Common Craft 官方页", url: "https://commoncraft.com/video/net-neutrality" }, { label: "YouTube", url: "https://www.youtube.com/watch?v=q0NloyxJhOk" }]
+  },
+  {
+    id: "augmented-reality-commoncraft",
+    tier: "core",
+    title: "Augmented Reality Explained by Common Craft",
+    creator: "Common Craft",
+    year: "Common Craft library",
+    provider: "youtube",
+    videoId: "D-A1l4Jn6EY",
+    sourceUrl: "https://commoncraft.com/video/augmented-reality",
+    styles: ["plain-english"],
+    tags: ["Common Craft", "新技术", "官方视频库", "低保真解释"],
+    summary: "用纸片、示意和真实生活场景解释增强现实，把一个容易被设备和特效带偏的技术概念拉回日常使用。",
+    whyClassic: "这是 Common Craft 官方页和官方频道都可验证的现代技术解释样本，说明 Plain English 方法不只适用于早期 Web 2.0 主题。",
+    learn: "新技术解释不要先展示炫酷效果，先回答：它在现实世界里到底给人多了一层什么信息。",
+    caseEvidenceLinks: [{ label: "Common Craft 官方页", url: "https://commoncraft.com/video/augmented-reality" }, { label: "YouTube", url: "https://www.youtube.com/watch?v=D-A1l4Jn6EY" }]
+  },
+  {
+    id: "blockchain-commoncraft",
+    tier: "core",
+    title: "Blockchain Explained by Common Craft",
+    creator: "Common Craft",
+    year: "Common Craft library",
+    provider: "youtube",
+    videoId: "aqFbZWzAZeE",
+    sourceUrl: "https://commoncraft.com/video/blockchain",
+    styles: ["plain-english"],
+    tags: ["Common Craft", "新技术", "区块链", "官方视频库"],
+    summary: "用 Common Craft 的极简解释方式处理区块链：尽量避免术语堆叠，把重点放在记录、验证和信任机制上。",
+    whyClassic: "区块链题材很容易被术语淹没，这个官方 Common Craft 样本适合观察 Plain English 方法如何压低认知负荷。",
+    learn: "越是热门技术词，越要把画面做低保真，让观众把注意力放在机制而不是视觉炫技上。",
+    caseEvidenceLinks: [{ label: "Common Craft 官方页", url: "https://commoncraft.com/video/blockchain" }, { label: "YouTube", url: "https://www.youtube.com/watch?v=aqFbZWzAZeE" }]
+  },
+  {
+    id: "google-docs-in-plain-english",
+    tier: "core",
+    title: "Google Docs in Plain English",
+    creator: "Google / Common Craft",
+    year: "2007",
+    provider: "youtube",
+    videoId: "eRqUE6IHTEA",
+    sourceUrl: "https://www.youtube.com/watch?v=eRqUE6IHTEA",
+    styles: ["plain-english"],
+    tags: ["Common Craft", "In Plain English", "Google", "SaaS"],
+    summary: "用文档协作的旧痛点解释 Google Docs，把产品价值压成“多人不用来回传附件”。",
+    whyClassic: "它是 Common Craft 为 Google Docs 团队制作的产品解释案例，也是 Plain English 风格进入大型科技产品传播的代表。",
+    learn: "产品解释的核心不是功能罗列，而是旧工作流和新工作流的对比。",
+    caseEvidenceLinks: [{ label: "Google YouTube", url: "https://www.youtube.com/watch?v=eRqUE6IHTEA" }, { label: "BCC 教学中心引用", url: "https://blogs.berkshirecc.edu/ctl/2009/11/12/google-docs-in-plain-english/" }, { label: "Common Craft production 版本", url: "https://www.youtube.com/watch?v=muVUA-sKcc4" }]
+  },
+  {
+    id: "google-reader-in-plain-english",
+    tier: "core",
+    title: "Google Reader in Plain English",
+    creator: "Google / Common Craft",
+    year: "2007",
+    provider: "youtube",
+    videoId: "VSPZ2Uu_X3Y",
+    sourceUrl: "https://www.youtube.com/watch?v=VSPZ2Uu_X3Y",
+    styles: ["plain-english"],
+    tags: ["Common Craft", "In Plain English", "Google", "互联网基础"],
+    summary: "用低复杂度纸片解释 Google Reader 和 RSS 阅读方式，把信息订阅讲成“内容自动来到你面前”。",
+    whyClassic: "它和 Google Docs in Plain English 一样，是 Common Craft 风格进入 Google 产品解释语境的早期样本。",
+    learn: "产品解释可以把界面藏到后面，先讲清楚用户行为如何变化。",
+    caseEvidenceLinks: [{ label: "Google YouTube", url: "https://www.youtube.com/watch?v=VSPZ2Uu_X3Y" }, { label: "Common Craft / Google Docs 生产版", url: "https://www.youtube.com/watch?v=muVUA-sKcc4" }]
+  },
+  {
+    id: "computer-hardware-in-plain-english",
+    tier: "core",
+    title: "Computer Hardware in Plain English",
+    creator: "Common Craft",
+    year: "Common Craft Classics",
+    provider: "youtube",
+    videoId: "4pYiNyGKB84",
+    sourceUrl: "https://www.youtube.com/watch?v=4pYiNyGKB84",
+    styles: ["plain-english"],
+    tags: ["Common Craft", "In Plain English", "电脑基础", "教育"],
+    summary: "用纸片和生活化类比解释电脑硬件，不把观众拉进参数和术语，而是先建立部件之间的角色关系。",
+    whyClassic: "它出现在 Common Craft 官方 Classics / In Plain English 播放列表中，代表这种方法从互联网概念延伸到基础技术教育。",
+    learn: "技术越底层，越需要把部件关系翻译成观众已经熟悉的角色和动作。",
+    caseEvidenceLinks: [{ label: "Common Craft Classics 播放列表", url: "https://www.youtube.com/playlist?list=PLcOSiZT4b8vj_H-q0MgsOCroA4uv-3Xel" }, { label: "YouTube", url: "https://www.youtube.com/watch?v=4pYiNyGKB84" }]
+  },
+  {
+    id: "world-wide-web-in-plain-english",
+    tier: "core",
+    title: "World Wide Web in Plain English",
+    creator: "Common Craft",
+    year: "Common Craft library",
+    provider: "youtube",
+    videoId: "It6tT2yxpsQ",
+    sourceUrl: "https://commoncraft.com/video/world-wide-web",
+    styles: ["plain-english"],
+    tags: ["Common Craft", "In Plain English", "互联网基础", "可播放重传"],
+    summary: "用 Common Craft 的低保真纸片和生活化语言解释 World Wide Web：重点不是协议细节，而是普通人如何通过网页和链接获取信息。",
+    whyClassic: "它是 Common Craft 官方视频页保留的基础互联网主题，属于 In Plain English 方法最适合学习的一类：把人人都在用、但未必说得清的东西讲明白。",
+    learn: "越是观众已经熟悉的概念，越要避免重新发明术语；把不可见的系统关系画成看得见的路径。",
+    caseEvidenceLinks: [{ label: "Common Craft 官方页", url: "https://commoncraft.com/video/world-wide-web" }, { label: "可播放 YouTube 版本", url: "https://www.youtube.com/watch?v=It6tT2yxpsQ" }]
+  },
+  {
+    id: "generative-ai-commoncraft",
+    tier: "core",
+    title: "What is Generative AI? How does it work?",
+    creator: "Common Craft",
+    year: "Common Craft library",
+    provider: "youtube",
+    videoId: "7FONj91TBao",
+    sourceUrl: "https://commoncraft.com/video/generative-ai",
+    styles: ["plain-english"],
+    tags: ["Common Craft", "AI", "新技术", "官方频道"],
+    summary: "Common Craft 用自己的 Plain English 方式解释生成式 AI：不追求酷炫 AI 视觉，而是把输入、模型、生成结果这些关系压成普通观众能跟上的步骤。",
+    whyClassic: "它不是早期爆款经典，但很适合证明 Common Craft 方法在 2020s 仍然可以解释新技术，而不是只属于 Web 2.0 时代。",
+    learn: "热门 AI 主题容易被界面、模型名和术语带偏；Plain English 的价值是先把关系讲清楚。",
+    caseEvidenceLinks: [{ label: "Common Craft 官方页", url: "https://commoncraft.com/video/generative-ai" }, { label: "Common Craft YouTube", url: "https://www.youtube.com/watch?v=7FONj91TBao" }]
+  },
+  {
+    id: "two-factor-authentication-commoncraft",
+    tier: "core",
+    title: "Two Factor Authentication Explained in 3 Minutes",
+    creator: "Common Craft",
+    year: "Common Craft library",
+    provider: "youtube",
+    videoId: "sPxAHV3P4IU",
+    sourceUrl: "https://commoncraft.com/video/two-factor-authentication",
+    styles: ["plain-english"],
+    tags: ["Common Craft", "安全", "教育", "官方频道"],
+    summary: "用纸片角色、账号和手机验证步骤解释双因素认证，让安全概念变成普通人能执行的行动流程。",
+    whyClassic: "这是 Common Craft 官方频道和官方页面都可验证的安全教育案例，能代表 Plain English 风格在公共教育和数字素养领域的延展。",
+    learn: "安全类解释的目标不是吓人，而是让观众知道下一步该怎么做。",
+    caseEvidenceLinks: [{ label: "Common Craft 官方页", url: "https://commoncraft.com/video/two-factor-authentication" }, { label: "Common Craft YouTube", url: "https://www.youtube.com/watch?v=sPxAHV3P4IU" }]
+  },
+  {
+    id: "mastodon-commoncraft",
+    tier: "core",
+    title: "Mastodon Explained by Common Craft",
+    creator: "Common Craft",
+    year: "Common Craft library",
+    provider: "youtube",
+    videoId: "HfU20EtgpC8",
+    sourceUrl: "https://www.youtube.com/watch?v=HfU20EtgpC8",
+    styles: ["plain-english"],
+    tags: ["Common Craft", "社交媒体", "去中心化", "官方频道"],
+    summary: "用 Common Craft 的低保真纸片解释 Mastodon：不从协议和服务器术语讲起，而是先让观众理解它和传统社交平台的使用差异。",
+    whyClassic: "这是 Common Craft 官方频道发布的现代社交产品解释样本，能证明 Plain English 方法仍然适合解释新的平台机制。",
+    learn: "当概念有去中心化、实例、联邦等陌生词时，先用普通人的社交行为建立理解入口。",
+    caseEvidenceLinks: [{ label: "Common Craft YouTube", url: "https://www.youtube.com/watch?v=HfU20EtgpC8" }, { label: "Common Craft 视频库", url: "https://commoncraft.com/video-library" }]
+  },
+  {
+    id: "contact-tracing-commoncraft",
+    tier: "core",
+    title: "What is Contact Tracing?: COVID-19",
+    creator: "Common Craft",
+    year: "2020",
+    provider: "youtube",
+    videoId: "_l-u2iYqs6g",
+    sourceUrl: "https://www.youtube.com/watch?v=_l-u2iYqs6g",
+    styles: ["plain-english"],
+    tags: ["Common Craft", "公共卫生", "COVID-19", "官方频道"],
+    summary: "用 Common Craft 的纸片流程解释 contact tracing，把公共卫生流程拆成谁接触了谁、如何通知、如何减少传播这几步。",
+    whyClassic: "它不是早期 Web 2.0 经典，但很能代表 Plain English 在公共卫生和社会教育中的用法：用最少视觉负担讲清流程和行动。",
+    learn: "涉及公共风险的解释片，最重要的是把流程和责任边界讲清楚，而不是制造焦虑。",
+    caseEvidenceLinks: [{ label: "Common Craft YouTube", url: "https://www.youtube.com/watch?v=_l-u2iYqs6g" }, { label: "Common Craft 视频库", url: "https://commoncraft.com/video-library" }]
+  },
+  {
+    id: "seo-plain-english",
+    tier: "supplemental",
+    title: "What Is Search Engine Optimization / SEO",
+    creator: "Search Engine Land / Common Craft-style",
+    year: "2011",
+    provider: "youtube",
+    videoId: "hF515-0Tduk",
+    sourceUrl: "https://www.youtube.com/watch?v=hF515-0Tduk",
+    styles: ["plain-english"],
+    tags: ["Common Craft-style", "SEO", "互联网基础", "官方播放列表"],
+    summary: "用纸片、手绘图形和生活化比喻解释 SEO，把搜索引擎优化从营销术语还原成网页、搜索者和相关性之间的关系。",
+    whyClassic: "它出现在 Common Craft 相关播放列表中，视觉语法和叙事方式是典型 Plain English / Common Craft-style；但发布方不是 Common Craft，所以作为补充样本而不是核心定义样本。",
+    learn: "B2B 或营销概念也可以用 Plain English 讲：先把参与者和关系画出来，再解释优化动作。",
+    caseEvidenceLinks: [{ label: "YouTube", url: "https://www.youtube.com/watch?v=hF515-0Tduk" }, { label: "Common Craft playlist evidence", url: "https://www.youtube.com/playlist?list=PL3EC96F2A7354BFBB" }]
+  },
+  {
+    id: "podcasts-commoncraft",
+    tier: "core",
+    title: "Podcasts",
+    creator: "Common Craft",
+    year: "Common Craft library",
+    provider: "vimeo",
+    videoId: "1105521287",
+    videoHash: "820eac9bfb",
+    sourceUrl: "https://commoncraft.com/video/podcasts",
+    styles: ["plain-english"],
+    tags: ["Common Craft", "互联网基础", "音频"],
+    summary: "用 Common Craft 的纸片和生活化类比解释 podcast：不是先讲技术格式，而是讲人如何订阅、收听和持续获得节目。",
+    whyClassic: "Podcasts 是 Common Craft 官方视频库中的基础互联网概念解释，属于 Plain English 方法的典型题材。",
+    learn: "对于新媒介，不要先讲协议和格式，先讲普通人的使用场景。",
+    caseEvidenceLinks: [{ label: "Common Craft 官方页", url: "https://commoncraft.com/video/podcasts" }, { label: "Common Craft 视频库", url: "https://commoncraft.com/video-library" }]
+  },
+  {
+    id: "online-photo-sharing-commoncraft",
+    tier: "core",
+    title: "Online Photo Sharing and Instagram",
+    creator: "Common Craft",
+    year: "Common Craft library",
+    provider: "vimeo",
+    videoId: "1105519552",
+    videoHash: "b32946de3a",
+    sourceUrl: "https://commoncraft.com/video/online-photo-sharing-2",
+    styles: ["plain-english"],
+    tags: ["Common Craft", "社交媒体", "互联网基础"],
+    summary: "把在线照片分享解释成一个日常沟通动作，而不是相册、标签、上传按钮的功能清单。",
+    whyClassic: "它来自 Common Craft 官方视频库，是社交媒体/互联网基础主题下的 Plain English 样本。",
+    learn: "当主题包含很多平台功能时，先找到最朴素的用户动机：为什么人要分享照片。",
+    caseEvidenceLinks: [{ label: "Common Craft 官方页", url: "https://commoncraft.com/video/online-photo-sharing-2" }, { label: "Common Craft 视频库", url: "https://commoncraft.com/video-library" }]
+  },
+  {
+    id: "electing-president-commoncraft",
+    tier: "core",
+    title: "Electing a US President",
+    creator: "Common Craft",
+    year: "Common Craft library",
+    provider: "vimeo",
+    videoId: "1105519140",
+    videoHash: "175d6e8a71",
+    sourceUrl: "https://commoncraft.com/video/electing-us-president",
+    styles: ["plain-english"],
+    tags: ["Common Craft", "公共议题", "教育"],
+    summary: "用可移动纸片和简化流程，把美国总统选举这种复杂制度拆成普通观众能跟上的步骤。",
+    whyClassic: "它说明 Plain English 方法不只适合互联网产品，也适合教育类、制度类复杂主题。",
+    learn: "流程复杂时，画面要牺牲细节，保留观众必须理解的顺序和角色。",
+    caseEvidenceLinks: [{ label: "Common Craft 官方页", url: "https://commoncraft.com/video/electing-us-president" }, { label: "YouTube", url: "https://www.youtube.com/watch?v=ok_VQ8I7g6I" }]
+  },
+  {
+    id: "zombies-in-plain-english",
+    tier: "core",
+    title: "Zombies in Plain English",
+    creator: "Common Craft",
+    year: "Common Craft library",
+    provider: "youtube",
+    videoId: "bVnfyradCPY",
+    sourceUrl: "https://www.youtube.com/watch?v=bVnfyradCPY",
+    styles: ["plain-english"],
+    tags: ["Common Craft", "In Plain English", "趣味解释"],
+    summary: "用 Common Craft 的 Plain English 形式讲一个轻松题材，证明这种风格不是只能解释软件和互联网工具。",
+    whyClassic: "它在 Common Craft 官方视频库中保留为 Zombies in Plain English，是该系列少数偏趣味题材的代表。",
+    learn: "严肃方法也可以服务轻松题材，关键仍是低复杂度和清晰推进。",
+    caseEvidenceLinks: [{ label: "Common Craft 官方页", url: "https://commoncraft.com/video/zombies" }, { label: "YouTube", url: "https://www.youtube.com/watch?v=bVnfyradCPY" }]
+  },
+  {
+    id: "phishing-scams-commoncraft",
+    title: "Phishing Scams",
+    creator: "Common Craft",
+    year: "Common Craft library",
+    provider: "vimeo",
+    videoId: "1105552935",
+    videoHash: "dd1050f8c7",
+    sourceUrl: "https://commoncraft.com/video/phishing-scams",
+    styles: ["plain-english"],
+    tags: ["Common Craft", "互联网安全", "教育", "官方视频库"],
+    summary: "用 Common Craft 的低复杂度纸片语言解释 phishing scam：如何识别钓鱼邮件，以及为什么它会让普通用户上当。",
+    whyClassic: "它不是早期高传播经典，但来自 Common Craft 官方视频库，能证明这种 Plain English / cutout 方法后来被持续用于教育类主题。",
+    learn: "安全主题容易吓人或堆术语，Common Craft 的做法是把风险变成可识别的日常场景。",
+    caseEvidenceLinks: [{ label: "Common Craft 官方页", url: "https://commoncraft.com/video/phishing-scams" }, { label: "Common Craft 视频库", url: "https://commoncraft.com/video-library" }]
+  },
+  {
+    id: "dropbox-intro",
+    tier: "supplemental",
+    title: "Dropbox Intro Video",
+    creator: "Dropbox / Common Craft style",
+    year: "2009",
+    provider: "youtube",
+    videoId: "w4eTR7tci6A",
+    sourceUrl: "https://www.youtube.com/watch?v=w4eTR7tci6A",
+    styles: ["plain-english"],
+    tags: ["SaaS", "早期经典", "Common Craft-style", "影响样本", "非官方重传"],
+    summary: "Dropbox 早期解释视频的可播放版本。它把同步文件这个当时陌生的概念讲成普通人的日常问题。",
+    whyClassic: "它常被当作 SaaS explainer 的早期经典案例，也明显受到 Common Craft 式 Plain English 解释传统影响；但它不是 Common Craft 官方视频库案例，所以在这里作为影响样本，而不是核心定义样本。",
+    learn: "不要从技术定义出发，要从用户痛点和具体场景出发。",
+    caseEvidenceLinks: [{ label: "Common Craft 官方回顾", url: "https://commoncraft.com/dropbox-video-and-25-million-views" }, { label: "YouTube", url: "https://www.youtube.com/watch?v=w4eTR7tci6A" }]
+  },
+  {
+    id: "rsa-education",
+    tier: "core",
+    title: "Changing Education Paradigms",
+    creator: "RSA Animate",
+    year: "2010",
+    provider: "youtube",
+    videoId: "zDZFcDGpL4U",
+    sourceUrl: "https://www.youtube.com/watch?v=zDZFcDGpL4U",
+    styles: ["whiteboard"],
+    tags: ["教育", "白板", "演讲可视化"],
+    summary: "把一场思想型演讲变成连续生长的白板图解。",
+    whyClassic: "RSA Animate 让很多人第一次意识到，演讲可以被画成一个动态思想地图。",
+    learn: "画面可以不频繁换场，但必须持续扩展观众的理解结构。",
+    caseEvidenceLinks: [{ label: "RSA YouTube", url: "https://www.youtube.com/watch?v=zDZFcDGpL4U" }, { label: "RSA Animate", url: "https://www.youtube.com/watch?v=zDZFcDGpL4U" }]
+  },
+  {
+    id: "rsa-drive",
+    tier: "core",
+    title: "Drive: The surprising truth about what motivates us",
+    creator: "RSA Animate / Daniel Pink",
+    year: "2010",
+    provider: "youtube",
+    videoId: "u6XAPnuFjJc",
+    sourceUrl: "https://www.youtube.com/watch?v=u6XAPnuFjJc",
+    styles: ["whiteboard"],
+    tags: ["白板", "演讲可视化", "管理", "动机"],
+    summary: "把 Daniel Pink 关于动机的演讲转成不断生长的白板图解，用画出来的结构组织抽象观点。",
+    whyClassic: "这是 RSA Animate 最广为人知的作品之一，也是 animated lecture / visual scribing 成为 explainer 重要路径的代表。",
+    learn: "白板不是装饰线稿，而是把演讲里的论点、证据和转折变成一个持续扩展的认知地图。",
+    caseEvidenceLinks: [{ label: "RSA YouTube", url: "https://www.youtube.com/watch?v=u6XAPnuFjJc" }, { label: "Royal Society of Arts", url: "https://www.youtube.com/@thersaorg" }]
+  },
+  {
+    id: "where-good-ideas-come-from",
+    tier: "core",
+    title: "Where Good Ideas Come From",
+    creator: "Steven Johnson / Cognitive Media / Riverhead",
+    year: "2010",
+    provider: "youtube",
+    videoId: "eNwMut3-z1Y",
+    sourceUrl: "https://www.youtube.com/watch?v=eNwMut3-z1Y",
+    styles: ["whiteboard"],
+    tags: ["Visual Scribing", "创新", "书籍解释", "白板"],
+    summary: "用手绘式思想地图解释 Steven Johnson 关于创新来源的核心观点，画面不是逐句配图，而是在展开一个越来越完整的论证结构。",
+    whyClassic: "它是 2010 年前后 visual scribing / animated book explainer 的高传播样本，和 RSA Animate 一起定义了“把观点画出来”的一类解释视频。",
+    learn: "当主题是一本书或一个大观点时，画面应该抓住论证骨架，而不是给每句话找插图。",
+    caseEvidenceLinks: [{ label: "Cognitive Media YouTube", url: "https://www.youtube.com/watch?v=eNwMut3-z1Y" }, { label: "Riverhead Books 版本", url: "https://www.youtube.com/watch?v=NugRZGDbPFU" }, { label: "Penguin Random House", url: "https://www.penguinrandomhouse.com/books/299687/where-good-ideas-come-from-by-steven-johnson/" }]
+  },
+  {
+    id: "ups-whiteboard-visibility",
+    tier: "core",
+    title: "UPS Whiteboard - Visibility",
+    creator: "UPS / The Martin Agency",
+    year: "2007",
+    provider: "youtube",
+    videoId: "4F3qiBGIy5I",
+    sourceUrl: "https://www.youtube.com/watch?v=4F3qiBGIy5I",
+    styles: ["whiteboard", "live-action"],
+    tags: ["Whiteboard", "广告经典", "Live Drawing", "物流"],
+    summary: "真人站在白板前，一边讲物流价值，一边把概念画出来。它不是现代模板化白板动画，而是白板 explainer 美学进入大众广告语境的早期代表。",
+    whyClassic: "多个白板动画史/指南都把 UPS Whiteboard campaign 当作重要早期案例；IdeaRocket 认为它启发了大量模仿者。",
+    learn: "白板风格真正有用的地方，是让观众看见解释如何一步步被建出来。",
+    caseEvidenceLinks: [{ label: "IdeaRocket 白板动画史", url: "https://idearocketanimation.com/15321-whiteboard-animation-history/" }, { label: "Adweek / Andy Azula", url: "https://www.adweek.com/brand-marketing/andy-azula-spot-88316/" }, { label: "YouTube", url: "https://www.youtube.com/watch?v=4F3qiBGIy5I" }]
+  },
+  {
+    id: "cgp-rulers",
+    tier: "core",
+    title: "You Would Be a Terrible Leader",
+    creator: "CGP Grey",
+    year: "2016",
+    provider: "youtube",
+    videoId: "rStL7niR7gs",
+    sourceUrl: "https://www.youtube.com/watch?v=rStL7niR7gs",
+    styles: ["icon-system", "editorial"],
+    tags: ["复杂系统", "政治", "极简图形", "核心样本"],
+    summary: "用极简角色和系统图讲权力结构与统治逻辑。",
+    whyClassic: "CGP Grey 的代表性方法：图形简单，但因果关系非常强。",
+    learn: "复杂系统不要靠大段文字解释，靠节点、关系和反复出现的视觉规则解释。",
+    caseEvidenceLinks: [{ label: "YouTube", url: "https://www.youtube.com/watch?v=rStL7niR7gs" }, { label: "CGP Grey", url: "https://www.youtube.com/@CGPGrey" }]
+  },
+  {
+    id: "vox-transit",
+    tier: "core",
+    title: "Why American public transit is so bad",
+    creator: "Vox",
+    year: "2020",
+    provider: "youtube",
+    videoId: "-ZDZtBRTyeI",
+    sourceUrl: "https://www.youtube.com/watch?v=-ZDZtBRTyeI",
+    styles: ["editorial", "data"],
+    tags: ["媒体", "城市", "资料流", "地图"],
+    summary: "用采访、档案、地图和图表解释美国公共交通为何难以改善。",
+    whyClassic: "Vox 的强项是把材料组织成观点，而不是单纯堆资料。",
+    learn: "资料进入画面时要服务论点，每张图都要承担证据功能。",
+    caseEvidenceLinks: [{ label: "YouTube", url: "https://www.youtube.com/watch?v=-ZDZtBRTyeI" }, { label: "Vox Explainers", url: "https://www.youtube.com/@Vox" }, { label: "FIPP Explainer Journalism", url: "https://www.fipp.com/news/what-is-explainer-journalism/" }]
+  },
+  {
+    id: "ted-antibiotic",
+    tier: "core",
+    title: "What causes antibiotic resistance?",
+    creator: "TED-Ed",
+    year: "2015",
+    provider: "youtube",
+    videoId: "znnp-Ivj2ek",
+    sourceUrl: "https://www.youtube.com/watch?v=znnp-Ivj2ek",
+    styles: ["illustrated", "icon-system"],
+    tags: ["科学", "教育", "插画叙事"],
+    summary: "用插画叙事解释抗生素耐药性。",
+    whyClassic: "TED-Ed 的典型做法：科学知识通过角色、场景和类比变得更容易进入。",
+    learn: "当概念难以直接看见时，用场景和隐喻做理解桥梁。",
+    caseEvidenceLinks: [{ label: "Wyzowl 案例库", url: "https://www.wyzowl.com/explainer-video-examples/" }, { label: "TED-Ed YouTube", url: "https://www.youtube.com/watch?v=znnp-Ivj2ek" }]
+  },
+  {
+    id: "kurzgesagt-egg",
+    tier: "core",
+    title: "The Egg",
+    creator: "Kurzgesagt",
+    year: "2019",
+    provider: "youtube",
+    videoId: "h6fcK_fRYaI",
+    sourceUrl: "https://www.youtube.com/watch?v=h6fcK_fRYaI",
+    styles: ["illustrated", "icon-system"],
+    tags: ["高制作", "哲学", "叙事"],
+    summary: "用高完成度插画和统一视觉世界讲一个哲学短篇。",
+    whyClassic: "它不是最 PPT-like，但代表高制作 explainer 的视觉终局之一。",
+    learn: "统一视觉系统、镜头运动和情绪控制可以让抽象主题非常有记忆点。",
+    caseEvidenceLinks: [{ label: "Wyzowl 案例库", url: "https://www.wyzowl.com/explainer-video-examples/" }, { label: "Kurzgesagt YouTube", url: "https://www.youtube.com/watch?v=h6fcK_fRYaI" }]
+  },
+  {
+    id: "story-of-stuff",
+    tier: "core",
+    title: "The Story of Stuff",
+    creator: "The Story of Stuff Project",
+    year: "2007",
+    provider: "youtube",
+    videoId: "9GorqroigqM",
+    sourceUrl: "https://www.youtube.com/watch?v=9GorqroigqM",
+    styles: ["whiteboard", "editorial", "icon-system"],
+    tags: ["社会议题", "观点", "早期经典"],
+    summary: "真人旁白 + 简单线稿，解释消费社会背后的系统问题。",
+    whyClassic: "它证明了低成本视觉也可以形成强观点传播。",
+    learn: "如果观点足够清晰，图形可以非常朴素。",
+    caseEvidenceLinks: [{ label: "官方影片页", url: "https://www.storyofstuff.org/movies/story-of-stuff/" }, { label: "YouTube", url: "https://www.youtube.com/watch?v=9GorqroigqM" }]
+  },
+  {
+    id: "dollar-shave",
+    tier: "core",
+    title: "Our Blades Are Great",
+    creator: "Dollar Shave Club",
+    year: "2012",
+    provider: "youtube",
+    videoId: "ZUG9qYTJMsI",
+    sourceUrl: "https://www.youtube.com/watch?v=ZUG9qYTJMsI",
+    styles: ["live-action"],
+    tags: ["商业", "幽默", "消费品", "品牌发布"],
+    summary: "真人广告式 explainer，用强脚本和幽默把订阅剃须刀的价值讲清楚。",
+    whyClassic: "它是商业传播经典，证明 explainer 不一定必须是动画。",
+    learn: "幽默可以很强，但每个笑点都要服务产品价值。",
+    caseEvidenceLinks: [{ label: "Yum Yum 案例库", url: "https://www.yumyumvideos.com/blog/best-explainer-video-examples/" }, { label: "Wyzowl 案例库", url: "https://www.wyzowl.com/explainer-video-examples/" }, { label: "YouTube", url: "https://www.youtube.com/watch?v=ZUG9qYTJMsI" }]
+  },
+  {
+    id: "poopourri-girls-dont-poop",
+    tier: "core",
+    title: "Girls Don't Poop",
+    creator: "Poo~Pourri",
+    year: "2013",
+    provider: "youtube",
+    videoId: "ZKLnhuzh9uY",
+    sourceUrl: "https://www.youtube.com/watch?v=ZKLnhuzh9uY",
+    styles: ["live-action"],
+    tags: ["Live Action", "消费品", "幽默", "品牌传播", "病毒传播"],
+    summary: "用真人表演、强脚本和夸张反差解释一个尴尬消费品的使用场景和价值。",
+    whyClassic: "它常被商业 explainer / viral marketing 案例库引用，和 Dollar Shave Club 一起代表 live-action explainer 里“脚本和表演就是解释机制”的路线。",
+    learn: "真人 explainer 不一定要像采访；当产品有强场景和强尴尬感时，表演、台词和节奏能直接承担教育和转化。",
+    caseEvidenceLinks: [{ label: "YouTube", url: "https://www.youtube.com/watch?v=ZKLnhuzh9uY" }, { label: "Yum Yum 案例库", url: "https://www.yumyumvideos.com/blog/best-explainer-video-examples/" }, { label: "Wyzowl 案例库", url: "https://www.wyzowl.com/explainer-video-examples/" }]
+  },
+  {
+    id: "slack-tried",
+    tier: "core",
+    title: "So Yeah, We Tried Slack",
+    creator: "Slack",
+    year: "2014",
+    provider: "youtube",
+    videoId: "B6zVzWU95Sw",
+    sourceUrl: "https://www.youtube.com/watch?v=B6zVzWU95Sw",
+    styles: ["live-action"],
+    tags: ["SaaS", "商业经典", "真人", "Yum Yum 榜单"],
+    summary: "Slack 早期产品解释片，用真人、工作场景和口语化表达解释团队沟通问题。",
+    whyClassic: "它常出现在 explainer 案例榜单里，是 SaaS 用真人方式建立信任和理解的代表。",
+    learn: "真人 explainer 的重点不是炫技，而是让观众相信“这个问题真的发生在我身上”。",
+    caseEvidenceLinks: [{ label: "Yum Yum 案例库", url: "https://www.yumyumvideos.com/blog/best-explainer-video-examples/" }, { label: "YouTube", url: "https://www.youtube.com/watch?v=B6zVzWU95Sw" }]
+  },
+  {
+    id: "spotify-launch-promo",
+    tier: "core",
+    title: "SPOTIFY Promo US Launch HD",
+    creator: "Spotify",
+    year: "2011",
+    provider: "youtube",
+    videoId: "zVHR1Ol7K5U",
+    sourceUrl: "https://www.youtube.com/watch?v=zVHR1Ol7K5U",
+    styles: ["live-action", "illustrated"],
+    tags: ["Live Action + Animation", "产品发布", "音乐流媒体"],
+    summary: "用真人、强色彩和动画化界面把音乐流媒体这个当时的新行为讲得轻松、年轻、直觉化。",
+    whyClassic: "Yum Yum 把它列为 2011 年经典 explainer 案例，Wyzowl 也将 Spotify 收入优秀 explainer examples。",
+    learn: "当产品核心是新行为，不一定要讲复杂功能；让观众感觉“这就是我会用的东西”更重要。",
+    caseEvidenceLinks: [{ label: "Yum Yum 案例库", url: "https://www.yumyumvideos.com/blog/best-explainer-video-examples/" }, { label: "Wyzowl 案例库", url: "https://www.wyzowl.com/explainer-video-examples/" }, { label: "YouTube", url: "https://www.youtube.com/watch?v=zVHR1Ol7K5U" }]
+  },
+  {
+    id: "crazy-egg",
+    tier: "core",
+    title: "Crazy Egg Animated Explainer",
+    creator: "Demo Duck Vault",
+    year: "2012",
+    provider: "youtube",
+    videoId: "9cL2DzEdyMQ",
+    sourceUrl: "https://www.youtube.com/watch?v=9cL2DzEdyMQ",
+    styles: ["data", "icon-system"],
+    tags: ["SaaS", "商业", "网站分析", "转化率"],
+    summary: "用动画解释热力图和网站转化率优化工具。",
+    whyClassic: "典型 SaaS explainer：问题、方案、价值链条很直接。",
+    learn: "技术产品要尽快让观众看到业务结果，而不是沉迷功能细节。",
+    caseEvidenceLinks: [{ label: "Yum Yum 案例库", url: "https://www.yumyumvideos.com/blog/best-explainer-video-examples/" }, { label: "Wyzowl 案例库", url: "https://www.wyzowl.com/explainer-video-examples/" }, { label: "YouTube", url: "https://www.youtube.com/watch?v=9cL2DzEdyMQ" }]
+  },
+  {
+    id: "hans-rosling-best-stats",
+    tier: "core",
+    title: "The best stats you've ever seen",
+    creator: "Hans Rosling / TED",
+    year: "2006",
+    provider: "youtube",
+    videoId: "hVimVzgtD6w",
+    sourceUrl: "https://www.youtube.com/watch?v=hVimVzgtD6w",
+    styles: ["data", "slide-explainer"],
+    tags: ["Data Visualization", "Presentation-style", "TED", "经典案例"],
+    summary: "Hans Rosling 用动态气泡图、现场讲解和演示节奏解释全球发展数据，把数据图表变成叙事本身。",
+    whyClassic: "这是数据可视化解释的标志性演讲之一；它证明图表、演示动作和旁白可以共同承担 explainer 的核心，而不只是 PPT 装饰。",
+    learn: "数据 explainer 的关键不是显示更多数字，而是让变量、时间和对比关系在运动中被看懂。",
+    caseEvidenceLinks: [{ label: "TED", url: "https://www.ted.com/talks/hans_rosling_the_best_stats_you_ve_ever_seen" }, { label: "Gapminder", url: "https://www.gapminder.org/" }, { label: "YouTube", url: "https://www.youtube.com/watch?v=hVimVzgtD6w" }]
+  },
+  {
+    id: "wealth-inequality-america",
+    tier: "core",
+    title: "Wealth Inequality in America",
+    creator: "politizane",
+    year: "2012",
+    provider: "youtube",
+    videoId: "QPKKQnijnsM",
+    sourceUrl: "https://www.youtube.com/watch?v=QPKKQnijnsM",
+    styles: ["data", "editorial"],
+    tags: ["Infographic Video", "Data Visualization", "社会议题", "病毒传播"],
+    summary: "用一套非常直接的条形图和比例比较，解释美国财富分配、公众感知和现实之间的巨大差异。",
+    whyClassic: "这是 viral infographic video 的代表案例之一；多个数据可视化/信息图博客都把它当作“让复杂议题变得可理解”的样本讨论。",
+    learn: "数据视频不一定需要复杂视觉。只要对比关系足够清楚，简单图表也能产生很强的观点冲击。",
+    caseEvidenceLinks: [{ label: "YouTube", url: "https://www.youtube.com/watch?v=QPKKQnijnsM" }, { label: "DataVizBlog", url: "https://datavizblog.com/2013/03/05/video-wealth-inequality-in-america-infographic/" }, { label: "Cool Infographics", url: "https://coolinfographics.com/blog/2013/3/11/wealth-inequality-in-america.html" }]
+  },
+  {
+    id: "fallen-of-world-war-ii",
+    tier: "core",
+    title: "The Fallen of World War II",
+    creator: "Neil Halloran",
+    year: "2015",
+    provider: "youtube",
+    videoId: "DwKPFT-RioU",
+    sourceUrl: "https://www.youtube.com/watch?v=DwKPFT-RioU",
+    styles: ["data", "editorial"],
+    tags: ["Data Visualization", "Animated Documentary", "历史", "互动纪录片"],
+    summary: "用数据驱动的动画纪录片解释二战死亡规模，并把不同战争和长期和平趋势放在同一个视觉叙事里比较。",
+    whyClassic: "Neil Halloran 官方称它为 data-driven documentary；它是数据可视化、动画纪录片和 explainer journalism 交叉处的代表作品。",
+    learn: "当数字过大时，解释重点不是报出数字，而是设计尺度、比较对象和叙事停顿，让观众真正感到规模。",
+    caseEvidenceLinks: [{ label: "Neil Halloran 官方页", url: "https://www.neilfilms.com/ww2/" }, { label: "YouTube", url: "https://www.youtube.com/watch?v=DwKPFT-RioU" }, { label: "Vimeo", url: "https://vimeo.com/128373915" }]
+  },
+  {
+    id: "mint",
+    title: "Mint Explainer Video",
+    creator: "Explainer Videos / Mint",
+    year: "2010s",
+    provider: "youtube",
+    videoId: "sjCGgQggKgs",
+    sourceUrl: "https://www.youtube.com/watch?v=sjCGgQggKgs",
+    styles: ["data"],
+    tags: ["Fintech", "个人财务", "商业"],
+    summary: "用动态图形解释个人财务管理产品。",
+    whyClassic: "个人财务类产品容易让人紧张，清楚的动态课件能降低压力。",
+    learn: "金融和数据产品需要让复杂感消失，而不是展示自己有多复杂。",
+    caseEvidenceLinks: [{ label: "Yum Yum 案例库", url: "https://www.yumyumvideos.com/blog/best-explainer-video-examples/" }, { label: "YouTube", url: "https://www.youtube.com/watch?v=sjCGgQggKgs" }]
+  },
+  {
+    id: "headspace-hello",
+    tier: "core",
+    title: "Say hello to Headspace",
+    creator: "Headspace",
+    year: "2010s",
+    provider: "youtube",
+    videoId: "CS76mK58urI",
+    sourceUrl: "https://www.youtube.com/watch?v=CS76mK58urI",
+    styles: ["illustrated", "icon-system"],
+    tags: ["2D Animation", "品牌", "商业经典", "Yum Yum 榜单"],
+    summary: "用温和的 2D 插画、轻量角色和隐喻解释冥想产品。",
+    whyClassic: "Headspace 的早期动画风格影响了大量健康、教育和 app 类 explainer。",
+    learn: "抽象体验类产品不适合硬讲功能，应该用气质、隐喻和情绪降低理解门槛。",
+    caseEvidenceLinks: [{ label: "Yum Yum 案例库", url: "https://www.yumyumvideos.com/blog/best-explainer-video-examples/" }, { label: "Wyzowl 案例库", url: "https://www.wyzowl.com/explainer-video-examples/" }, { label: "YouTube", url: "https://www.youtube.com/watch?v=CS76mK58urI" }]
+  },
+  {
+    id: "dumb-ways-to-die",
+    tier: "core",
+    title: "Dumb Ways to Die",
+    creator: "Metro Trains Melbourne / Dumb Ways to Die",
+    year: "2012",
+    provider: "youtube",
+    videoId: "IJNR2EpS0jw",
+    sourceUrl: "https://www.youtube.com/watch?v=IJNR2EpS0jw",
+    styles: ["illustrated"],
+    tags: ["2D Animation", "公益", "PSA", "安全传播", "病毒传播", "角色动画"],
+    summary: "用可爱角色、黑色幽默和歌曲，把铁路安全这种本来很难让人愿意看的公共安全信息变成高传播的动画短片。",
+    whyClassic: "它是 2010s 公益传播和 2D 角色动画的代表案例之一；很多 explainer / animation 案例库会把它当作 animated explainer / public-service communication 的标杆。",
+    learn: "当主题严肃但观众抗拒时，2D illustrated animation 可以用角色、歌曲和反差降低进入门槛，但信息仍要回到明确行为提醒。",
+    caseEvidenceLinks: [{ label: "YouTube", url: "https://www.youtube.com/watch?v=IJNR2EpS0jw" }, { label: "Yum Yum 案例库", url: "https://www.yumyumvideos.com/blog/best-explainer-video-examples/" }, { label: "Wyzowl 案例库", url: "https://www.wyzowl.com/explainer-video-examples/" }]
+  },
+  {
+    id: "branch-yumyum",
+    title: "Branch",
+    creator: "Yum Yum Videos",
+    year: "2010s",
+    provider: "youtube",
+    videoId: "OWEDuusCFtg",
+    sourceUrl: "https://www.youtube.com/watch?v=OWEDuusCFtg",
+    styles: ["illustrated", "icon-system"],
+    tags: ["2D Animation", "SaaS", "商业案例", "Yum Yum"],
+    summary: "用 2D 插画和图形化流程解释移动链接 / attribution 类产品。",
+    whyClassic: "它不是历史级经典，但 Yum Yum 把它列入高质量商业 explainer 参考，适合看成熟商业动画的脚本结构。",
+    learn: "B2B 产品解释要尽快把抽象技术变成用户能理解的流程和结果。",
+    caseEvidenceLinks: [{ label: "Yum Yum 案例库", url: "https://www.yumyumvideos.com/blog/best-explainer-video-examples/" }, { label: "YouTube", url: "https://www.youtube.com/watch?v=OWEDuusCFtg" }]
+  },
+  {
+    id: "crash-course-agriculture",
+    title: "The Agricultural Revolution",
+    creator: "Crash Course",
+    year: "2012",
+    provider: "youtube",
+    videoId: "Yocja_N5s1I",
+    sourceUrl: "https://www.youtube.com/watch?v=Yocja_N5s1I",
+    styles: ["slide-explainer", "illustrated"],
+    tags: ["教育", "长教程", "真人+动画"],
+    summary: "Crash Course 的代表性教育视频之一，真人讲解和动画/图像材料交替推进。",
+    whyClassic: "它是现代教育视频工业化风格的重要代表。",
+    learn: "长教程需要稳定栏目包装、节奏模板和可复用视觉资产。",
+    caseEvidenceLinks: [{ label: "Crash Course YouTube", url: "https://www.youtube.com/watch?v=Yocja_N5s1I" }, { label: "Crash Course", url: "https://www.youtube.com/@crashcourse" }]
+  },
+  {
+    id: "statquest-pca",
+    tier: "core",
+    title: "Principal Component Analysis (PCA), Step-by-Step",
+    creator: "StatQuest with Josh Starmer",
+    year: "2017",
+    provider: "youtube",
+    videoId: "FgakZw6K1QQ",
+    sourceUrl: "https://www.youtube.com/watch?v=FgakZw6K1QQ",
+    styles: ["slide-explainer", "data", "icon-system"],
+    tags: ["教育", "统计", "机器学习", "动态演示型", "核心样本"],
+    summary: "用几乎课件式的图形、坐标、标题和逐步 reveal，把 PCA 这种抽象统计概念拆开讲。",
+    whyClassic: "StatQuest 是教育解释视频里非常典型的 slide-like 代表：画面不追求电影感，重点是顺序、重复和低认知负荷。",
+    learn: "如果主题本身很抽象，动态演示型的优势是能把每一步推理固定在画面上。",
+    caseEvidenceLinks: [{ label: "YouTube", url: "https://www.youtube.com/watch?v=FgakZw6K1QQ" }, { label: "StatQuest", url: "https://www.youtube.com/@statquest" }]
+  },
+  {
+    id: "statquest-logistic-regression",
+    title: "Logistic Regression",
+    creator: "StatQuest with Josh Starmer",
+    year: "2017",
+    provider: "youtube",
+    videoId: "yIYKR4sgzI8",
+    sourceUrl: "https://www.youtube.com/watch?v=yIYKR4sgzI8",
+    styles: ["slide-explainer", "data", "icon-system"],
+    tags: ["教育", "统计", "机器学习", "动态演示型"],
+    summary: "用公式、曲线、示意图和一步一步的版面推进讲逻辑回归。",
+    whyClassic: "它代表一种非常纯的 animated lecture deck：每个画面都像一页被精细调度过的课件。",
+    learn: "不要怕画面像 PPT，关键是每次出现的信息都刚好回答旁白当前的问题。",
+    caseEvidenceLinks: [{ label: "YouTube", url: "https://www.youtube.com/watch?v=yIYKR4sgzI8" }, { label: "StatQuest", url: "https://www.youtube.com/@statquest" }]
+  },
+  {
+    id: "statquest-random-forest",
+    title: "Random Forests Part 1",
+    creator: "StatQuest with Josh Starmer",
+    year: "2018",
+    provider: "youtube",
+    videoId: "J4Wdy0Wc_xQ",
+    sourceUrl: "https://www.youtube.com/watch?v=J4Wdy0Wc_xQ",
+    styles: ["slide-explainer", "icon-system", "data"],
+    tags: ["教育", "机器学习", "系统图", "动态演示型"],
+    summary: "用重复出现的树、样本、投票和高亮动作解释随机森林。",
+    whyClassic: "这类视频说明了动态演示型不是静态讲义，而是把同一套图形规则反复运行给观众看。",
+    learn: "概念复杂时，复用同一组视觉对象比频繁换风格更重要。",
+    caseEvidenceLinks: [{ label: "YouTube", url: "https://www.youtube.com/watch?v=J4Wdy0Wc_xQ" }, { label: "StatQuest", url: "https://www.youtube.com/@statquest" }]
+  },
+  {
+    id: "crash-course-computer-science",
+    tier: "core",
+    title: "Early Computing",
+    creator: "Crash Course Computer Science",
+    year: "2017",
+    provider: "youtube",
+    videoId: "O5nskjZ_GoI",
+    sourceUrl: "https://www.youtube.com/watch?v=O5nskjZ_GoI",
+    styles: ["slide-explainer", "illustrated"],
+    tags: ["教育", "计算机", "真人+动画", "动态演示型", "核心样本"],
+    summary: "真人主持、章节化素材、图示、历史图片和动画课件交替推进。",
+    whyClassic: "Crash Course 是教育 explainer 的工业化样本：主持人不是全部，真正支撑理解的是背后的演示系统。",
+    learn: "长教程要靠稳定包装、章节节奏和复用组件让观众愿意跟下去。",
+    caseEvidenceLinks: [{ label: "Crash Course YouTube", url: "https://www.youtube.com/watch?v=O5nskjZ_GoI" }, { label: "Crash Course", url: "https://www.youtube.com/@crashcourse" }]
+  },
+  {
+    id: "hubspot-topic-clusters",
+    title: "Topic Clusters: The Next Evolution of Content Strategy",
+    creator: "HubSpot Marketing",
+    year: "2017",
+    provider: "youtube",
+    videoId: "xOGxyw9DSa8",
+    sourceUrl: "https://www.youtube.com/watch?v=xOGxyw9DSa8",
+    styles: ["slide-explainer", "icon-system", "data"],
+    tags: ["SaaS", "营销", "商业", "动态演示型"],
+    summary: "用标题页、结构图、图标节点和逐步高亮解释内容营销里的 topic cluster。",
+    whyClassic: "这是商业教育内容里比较典型的 presentation-style：更像一套会动的策略课件，而不是角色动画广告。",
+    learn: "B2B 概念解释可以少做表演，多做结构。",
+    caseEvidenceLinks: [{ label: "YouTube", url: "https://www.youtube.com/watch?v=xOGxyw9DSa8" }, { label: "HubSpot", url: "https://www.youtube.com/watch?v=xOGxyw9DSa8" }]
+  },
+  {
+    id: "basecamp-demo",
+    tier: "core",
+    title: "Basecamp - 2-minute Demo",
+    creator: "37signals",
+    year: "2024",
+    provider: "youtube",
+    videoId: "WUzaUGlSkQs",
+    sourceUrl: "https://www.youtube.com/watch?v=WUzaUGlSkQs",
+    styles: ["talking-head"],
+    tags: ["Screencast", "Software Demo", "SaaS", "产品演示", "官方"],
+    summary: "用真实界面、鼠标路径和简短旁白快速解释 Basecamp 的核心工作流。",
+    whyClassic: "Basecamp 是项目协作软件里的长期标杆，这类短 demo 代表了 screencast explainer 的朴素有效路线。",
+    learn: "Screencast 的重点是让观众相信“我知道下一步要点哪里”，而不是把界面录一遍。",
+    caseEvidenceLinks: [{ label: "YouTube", url: "https://www.youtube.com/watch?v=WUzaUGlSkQs" }, { label: "Basecamp", url: "https://basecamp.com/" }, { label: "Wyzowl Software Demos", url: "https://wyzowl.com/software-demos/" }]
+  },
+  {
+    id: "figma-whats-figma-2019",
+    tier: "core",
+    title: "What's Figma? [2019]",
+    creator: "Figma",
+    year: "2019",
+    provider: "youtube",
+    videoId: "Cx2dkpBxst8",
+    sourceUrl: "https://www.youtube.com/watch?v=Cx2dkpBxst8",
+    styles: ["talking-head", "icon-system"],
+    tags: ["Software Demo", "UI Animation", "SaaS", "官方"],
+    summary: "用极简 UI 动画、协作场景和少量图形解释 Figma 的核心价值：设计不再被文件传来传去，而是多人在同一个界面里协作。",
+    whyClassic: "What a Story 将它列为 SaaS product video 示例，并标注为 Minimalist UI Animation / Screencast Hybrid；Figma 官方发布也让它成为软件 demo / UI animation 的高质量参考。",
+    learn: "好的软件 demo 不一定逐个讲按钮；它可以先讲旧协作方式的混乱，再用界面运动展示新的默认工作流。",
+    caseEvidenceLinks: [{ label: "YouTube", url: "https://www.youtube.com/watch?v=Cx2dkpBxst8" }, { label: "What a Story SaaS examples", url: "https://www.whatastory.agency/blog/saas-explainer-video-examples" }]
+  },
+  {
+    id: "asana-quick-tour",
+    tier: "core",
+    title: "Quick tour: How to get around Asana",
+    creator: "Asana",
+    year: "2020s",
+    provider: "youtube",
+    videoId: "_EGyn-prhxc",
+    sourceUrl: "https://www.youtube.com/watch?v=_EGyn-prhxc",
+    styles: ["talking-head"],
+    tags: ["Screencast", "Software Demo", "Product Tour", "官方"],
+    summary: "Asana 官方快速导览，用真实界面和路径说明用户如何在产品里找到项目、任务和关键区域。",
+    whyClassic: "它不是历史级传播案例，但非常标准地代表了 software demo / product tour 的基本形态：真实界面、清楚路径、低装饰、强可操作性。",
+    learn: "软件 demo 的核心不是把界面录下来，而是把用户下一步该看哪里、点哪里、理解什么排成顺序。",
+    caseEvidenceLinks: [{ label: "YouTube", url: "https://www.youtube.com/watch?v=_EGyn-prhxc" }, { label: "Asana YouTube", url: "https://www.youtube.com/@asana" }, { label: "Vimeo Software Video Demos", url: "https://vimeo.com/blog/post/software-video-demos" }]
+  },
+  {
+    id: "monday-work-management-demo",
+    tier: "core",
+    title: "monday work management product demo",
+    creator: "monday.com",
+    year: "2020s",
+    provider: "youtube",
+    videoId: "fDhe_sexzSI",
+    sourceUrl: "https://www.youtube.com/watch?v=fDhe_sexzSI",
+    styles: ["talking-head"],
+    tags: ["Screencast", "Software Demo", "SaaS", "官方"],
+    summary: "monday.com 官方产品演示，展示工作管理软件如何通过看板、视图和协作流程组织团队工作。",
+    whyClassic: "它是清楚的 SaaS software demo 样本，标题、发布方和内容都指向 product demo，而不是泛泛品牌宣传片。",
+    learn: "当软件本身是工作流工具时，demo 要展示状态如何流动，而不只是展示静态界面有多漂亮。",
+    caseEvidenceLinks: [{ label: "YouTube", url: "https://www.youtube.com/watch?v=fDhe_sexzSI" }, { label: "monday.com YouTube", url: "https://www.youtube.com/@mondaydotcom" }, { label: "Wyzowl Software Demos", url: "https://wyzowl.com/software-demos/" }]
+  },
+  {
+    id: "cirrus-smart-scheduler",
+    title: "Smart Scheduler Explainer Video",
+    creator: "Cirrus Insight",
+    year: "2010s",
+    provider: "youtube",
+    videoId: "NV6A5SRYzNw",
+    sourceUrl: "https://www.youtube.com/watch?v=NV6A5SRYzNw",
+    styles: ["talking-head", "slide-explainer"],
+    tags: ["Screencast", "SaaS", "销售工具", "功能演示"],
+    summary: "用界面演示、动作路径和简洁旁白解释邮件排程功能。",
+    whyClassic: "它不是历史级经典，但可以作为软件功能路径型 screencast 的补充样本。",
+    learn: "Screencast 适合功能路径很关键的软件：少讲抽象价值，多展示操作前后差异。",
+    caseEvidenceLinks: [{ label: "YouTube", url: "https://www.youtube.com/watch?v=NV6A5SRYzNw" }, { label: "Wyzowl 案例库", url: "https://www.wyzowl.com/explainer-video-examples/" }]
+  },
+  {
+    id: "cargoz-3d",
+    title: "Cargoz 3D Explainer Video",
+    creator: "What a Story",
+    year: "2020s",
+    provider: "youtube",
+    videoId: "x5sEIpWI8GI",
+    sourceUrl: "https://www.youtube.com/watch?v=x5sEIpWI8GI",
+    styles: ["science-mg"],
+    tags: ["3D", "SaaS", "商业", "代表案例"],
+    summary: "用 3D 场景、空间镜头和产品流程解释物流 / 仓储类 SaaS。",
+    whyClassic: "它不是历史级经典，但作为 3D explainer 的风格参考很清楚：空间、材质、镜头和产品流程是主角。",
+    learn: "3D explainer 的价值在于让观众看见结构、空间关系和不可见流程。",
+    caseEvidenceLinks: [{ label: "YouTube", url: "https://www.youtube.com/watch?v=x5sEIpWI8GI" }, { label: "Yum Yum Videos", url: "https://www.yumyumvideos.com/" }]
+  },
+  {
+    id: "ferrari-812-vehicle-dynamic",
+    title: "Ferrari 812 Superfast - Vehicle Dynamic",
+    creator: "Ferrari",
+    year: "2017",
+    provider: "youtube",
+    videoId: "v61IqjC5XjI",
+    sourceUrl: "https://www.youtube.com/watch?v=v61IqjC5XjI",
+    styles: ["science-mg"],
+    tags: ["3D", "产品结构", "汽车", "官方案例"],
+    summary: "用 3D 技术可视化解释车辆动态系统和机械结构。",
+    whyClassic: "它是官方汽车 3D 产品结构解释案例，适合看 3D 如何承担机械结构、材质和运动逻辑解释。",
+    learn: "当产品本身有复杂结构时，3D 比 2D 更适合展示空间关系、内部机制和运动路径。",
+    caseEvidenceLinks: [{ label: "YouTube", url: "https://www.youtube.com/watch?v=v61IqjC5XjI" }, { label: "Ferrari", url: "https://www.youtube.com/watch?v=v61IqjC5XjI" }]
+  },
+  {
+    id: "dna-to-protein-3d",
+    tier: "core",
+    title: "From DNA to protein - 3D",
+    creator: "yourgenome",
+    year: "2014",
+    provider: "youtube",
+    videoId: "gG7uCskUOrA",
+    sourceUrl: "https://www.youtube.com/watch?v=gG7uCskUOrA",
+    styles: ["science-mg"],
+    tags: ["3D Animation", "科学", "医学", "分子可视化"],
+    summary: "用 3D 分子动画解释 DNA 到蛋白质的过程，把肉眼不可见的生物机制转化成空间运动。",
+    whyClassic: "科学/医学解释视频里，3D 的核心价值正是可视化不可见结构和过程；这个案例是清晰、标准的入门样本。",
+    learn: "科学 3D 不只是漂亮，而是用空间、尺度和连续运动解释机制。",
+    caseEvidenceLinks: [{ label: "YouTube", url: "https://www.youtube.com/watch?v=gG7uCskUOrA" }, { label: "yourgenome", url: "https://www.yourgenome.org/" }]
+  },
+  {
+    id: "inner-life-of-the-cell",
+    tier: "core",
+    title: "The Inner Life of the Cell",
+    creator: "XVIVO / Harvard BioVisions",
+    year: "2006",
+    provider: "youtube",
+    videoId: "wJyUtbn0O5Y",
+    sourceUrl: "https://xvivo.com/examples/the-inner-life-of-the-cell/",
+    styles: ["science-mg"],
+    tags: ["3D Animation", "Scientific Animation", "分子可视化", "核心经典"],
+    summary: "用高完成度 3D CG 展示白细胞内部的分子机制，把不可见的细胞过程变成可观看的空间运动。",
+    whyClassic: "XVIVO 官方称这支片推动了科学动画的前沿；它也长期被视为 molecular visualization / scientific animation 的标志性作品。",
+    learn: "3D 科学解释的关键不是炫，而是让尺度、路径、结构和连续机制在同一个空间里成立。",
+    caseEvidenceLinks: [{ label: "XVIVO 官方页", url: "https://xvivo.com/examples/the-inner-life-of-the-cell/" }, { label: "YouTube", url: "https://www.youtube.com/watch?v=wJyUtbn0O5Y" }, { label: "LabXchange", url: "https://www.labxchange.org/library/items/lb%3ALabXchange%3A60b18a7b%3Avideo%3A1" }]
+  },
+  {
+    id: "powering-the-cell-mitochondria",
+    tier: "core",
+    title: "Powering the Cell: Mitochondria",
+    creator: "XVIVO / Harvard BioVisions",
+    year: "2009",
+    provider: "youtube",
+    videoId: "RrS2uROUjK4",
+    sourceUrl: "https://xvivo.com/examples/powering-the-cell-mitochondria-2/",
+    styles: ["science-mg"],
+    tags: ["3D Animation", "Scientific Animation", "医学教育", "分子机制"],
+    summary: "沿着线粒体内部结构解释 ATP 生产，把抽象生化过程转成连续的 3D 旅程。",
+    whyClassic: "这是 Harvard BioVisions / XVIVO 细胞动画系列中的重要作品，适合代表科学 3D explainer 如何处理看不见、尺度极小、机制复杂的对象。",
+    learn: "当机制本身发生在空间结构里，镜头运动、路径设计和材质层次就是解释的一部分。",
+    caseEvidenceLinks: [{ label: "XVIVO 官方页", url: "https://xvivo.com/examples/powering-the-cell-mitochondria-2/" }, { label: "YouTube", url: "https://www.youtube.com/watch?v=RrS2uROUjK4" }, { label: "LabXchange", url: "https://www.labxchange.org/library/items/lb%3ALabXchange%3Aa5926d9f%3Avideo%3A1" }]
+  },
+  {
+    id: "dna-animation-drew-berry",
+    tier: "core",
+    title: "DNA animation (2002-2014)",
+    creator: "Drew Berry / Etsuko Uno / WEHI",
+    year: "2002-2014",
+    provider: "youtube",
+    videoId: "7Hk9jct2ozY",
+    sourceUrl: "https://www.youtube.com/watch?v=7Hk9jct2ozY",
+    styles: ["science-mg"],
+    tags: ["3D Animation", "ScienceArt", "分子动画", "经典参考"],
+    summary: "Drew Berry 和 Etsuko Uno 的 DNA 分子动画合集，展示科学可视化如何把研究对象变成可理解的运动结构。",
+    whyClassic: "Drew Berry 是科学动画领域的重要名字；WEHI 的分子动画长期被视为 science animation / molecular visualization 的代表。",
+    learn: "当主题极微观时，3D 动画需要同时处理准确性、尺度感和观看节奏。",
+    caseEvidenceLinks: [{ label: "WEHI YouTube", url: "https://www.youtube.com/watch?v=7Hk9jct2ozY" }, { label: "WEHI", url: "https://www.wehi.edu.au/" }]
+  },
+  {
+    id: "girl-effect",
+    tier: "core",
+    title: "The Girl Effect: The Clock Is Ticking",
+    creator: "Girl Effect",
+    year: "2008",
+    provider: "youtube",
+    videoId: "1e8xgF0JtVg",
+    sourceUrl: "https://www.youtube.com/watch?v=1e8xgF0JtVg",
+    styles: ["typography", "data"],
+    tags: ["公益", "Kinetic Typography", "早期经典", "传播"],
+    summary: "用大字、数字、节奏和极少图形构成一支公益倡议 explainer。",
+    whyClassic: "它是 kinetic typography / 字幕驱动型公益解释短片的早期经典之一。",
+    learn: "当观点很强时，文字本身可以成为画面，不一定需要角色或复杂场景。",
+    caseEvidenceLinks: [{ label: "Wyzowl Kinetic Typography", url: "https://wyzowl.com/kinetic-typography/" }, { label: "YouTube", url: "https://www.youtube.com/watch?v=1e8xgF0JtVg" }]
+  },
+  {
+    id: "dissolve-generic-brand-video",
+    tier: "supplemental",
+    title: "This Is a Generic Brand Video",
+    creator: "Dissolve",
+    year: "2014",
+    provider: "youtube",
+    videoId: "2YBtspm8j8M",
+    sourceUrl: "https://www.youtube.com/watch?v=2YBtspm8j8M",
+    styles: ["typography", "editorial"],
+    tags: ["Kinetic Typography", "Stock Footage", "讽刺", "Wyzowl 榜单", "补充参考"],
+    summary: "用 stock footage、旁白和大字排版反讽品牌宣传片的套路。",
+    whyClassic: "它经常出现在 typography / explainer 案例讨论中，说明文字节奏和素材剪辑也可以成为解释策略；放在 editorial 里只是作为讽刺型观点视频的补充参考，不作为 explainer journalism 的核心定义样本。",
+    learn: "Kinetic typography 不一定只有纯文字；文字可以和素材流一起承担论点推进。",
+    caseEvidenceLinks: [{ label: "YouTube", url: "https://www.youtube.com/watch?v=2YBtspm8j8M" }, { label: "Wyzowl Kinetic Typography", url: "https://wyzowl.com/kinetic-typography/" }]
+  },
+  {
+    id: "honda-keep-up",
+    tier: "core",
+    title: "Keep Up",
+    creator: "Honda",
+    year: "2015",
+    provider: "youtube",
+    videoId: "av2JvhV7Mjo",
+    sourceUrl: "https://www.youtube.com/watch?v=av2JvhV7Mjo",
+    styles: ["typography"],
+    tags: ["Kinetic Typography", "广告经典", "节奏设计"],
+    summary: "用越来越快的文字出现速度挑战观众阅读，把“push your limits”的品牌信息做成一次真实的观看体验。",
+    whyClassic: "Wyzowl 在 kinetic typography 案例中专门分析它，认为它用文字节奏制造挑战感，并让原本 UK-only 的广告广泛传播。",
+    learn: "文字动画不只是排版，它可以直接把观众卷进片子的动作机制里。",
+    caseEvidenceLinks: [{ label: "Wyzowl Kinetic Typography", url: "https://wyzowl.com/kinetic-typography/" }, { label: "YouTube", url: "https://www.youtube.com/watch?v=av2JvhV7Mjo" }]
+  },
+  {
+    id: "stephen-fry-language-kinetic-typography",
+    tier: "core",
+    title: "Stephen Fry Kinetic Typography - Language",
+    creator: "Matthew Rogers / Stephen Fry",
+    year: "2010",
+    provider: "youtube",
+    videoId: "J7E-aoXLZGY",
+    sourceUrl: "https://www.youtube.com/watch?v=J7E-aoXLZGY",
+    styles: ["typography"],
+    tags: ["Kinetic Typography", "语言", "经典参考", "文字主导"],
+    summary: "把 Stephen Fry 关于语言的长段讲话转成动态文字，依靠字体大小、排布、节奏、重组和强调来承载观点。",
+    whyClassic: "它长期出现在 kinetic typography 案例讨论中，Open Culture 也称其为 kinetic typography animation；适合作为“文字本身成为解释画面”的核心样本。",
+    learn: "Kinetic typography 不是给旁白加花字，而是让文字的运动方式直接表达语气、节奏和观点。",
+    caseEvidenceLinks: [{ label: "YouTube", url: "https://www.youtube.com/watch?v=J7E-aoXLZGY" }, { label: "Open Culture", url: "https://www.openculture.com/2010/10/stephen_fry_gets_animated_about_language.html" }, { label: "TodayMade examples", url: "https://www.todaymade.com/blog/kinetic-typography-examples" }]
+  },
+  {
+    id: "air-quality-stop-motion",
+    tier: "core",
+    title: "Air Quality Stop Motion Explainer Video",
+    creator: "Envision Utah / Trisha Zemp",
+    year: "2010s",
+    provider: "youtube",
+    videoId: "F7pzM-fDBtk",
+    sourceUrl: "https://www.youtube.com/watch?v=F7pzM-fDBtk",
+    styles: ["stop-motion"],
+    tags: ["Stop Motion", "公共议题", "手工感", "严格 explainer"],
+    summary: "用真实纸片、手工场景和逐帧动画解释空气质量问题。",
+    whyClassic: "它不是历史级商业经典，但作为严格意义上的 stop-motion explainer 样本，比 PES/Honda 这类广告或艺术短片更贴近 explainer 定义。",
+    learn: "定格动画的优势是触感和记忆点；缺点是制作成本和修改成本都更高。",
+    caseEvidenceLinks: [{ label: "YouTube", url: "https://www.youtube.com/watch?v=F7pzM-fDBtk" }, { label: "B2W Stop Motion Guide", url: "https://www.b2w.tv/blog/best-stop-motion-animation-videos" }]
+  },
+  {
+    id: "hertz-car-rental-stop-motion",
+    title: "Hertz Car Rental Stations Explainer",
+    creator: "Marina Zharova / Hertz",
+    year: "2019",
+    provider: "youtube",
+    videoId: "R7w8ytjxjaM",
+    sourceUrl: "https://www.youtube.com/watch?v=R7w8ytjxjaM",
+    styles: ["stop-motion", "illustrated"],
+    tags: ["Stop Motion", "2D Animation", "产品解释", "严格 explainer"],
+    summary: "用 stop-motion 和 2D 动画混合方式解释租车站点 / 服务流程，标题和内容都明确属于 explainer。",
+    whyClassic: "它不是行业历史经典，但它比许多更知名的 stop-motion 广告更符合“解释型视频”的定义，适合作为 stop-motion explainer 的补充参照。",
+    learn: "如果 stop-motion 单独承担流程解释不够灵活，可以和 2D 图形混合，让手工质感和信息清晰度同时成立。",
+    caseEvidenceLinks: [{ label: "YouTube", url: "https://www.youtube.com/watch?v=R7w8ytjxjaM" }, { label: "i-Presentations Stop-Motion Explainer", url: "https://i-presentations.co.uk/stop-motion-explainer-videos/" }]
+  },
+  {
+    id: "mitosis-guldies-stop-motion",
+    tier: "core",
+    title: "MITOSIS. A Stop motion Animation",
+    creator: "Guldies",
+    year: "2016",
+    provider: "youtube",
+    videoId: "araFF9plBHQ",
+    sourceUrl: "https://www.youtube.com/watch?v=araFF9plBHQ",
+    styles: ["stop-motion"],
+    tags: ["Stop Motion", "教育", "科学", "严格 explainer", "Clay Animation"],
+    summary: "用黏土逐帧表现有丝分裂过程，让一个细胞生物学机制通过真实材料的形变和分裂被看见。",
+    whyClassic: "它不是商业 explainer 行业的广告案例，但作为“定格动画可以解释科学过程”的样本非常明确，比很多知名 stop-motion 广告更接近 explainer 定义。",
+    learn: "当对象本身会发生阶段性变化时，stop motion 的逐帧物理形变天然适合解释过程。",
+    caseEvidenceLinks: [{ label: "YouTube", url: "https://www.youtube.com/watch?v=araFF9plBHQ" }, { label: "Guldies YouTube", url: "https://www.youtube.com/@Guldies" }, { label: "B2W stop motion examples", url: "https://www.b2w.tv/blog/best-stop-motion-animation-videos" }]
+  },
+  {
+    id: "fresh-guacamole-pes",
+    title: "Fresh Guacamole",
+    creator: "PES",
+    year: "2012",
+    provider: "youtube",
+    videoId: "dNJdJIwCF_Y",
+    sourceUrl: "https://www.youtube.com/watch?v=dNJdJIwCF_Y",
+    styles: ["stop-motion"],
+    tags: ["Stop Motion", "PES", "风格参考", "非严格 explainer"],
+    summary: "PES 的定格动画经典，用物体替换和连续变形制造强记忆点。",
+    whyClassic: "它是 stop motion 商业/艺术短片中的标志性作品，B2W 的 stop motion 案例库也将其列为代表。",
+    learn: "如果要做手工感 explainer，可以学习它的物体转换、动作清晰度和节奏控制；但它本身不是严格解释型视频。",
+    caseEvidenceLinks: [{ label: "PES YouTube", url: "https://www.youtube.com/watch?v=dNJdJIwCF_Y" }, { label: "B2W Stop Motion Guide", url: "https://www.b2w.tv/blog/best-stop-motion-animation-videos" }]
+  },
+  {
+    id: "western-spaghetti-pes",
+    title: "Western Spaghetti",
+    creator: "PES",
+    year: "2008",
+    provider: "youtube",
+    videoId: "qBjLW5_dGAM",
+    sourceUrl: "https://www.youtube.com/watch?v=qBjLW5_dGAM",
+    styles: ["stop-motion"],
+    tags: ["Stop Motion", "PES", "风格参考", "非严格 explainer"],
+    summary: "PES 的早期 stop-motion cooking 代表作，用真实物体的替身逻辑完成一整套做饭动作。",
+    whyClassic: "B2W 将 Western Spaghetti 和 Fresh Guacamole 一起列为 stop motion 代表；它非常适合研究定格动画的连续动作设计。",
+    learn: "定格动画的连贯性来自动作逻辑，而不是画面复杂度。",
+    caseEvidenceLinks: [{ label: "PES YouTube", url: "https://www.youtube.com/watch?v=qBjLW5_dGAM" }, { label: "B2W Stop Motion Guide", url: "https://www.b2w.tv/blog/best-stop-motion-animation-videos" }]
+  },
+  {
+    id: "honda-paper",
+    title: "Honda Paper",
+    creator: "PES / Honda",
+    year: "2015",
+    provider: "youtube",
+    videoId: "vpyeQeTDGFA",
+    sourceUrl: "https://www.youtube.com/watch?v=vpyeQeTDGFA",
+    styles: ["stop-motion"],
+    tags: ["Stop Motion", "品牌经典", "纸艺", "广告", "非严格 explainer"],
+    summary: "用纸艺定格动画回顾 Honda 的产品与工程历史。",
+    whyClassic: "它是 stop motion 商业片里的高完成度代表，但更准确地说是品牌广告/工艺经典，不是严格的 explainer 核心案例。",
+    learn: "Stop motion 的强项是“真实材料在动”，适合做品牌记忆点，不适合需要频繁改版的解释片。",
+    caseEvidenceLinks: [{ label: "B2W Stop Motion Guide", url: "https://www.b2w.tv/blog/best-stop-motion-animation-videos" }, { label: "YouTube", url: "https://www.youtube.com/watch?v=vpyeQeTDGFA" }]
+  },
+  {
+    id: "qiuzhi-claude-code",
+    title: "60 分钟全面掌握 Claude Code",
+    creator: "秋芝2046",
+    year: "2026",
+    provider: "bilibili",
+    bvid: "BV1NvRyBzEhq",
+    sourceUrl: "https://www.bilibili.com/video/BV1NvRyBzEhq/",
+    styles: ["talking-head", "slide-explainer"],
+    tags: ["中文", "工具教程", "AI", "动态标注"],
+    summary: "中文工具教程型 explainer：真人讲解、路线图、荧光标签、屏幕演示结合。",
+    whyClassic: "它不是历史经典，但非常适合作为现代中文工具教程的参考样本。",
+    learn: "真人负责信任，标签和路线图负责降低学习焦虑。",
+    caseEvidenceLinks: [{ label: "Bilibili", url: "https://www.bilibili.com/video/BV1NvRyBzEhq/" }]
+  }
+];
+
+const resources = [
+  {
+    id: "art-of-explanation",
+    kind: "Book",
+    title: "The Art of Explanation",
+    author: "Lee LeFever",
+    url: "https://www.amazon.com/Art-Explanation-Products-Services-Understand/dp/1118374584",
+    tags: ["理论", "Common Craft", "解释方法"],
+    description: "Lee LeFever 的解释方法论书。副标题是 making your ideas, products, and services easier to understand。适合作为 explainer video 的理论起点。"
+  },
+  {
+    id: "explainer-academy",
+    kind: "Course",
+    title: "Explainer Academy",
+    author: "Common Craft",
+    url: "https://commoncraft.com/academy",
+    tags: ["课程", "Common Craft", "制作方法"],
+    description: "Common Craft 的在线课程体系。官方介绍为自定进度、长期有效，包含 walkthroughs、guides、worksheets，并强调把 PowerPoint 转化为视频制作工具。"
+  },
+  {
+    id: "commoncraft-home",
+    kind: "Website",
+    title: "commoncraft.com",
+    author: "Common Craft",
+    url: "https://commoncraft.com/",
+    tags: ["网站", "视频库", "教育"],
+    description: "Common Craft 的主站。包含 explainer video library、Explainer Academy、The Science of Explanation 等资源。我们后续很可能从这里开始系统学习。"
+  },
+  {
+    id: "commoncraft-library",
+    kind: "Library",
+    title: "Common Craft Video Library",
+    author: "Common Craft",
+    url: "https://commoncraft.com/video-library",
+    tags: ["视频库", "教育", "Common Craft"],
+    description: "面向教育者的 ready-made explainer video 库，按 Internet Safety、Study Skills、Money、Society 等分类。"
+  },
+  {
+    id: "commoncraft-classics-playlist",
+    kind: "Playlist",
+    title: "Common Craft Classics: In Plain English",
+    author: "Common Craft",
+    url: "https://www.youtube.com/playlist?list=PLcOSiZT4b8vj_H-q0MgsOCroA4uv-3Xel",
+    tags: ["播放列表", "Common Craft", "In Plain English", "经典案例"],
+    description: "Common Craft 官方 YouTube 播放列表，集中收录早期 In Plain English 系列，是判断 Plain English / Common Craft Cutout 风格最直接的来源。"
+  },
+  {
+    id: "yumyum-examples",
+    kind: "Case Library",
+    title: "Best Explainer Video Examples",
+    author: "Yum Yum Videos",
+    url: "https://www.yumyumvideos.com/blog/best-explainer-video-examples/",
+    tags: ["案例库", "商业", "风格分类"],
+    description: "非常值得重点参考的商业 explainer 案例库。它用 results、clarity、storytelling 等维度挑选案例。"
+  },
+  {
+    id: "wyzowl-software-demos",
+    kind: "Case Library",
+    title: "20 Outstanding Examples of Software Demo Videos",
+    author: "Wyzowl",
+    url: "https://wyzowl.com/software-demos/",
+    tags: ["Software Demo", "Screencast", "SaaS", "案例库"],
+    description: "Wyzowl 专门整理 software demo videos，并把它们定位为展示软件价值和能力的工具。适合校准 screencast / software demo / UI animation 的边界。"
+  },
+  {
+    id: "reddit-motion-design",
+    kind: "Community",
+    title: "Best Explainer Videos? Let's make a list",
+    author: "Reddit / r/MotionDesign",
+    url: "https://www.reddit.com/r/MotionDesign/comments/1cyw7l4/best_explainer_videos_lets_make_a_list/",
+    tags: ["社区", "案例线索", "Motion Design"],
+    description: "Motion designer 社区的案例讨论串。适合发现榜单之外的审美和执行质量参考。"
+  },
+  {
+    id: "graphicmama-styles",
+    kind: "Guide",
+    title: "Best Explainer Video Styles",
+    author: "GraphicMama",
+    url: "https://graphicmama.com/blog/best-explainer-video-styles/",
+    tags: ["风格分类", "商业", "指南"],
+    description: "按 2D、3D、whiteboard、live action + animation、typography、infographic、screen capture 等类型梳理常见风格。"
+  },
+  {
+    id: "wyzowl-examples",
+    kind: "Case Library",
+    title: "Wyzowl Explainer Video Examples",
+    author: "Wyzowl",
+    url: "https://www.wyzowl.com/explainer-video-examples/",
+    tags: ["案例库", "商业", "术语"],
+    description: "大型 explainer 案例库，覆盖 animated、live action、educational、brand 等商业与教育案例，适合验证案例代表性。"
+  },
+  {
+    id: "bluecarrot-types",
+    kind: "Guide",
+    title: "Types of Explainer Videos",
+    author: "Blue Carrot",
+    url: "https://bluecarrot.io/blog/types-of-explainer-videos-best-examples/",
+    tags: ["类型", "商业目标", "指南"],
+    description: "更偏商业选型的分类文章，适合理解 explainer 类型和业务目标之间的关系。"
+  },
+  {
+    id: "piehole-examples",
+    kind: "Case Library",
+    title: "Explainer Video Examples",
+    author: "Piehole TV",
+    url: "https://piehole.tv/explainer-video-examples/",
+    tags: ["案例库", "商业", "视觉参考"],
+    description: "按 2D、3D、live action 等分类的商业案例库，可作为视觉参考墙。"
+  },
+  {
+    id: "creativefaze-presentation-style",
+    kind: "Style Reference",
+    title: "What are Presentation Style Videos?",
+    author: "Creative Faze",
+    url: "https://www.creativefaze.com/presentation-style-videos/",
+    tags: ["动态演示型", "术语", "生产方式"],
+    description: "把 presentation style videos 描述为使用视频片段、照片、文字、字幕、动画、配音等材料的解释视频。这个来源支持我们把它作为一种生产方式，而不是严格的单一视觉流派。"
+  },
+  {
+    id: "powtoon-animated-presentation",
+    kind: "Style Reference",
+    title: "How To Create Animated Presentations",
+    author: "Powtoon",
+    url: "https://www.powtoon.com/blog/how-to-create-an-animated-presentation-in-5-easy-steps/",
+    tags: ["动态演示型", "动画演示", "工具"],
+    description: "把 animated presentation 定义为通过动画、运动图形、转场和多媒体让静态 slides 更有参与感的 presentation。适合作为动态演示型的定义参考。"
+  },
+  {
+    id: "loom-presentation-video",
+    kind: "Style Reference",
+    title: "How to Make a Presentation Video",
+    author: "Loom",
+    url: "https://www.loom.com/powerpoint-presentation",
+    tags: ["动态演示型", "培训", "教程"],
+    description: "把 presentation video 放在教学、培训、远程沟通语境里，强调把 slides、配音和屏幕内容组合成可观看的视频。"
+  },
+  {
+    id: "fipp-explainer-journalism",
+    kind: "Style Reference",
+    title: "Explainer Journalism",
+    author: "FIPP",
+    url: "https://www.fipp.com/news/what-is-explainer-journalism/",
+    tags: ["Editorial Explainer", "新闻解释", "术语"],
+    description: "用于验证 editorial explainer / explainer journalism 不是我们自造的风格名，而是新闻和媒体领域真实存在的解释型内容传统。"
+  },
+  {
+    id: "piehole-3d-product-explainers",
+    kind: "Case Library",
+    title: "Explainer Video Examples",
+    author: "Piehole TV",
+    url: "https://piehole.tv/explainer-video-examples/",
+    tags: ["3D Animation", "产品解释", "案例库"],
+    description: "包含 Ferrari 812 Superfast、GE Digital 等 3D product explainer 案例，用来支撑 3D / CG 3D 作为真实商业解释视频风格。"
+  },
+  {
+    id: "wyzowl-kinetic-typography",
+    kind: "Case Library",
+    title: "Kinetic Typography: 50+ Amazing Video Examples",
+    author: "Wyzowl",
+    url: "https://wyzowl.com/kinetic-typography/",
+    tags: ["Kinetic Typography", "文字动效", "案例库"],
+    description: "Kinetic typography 案例库，列入 The Girl Effect 等代表案例。用于验证 typography / kinetic typography 作为独立风格。"
+  },
+  {
+    id: "b2w-stop-motion",
+    kind: "Case Library",
+    title: "16 Best Stop Motion Animation Videos",
+    author: "B2W",
+    url: "https://www.b2w.tv/blog/best-stop-motion-animation-videos",
+    tags: ["Stop Motion", "定格动画", "案例库"],
+    description: "Stop motion 案例库，列入 Honda Paper、PES 作品等，用于补充定格动画风格的经典参考。"
+  },
+  {
+    id: "wyzowl-product-demo-examples",
+    kind: "Case Library",
+    title: "Explainer Video Examples",
+    author: "Wyzowl",
+    url: "https://www.wyzowl.com/explainer-video-examples/",
+    tags: ["Screencast", "产品演示", "软件"],
+    description: "用 Wyzowl 的案例库补充产品 demo / 软件解释视频语境。Screencast 仍主要依赖 GraphicMama 和 Blue Carrot 的术语依据。"
+  }
+];
+
+let selectedStyle = "all";
+let selectedTag = "all";
+let selectedTier = "all";
+let searchQuery = "";
+
+const styleById = Object.fromEntries(styles.map(style => [style.id, style]));
+
+function embedUrl(caseItem) {
+  if (caseItem.provider === "youtube") {
+    return `https://www.youtube-nocookie.com/embed/${caseItem.videoId}?rel=0&modestbranding=1`;
+  }
+  if (caseItem.provider === "bilibili") {
+    return `https://player.bilibili.com/player.html?bvid=${caseItem.bvid}&page=1&as_wide=1&high_quality=1`;
+  }
+  if (caseItem.provider === "vimeo") {
+    const hash = caseItem.videoHash ? `?h=${caseItem.videoHash}` : "";
+    return `https://player.vimeo.com/video/${caseItem.videoId}${hash}`;
+  }
+  return "";
+}
+
+function allTags() {
+  return Array.from(new Set(cases.flatMap(item => item.tags))).sort((a, b) => a.localeCompare(b, "zh-CN"));
+}
+
+function casesForStyle(styleId) {
+  if (styleId === "all") return cases;
+  return cases.filter(item => item.styles.includes(styleId));
+}
+
+function tierLabel(item) {
+  return item.tier === "core" ? "核心代表作" : "补充参考";
+}
+
+function tierClass(item) {
+  return item.tier === "core" ? "tier" : "tier supplemental";
+}
+
+function evidenceLinks(style) {
+  if (!style.evidenceLinks?.length) return "";
+  return `
+    <div class="evidence-links">
+      ${style.evidenceLinks.map(link => `<a class="evidence-link" href="${link.url}" target="_blank" rel="noopener noreferrer">${link.label}</a>`).join("")}
+    </div>
+  `;
+}
+
+function caseEvidenceLinks(item) {
+  if (!item.caseEvidenceLinks?.length) return "";
+  return `
+    <div class="case-evidence">
+      <b>案例依据</b>
+      <span class="evidence-links">
+        ${item.caseEvidenceLinks.map(link => `<a class="evidence-link" href="${link.url}" target="_blank" rel="noopener noreferrer">${link.label}</a>`).join("")}
+      </span>
+    </div>
+  `;
+}
+
+function filteredCases() {
+  const query = searchQuery.trim().toLowerCase();
+  return cases.filter(item => {
+    const styleOk = selectedStyle === "all" || item.styles.includes(selectedStyle);
+    const tagOk = selectedTag === "all" || item.tags.includes(selectedTag);
+    const tierOk = selectedTier === "all" || (selectedTier === "core" ? item.tier === "core" : item.tier !== "core");
+    const text = [
+      item.title,
+      item.creator,
+      item.summary,
+      item.whyClassic,
+      item.learn,
+      ...item.tags,
+      ...item.styles.map(id => styleById[id]?.name || id)
+    ].join(" ").toLowerCase();
+    const searchOk = !query || text.includes(query);
+    return styleOk && tagOk && tierOk && searchOk;
+  }).sort((a, b) => {
+    const tierA = a.tier === "core" ? 0 : 1;
+    const tierB = b.tier === "core" ? 0 : 1;
+    if (tierA !== tierB) return tierA - tierB;
+    return a.title.localeCompare(b.title, "zh-CN");
+  });
+}
+
+function renderFilters() {
+  const styleFilter = document.querySelector("#styleFilter");
+  styleFilter.innerHTML = [
+    `<button class="filter-button ${selectedStyle === "all" ? "active" : ""}" data-style="all">全部风格</button>`,
+    ...styles.map(style => {
+      const count = casesForStyle(style.id).length;
+      return `<button class="filter-button ${selectedStyle === style.id ? "active" : ""}" data-style="${style.id}">${style.name} · ${count}</button>`;
+    })
+  ].join("");
+
+  styleFilter.querySelectorAll("[data-style]").forEach(button => {
+    button.addEventListener("click", () => {
+      selectedStyle = button.dataset.style;
+      render();
+      const target = selectedStyle === "all" ? document.querySelector("#styleOverview") : document.querySelector("#caseToolbar");
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+
+  const tierFilter = document.querySelector("#tierFilter");
+  const coreCount = cases.filter(item => item.tier === "core").length;
+  const supplementalCount = cases.length - coreCount;
+  tierFilter.innerHTML = [
+    `<button class="filter-button ${selectedTier === "all" ? "active" : ""}" data-tier="all">全部 · ${cases.length}</button>`,
+    `<button class="filter-button ${selectedTier === "core" ? "active" : ""}" data-tier="core">核心代表作 · ${coreCount}</button>`,
+    `<button class="filter-button ${selectedTier === "supplemental" ? "active" : ""}" data-tier="supplemental">补充参考 · ${supplementalCount}</button>`
+  ].join("");
+
+  tierFilter.querySelectorAll("[data-tier]").forEach(button => {
+    button.addEventListener("click", () => {
+      selectedTier = button.dataset.tier;
+      render();
+    });
+  });
+
+  const tagFilter = document.querySelector("#tagFilter");
+  tagFilter.innerHTML = [
+    `<button class="tag-button ${selectedTag === "all" ? "active" : ""}" data-tag="all">全部</button>`,
+    ...allTags().map(tag => `<button class="tag-button ${selectedTag === tag ? "active" : ""}" data-tag="${tag}">${tag}</button>`)
+  ].join("");
+
+  tagFilter.querySelectorAll("[data-tag]").forEach(button => {
+    button.addEventListener("click", () => {
+      selectedTag = button.dataset.tag;
+      render();
+    });
+  });
+}
+
+function renderStyles() {
+  const container = document.querySelector("#styleOverview");
+  if (selectedStyle !== "all") {
+    const style = styleById[selectedStyle];
+    const count = casesForStyle(style.id).length;
+    const coreCount = casesForStyle(style.id).filter(item => item.tier === "core").length;
+    container.innerHTML = `
+      <article class="panel selected-style-panel">
+        <h2>${style.name}</h2>
+        <p>${style.summary}</p>
+        <div class="style-meta">
+          <span class="pill">类型：${style.kind}</span>
+          <span class="pill">核心：${coreCount}</span>
+          <span class="pill">总计：${count}</span>
+          <span class="pill">适合：${style.bestFor}</span>
+          <span class="pill">PPT-like：${style.pptLike}</span>
+          <span class="pill">运动：${style.motion}</span>
+        </div>
+        <div class="style-evidence"><b>术语依据</b> ${style.evidence}${evidenceLinks(style)}</div>
+      </article>
+    `;
+    return;
+  }
+
+  container.innerHTML = `
+    <div class="style-overview-head">
+      <h2>风格</h2>
+      <div class="case-note">点击某个风格后，这里会收起总览，直接显示该风格说明和案例，避免滚动很远。</div>
+    </div>
+    <div id="styleGrid" class="style-grid"></div>
+  `;
+
+  const grid = container.querySelector("#styleGrid");
+  grid.innerHTML = styles.map((style, index) => {
+    const count = casesForStyle(style.id).length;
+    const coreCount = casesForStyle(style.id).filter(item => item.tier === "core").length;
+    return `
+      <article class="panel style-card ${selectedStyle === style.id ? "active" : ""}" data-style-card="${style.id}">
+        <div class="style-head">
+          <div class="style-num">${String(index + 1).padStart(2, "0")}</div>
+          <div class="style-count">${coreCount} 核心 / ${count} 总计</div>
+        </div>
+        <h3>${style.name}</h3>
+        <p>${style.summary}</p>
+        <div class="style-meta">
+          <span class="pill">类型：${style.kind}</span>
+          <span class="pill">适合：${style.bestFor}</span>
+          <span class="pill">PPT-like：${style.pptLike}</span>
+          <span class="pill">运动：${style.motion}</span>
+        </div>
+        <div class="style-evidence"><b>术语依据</b> ${style.evidence}${evidenceLinks(style)}</div>
+      </article>
+    `;
+  }).join("");
+
+  grid.querySelectorAll("[data-style-card]").forEach(card => {
+    card.addEventListener("click", () => {
+      selectedStyle = card.dataset.styleCard;
+      render();
+      document.querySelector("#caseToolbar").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+}
+
+function renderCases() {
+  const filtered = filteredCases();
+  const title = selectedStyle === "all" ? "全部案例" : styleById[selectedStyle].name;
+  const meta = [
+    `${filtered.length} / ${cases.length} 个案例`,
+    selectedTier !== "all" ? `代表性：${selectedTier === "core" ? "核心代表作" : "补充参考"}` : "",
+    selectedTag !== "all" ? `标签：${selectedTag}` : "",
+    searchQuery ? `搜索：${searchQuery}` : ""
+  ].filter(Boolean).join(" · ");
+
+  document.querySelector("#resultTitle").textContent = title;
+  document.querySelector("#resultMeta").textContent = meta;
+
+  const grid = document.querySelector("#caseGrid");
+  if (!filtered.length) {
+    grid.innerHTML = `<div class="empty">没有匹配案例。可以清除筛选，或换一个标签。</div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map(item => {
+    const stylePills = item.styles.map(id => `<span class="pill">${styleById[id]?.name || id}</span>`).join("");
+    const tagPills = item.tags.map(tag => `<span class="pill">${tag}</span>`).join("");
+    return `
+      <article class="panel case-card">
+        <div class="player-wrap">
+          <iframe src="${embedUrl(item)}" title="${item.title}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="case-body">
+          <div class="case-top">
+            <div>
+              <h3>${item.title}</h3>
+              <p class="case-note">${item.creator} · ${item.year}</p>
+            </div>
+            <span class="${tierClass(item)}">${tierLabel(item)}</span>
+          </div>
+          <div class="case-meta">${stylePills}${tagPills}</div>
+          <p>${item.summary}</p>
+          <div class="case-detail">
+            <div><b>为什么重要</b>${item.whyClassic}</div>
+            <div><b>重点学习</b>${item.learn}</div>
+          </div>
+          ${caseEvidenceLinks(item)}
+          <a class="external" href="${item.sourceUrl}" target="_blank" rel="noopener noreferrer">打开原始页面</a>
+        </div>
+      </article>
+    `;
+  }).join("");
+}
+
+function renderResources() {
+  const grid = document.querySelector("#resourceGrid");
+  grid.innerHTML = resources.map(item => `
+    <article class="panel resource-card">
+      <div class="resource-kind">${item.kind}</div>
+      <h3>${item.title}</h3>
+      <p class="case-note">${item.author}</p>
+      <p>${item.description}</p>
+      <div class="case-meta">${item.tags.map(tag => `<span class="pill">${tag}</span>`).join("")}</div>
+      <a class="external" href="${item.url}" target="_blank" rel="noopener noreferrer">打开资源</a>
+    </article>
+  `).join("");
+}
+
+function render() {
+  renderFilters();
+  renderStyles();
+  renderCases();
+  renderResources();
+}
+
+document.querySelector("#searchInput").addEventListener("input", event => {
+  searchQuery = event.target.value;
+  render();
+});
+
+document.querySelector("#resetButton").addEventListener("click", () => {
+  selectedStyle = "all";
+  selectedTag = "all";
+  selectedTier = "all";
+  searchQuery = "";
+  document.querySelector("#searchInput").value = "";
+  render();
+});
+
+render();
+</script>
+</body>
+</html>

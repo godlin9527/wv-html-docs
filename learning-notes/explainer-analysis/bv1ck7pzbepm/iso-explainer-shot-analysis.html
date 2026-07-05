@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>《相机 ISO》Explainer 拉片：0-2 分钟精细分析</title>
+  <style>
+    :root {
+      --ink: #171717;
+      --muted: #6f6a61;
+      --line: #ded8cc;
+      --paper: #f7f2e8;
+      --panel: #fffaf0;
+      --accent: #d7653c;
+      --dark: #111;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background:
+        linear-gradient(rgba(23,23,23,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(23,23,23,.035) 1px, transparent 1px),
+        var(--paper);
+      background-size: 28px 28px;
+    }
+    main {
+      width: min(1440px, calc(100vw - 64px));
+      margin: 48px auto 80px;
+    }
+    header {
+      border-bottom: 4px solid var(--dark);
+      padding-bottom: 24px;
+      margin-bottom: 32px;
+    }
+    h1 {
+      margin: 0 0 12px;
+      font-size: 42px;
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+    h2 {
+      margin: 44px 0 16px;
+      font-size: 26px;
+      line-height: 1.25;
+    }
+    h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+      color: var(--accent);
+    }
+    p {
+      margin: 0 0 12px;
+      font-size: 18px;
+      line-height: 1.75;
+    }
+    .meta {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+    .lead {
+      max-width: 920px;
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.65;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin: 24px 0 8px;
+    }
+    .card {
+      background: rgba(255,250,240,.86);
+      border: 2px solid var(--dark);
+      padding: 18px;
+      min-height: 170px;
+    }
+    .card strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+    .card p {
+      color: #4f4a42;
+      font-size: 16px;
+      line-height: 1.65;
+    }
+    figure {
+      margin: 28px 0 40px;
+      padding: 18px;
+      background: var(--panel);
+      border: 3px solid var(--dark);
+      box-shadow: 10px 10px 0 rgba(23,23,23,.12);
+    }
+    figure img,
+    figure video {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: #111;
+    }
+    figcaption {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: rgba(255,250,240,.72);
+      border: 3px solid var(--dark);
+      margin: 20px 0 36px;
+    }
+    th, td {
+      vertical-align: top;
+      border-bottom: 1px solid var(--line);
+      padding: 16px 18px;
+      font-size: 16px;
+      line-height: 1.65;
+    }
+    th {
+      text-align: left;
+      background: #151515;
+      color: #fff;
+      font-size: 15px;
+      letter-spacing: .02em;
+    }
+    td:first-child {
+      width: 110px;
+      font-weight: 800;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+    .note {
+      border-left: 6px solid var(--accent);
+      padding: 16px 20px;
+      background: rgba(255,250,240,.9);
+      margin: 28px 0;
+    }
+    .note p { margin: 0; }
+    .compact li {
+      margin: 0 0 10px;
+      font-size: 17px;
+      line-height: 1.65;
+    }
+    @media (max-width: 980px) {
+      main { width: min(100vw - 28px, 1440px); margin-top: 24px; }
+      .grid { grid-template-columns: 1fr; }
+      h1 { font-size: 32px; }
+      table { display: block; overflow-x: auto; }
+      th, td { min-width: 220px; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>《相机 ISO》Explainer 拉片<br>0-2 分钟精细分析</h1>
+    <p class="meta">视频：BV1CK7pzbEpM，《相机 ISO，从 CMOS 结构到双增益技术原理》；本页聚焦开头 0:00-2:00。抽帧间隔：1 秒。转写为本地 Whisper 自动转写，仅作结构参考。</p>
+  </header>
+
+  <p class="lead">这支片子的强点不是“画得复杂”，而是每一个画面都在服务同一个目标：把抽象概念变成一个可以被追踪、被放大、被拆开、被复用的视觉对象。</p>
+
+  <div class="grid">
+    <section class="card">
+      <strong>1. 视觉统一</strong>
+      <p>黑色暗房底、白色线稿、少量黄色和青绿色强调。风格克制，所以技术信息再多也不显脏。</p>
+    </section>
+    <section class="card">
+      <strong>2. 动画连续</strong>
+      <p>不是 PPT 式换页，而是从一个对象自然过渡到下一个对象：ISO 字样、传感器、胶片、颗粒、横截面、显影容器。</p>
+    </section>
+    <section class="card">
+      <strong>3. 信息分层</strong>
+      <p>先给问题，再给来源，再进微观结构。每次只引入一个新变量，观众不会同时处理太多东西。</p>
+    </section>
+    <section class="card">
+      <strong>4. 讲解节奏</strong>
+      <p>旁白密，但画面不抢。大量画面是“慢慢显现、慢慢聚焦”，给观众留理解时间。</p>
+    </section>
+  </div>
+
+  <h2>片段视频</h2>
+  <figure>
+    <video src="clip-000-120.mp4" controls></video>
+    <figcaption>0:00-2:00 片段。建议先看一遍视频，再看下面四段抽帧。</figcaption>
+  </figure>
+
+  <h2>0:00-0:30：开场问题与尺度切换</h2>
+  <figure>
+    <img src="contact-000-030-1s.jpg" alt="0 到 30 秒，每秒一帧" />
+    <figcaption>这一段从“ISO 是什么”开场，连续给出几个可能解释：感光度、胶片反应、数码传感器量子效率。然后迅速转向“先看它从何而来”。</figcaption>
+  </figure>
+  <table>
+    <thead>
+      <tr>
+        <th>时间</th>
+        <th>内容任务</th>
+        <th>画面/动画做法</th>
+        <th>为什么有效</th>
+        <th>可迁移方法</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>0:00-0:04</td>
+        <td>提出核心问题：ISO 到底是什么。</td>
+        <td>大字 ISO 出现，然后切到“感光度”的扇形隐喻。</td>
+        <td>先不解释，先制造疑问。画面也不急着给答案，只让观众知道主题。</td>
+        <td>复杂主题开头不要先下定义，先把观众心里的旧理解摆出来。</td>
+      </tr>
+      <tr>
+        <td>0:05-0:10</td>
+        <td>把 ISO 的解释范围从日常词义扩到胶片和数码时代。</td>
+        <td>用线稿台座、发光小方块、向内推进的“传感器通道”表现微观尺度。</td>
+        <td>尺度转换非常明确：不是换概念，而是进入更深一层。</td>
+        <td>抽象概念适合用“镜头推进/进入内部”的方式，暗示从表层进入结构。</td>
+      </tr>
+      <tr>
+        <td>0:11-0:20</td>
+        <td>从问题转向来源：先回到胶片。</td>
+        <td>彩色照片卡片居中，然后变成胶卷/胶片，再出现放大动作。</td>
+        <td>观众看到“真实照片”这个锚点，再进入材料层，理解成本低。</td>
+        <td>讲技术不要直接进原理，先放一个大家认识的物件作为锚。</td>
+      </tr>
+      <tr>
+        <td>0:21-0:30</td>
+        <td>进入微观颗粒：卤化银是胶片能感光的关键。</td>
+        <td>画面被白色颗粒填满，颗粒从稀疏到密集，再从整体变成可识别的“材料”。</td>
+        <td>这不是装饰粒子，而是信息本身：颗粒就是被解释对象。</td>
+        <td>MG 里粒子最好不要只当特效，要让粒子承担概念含义。</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>0:30-1:00：把材料讲成结构</h2>
+  <figure>
+    <img src="contact-030-060-1s.jpg" alt="30 到 60 秒，每秒一帧" />
+    <figcaption>这一段开始解释胶片的多层结构：保护层、感光乳剂层、结合层、片基层、防静电/防光晕层等。核心策略是“固定横截面 + 逐层标注”。</figcaption>
+  </figure>
+  <table>
+    <thead>
+      <tr>
+        <th>时间</th>
+        <th>内容任务</th>
+        <th>画面/动画做法</th>
+        <th>为什么有效</th>
+        <th>可迁移方法</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>0:30-0:39</td>
+        <td>解释胶片不是单层，而是多层结构。</td>
+        <td>横截面从黑暗中露出，右侧标签逐个出现，重点层用黄色强调。</td>
+        <td>观众的注意力被限制在一个固定结构里，不需要重新找信息。</td>
+        <td>讲组件时，先搭“剖面模型”，再逐个点亮，不要每个组件单独做一张画面。</td>
+      </tr>
+      <tr>
+        <td>0:40-0:48</td>
+        <td>解释光照后发生反应，形成潜影。</td>
+        <td>左侧保留胶片截面，右侧引入发光立方体，光点被收束成内部小团。</td>
+        <td>“潜影”本身不可见，所以用一个抽象立方体表现微观反应位置。</td>
+        <td>不可见过程要找一个代理对象：盒子、管道、节点、容器都可以。</td>
+      </tr>
+      <tr>
+        <td>0:49-0:56</td>
+        <td>说明影像已经记录，但人眼还看不到。</td>
+        <td>胶片和立方体都缩小，画面留出大量暗部，让“不可见”成为画面感受。</td>
+        <td>这里不是加更多元素，而是减少亮度和细节，配合“潜影状态”。</td>
+        <td>“看不见、未完成、等待处理”这类信息，可以用低对比和空间留白表达。</td>
+      </tr>
+      <tr>
+        <td>0:57-1:00</td>
+        <td>转入冲洗流程。</td>
+        <td>大字“冲洗流程”暗暗浮现，然后切到 STEP 1。</td>
+        <td>章节标题不是完整切屏，而是从背景里浮出，保持整体风格连贯。</td>
+        <td>章节转场可以只改变层级，不一定要换视觉系统。</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>1:00-1:30：步骤化流程</h2>
+  <figure>
+    <img src="contact-060-090-1s.jpg" alt="60 到 90 秒，每秒一帧" />
+    <figcaption>这一段是“流程教学”：显影、停影、定影、清洗。画面构图几乎不变，只让液体、胶片和步骤标题变化。</figcaption>
+  </figure>
+  <table>
+    <thead>
+      <tr>
+        <th>时间</th>
+        <th>内容任务</th>
+        <th>画面/动画做法</th>
+        <th>为什么有效</th>
+        <th>可迁移方法</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1:00-1:08</td>
+        <td>STEP 1：显影，使影像显出来。</td>
+        <td>标题固定在上方，胶片在容器里，影像逐渐显现。</td>
+        <td>变化只发生在“胶片内容”上，观众能清楚感知因果。</td>
+        <td>流程动画最好固定舞台，只让关键状态变化。</td>
+      </tr>
+      <tr>
+        <td>1:09-1:15</td>
+        <td>STEP 2：停影，终止反应。</td>
+        <td>容器仍在，液体从下方进入，胶片位置稳定。</td>
+        <td>同一套容器复用，说明这是同一条工艺链，不是新概念。</td>
+        <td>连续流程要复用场景资产，降低观众重新理解成本。</td>
+      </tr>
+      <tr>
+        <td>1:16-1:21</td>
+        <td>STEP 3：定影，去掉未感光材料。</td>
+        <td>背景液体高度/颜色变化，胶片仍是视觉中心。</td>
+        <td>观众能把“液体改变”理解成“处理阶段改变”。</td>
+        <td>同一个对象经历多阶段处理，比频繁换图更有叙事感。</td>
+      </tr>
+      <tr>
+        <td>1:22-1:30</td>
+        <td>STEP 4：清洗，得到最终底片。</td>
+        <td>画面逐渐从工艺容器回到单张胶片，准备进入下一个问题。</td>
+        <td>流程结束后，视觉对象回收成一个“结果物”，方便后续继续解释。</td>
+        <td>每段解释结束时，要把过程收束成一个可继续使用的对象。</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>1:30-2:00：制造反常识问题</h2>
+  <figure>
+    <img src="contact-090-120-1s.jpg" alt="90 到 120 秒，每秒一帧" />
+    <figcaption>这一段从“底片为什么黑白颠倒”切入。它没有马上解释，而是先放大反常识：曝光强的地方反而变黑。</figcaption>
+  </figure>
+  <table>
+    <thead>
+      <tr>
+        <th>时间</th>
+        <th>内容任务</th>
+        <th>画面/动画做法</th>
+        <th>为什么有效</th>
+        <th>可迁移方法</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1:30-1:37</td>
+        <td>提出底片黑白颠倒的疑问。</td>
+        <td>底片居中，右侧小字提示问题，画面整体保持低亮。</td>
+        <td>它让观众先看到“不对劲”，再听解释。</td>
+        <td>好的 explainer 常用“反常识画面”引出下一段，而不是平铺直叙。</td>
+      </tr>
+      <tr>
+        <td>1:38-1:45</td>
+        <td>解释曝光多的部分为什么更黑。</td>
+        <td>从照片跳到白底/黑色颗粒，再回到暗底照片。</td>
+        <td>白底黑粒子的强反差，把“金属银颗粒越多越黑”直接画出来。</td>
+        <td>当概念本身是对比关系，就用画面明暗/正负片切换表达。</td>
+      </tr>
+      <tr>
+        <td>1:46-1:56</td>
+        <td>把黑白颠倒命名为负片，并解释曝光少的部分更亮。</td>
+        <td>照片局部高亮、黄色箭头标注、背景出现巨大“负片”字样。</td>
+        <td>命名不是孤立出现，而是贴在刚刚解释完的现象上。</td>
+        <td>术语最好在现象之后出现，不要先扔术语。</td>
+      </tr>
+      <tr>
+        <td>1:57-2:00</td>
+        <td>转入“如何还原成正常照片”。</td>
+        <td>胶片移动到画面右侧，左侧出现放大机和相纸的位置。</td>
+        <td>画面提前布置下一段的道具，转场不是硬切。</td>
+        <td>下一段的核心道具可以提前入场，形成自然衔接。</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>这 2 分钟最值得学的设计原则</h2>
+  <ol class="compact">
+    <li><strong>一个概念对应一个可追踪对象。</strong> ISO、胶片、颗粒、横截面、显影容器都不是装饰，而是当前解释对象。</li>
+    <li><strong>每次只改变一个变量。</strong> 讲多层结构时构图不变，只加标签；讲流程时容器不变，只换步骤和液体。</li>
+    <li><strong>转场靠语义，不靠花活。</strong> 照片变胶片、胶片放大成颗粒、颗粒进入剖面、剖面进入冲洗流程，每一步都有解释理由。</li>
+    <li><strong>字幕是底层锚，不是画面主角。</strong> 画面已经承担主要解释，字幕只补一句关键判断。</li>
+    <li><strong>风格服务主题。</strong> 暗房、胶片、显影、传感器这些主题天然适合暗色背景和光线质感，所以视觉风格不是随机选择。</li>
+    <li><strong>反常识点要被画出来。</strong> “曝光越多反而越黑”这类反常识，必须通过黑白反转、颗粒数量、箭头标注让观众看见。</li>
+  </ol>
+
+  <div class="note">
+    <p><strong>对我们做 Loop Engineering 的启发：</strong>不要把每句旁白都翻译成一张新画面。应该先找到一个能贯穿的核心视觉对象，比如“人被困在循环里”或“提示词循环”，然后让它在不同段落里被放大、拆开、重组、外移。真正的 MG 不是图多，而是变化有因果。</p>
+  </div>
+</main>
+</body>
+</html>

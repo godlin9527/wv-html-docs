@@ -1,0 +1,857 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>faceless-explainer 工作流复盘</title>
+    <style>
+      :root {
+        --bg: #f7f4ed;
+        --paper: #fffdf8;
+        --ink: #1d1d1f;
+        --muted: #6d6a63;
+        --line: #ded8ca;
+        --accent: #d8563c;
+        --soft: #f1e9dc;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+          "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        line-height: 1.65;
+      }
+
+      main {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 56px 28px 72px;
+      }
+
+      header {
+        margin-bottom: 44px;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 28px;
+      }
+
+      h1 {
+        margin: 0 0 12px;
+        font-size: 40px;
+        line-height: 1.15;
+        letter-spacing: 0;
+      }
+
+      h2 {
+        margin: 42px 0 16px;
+        font-size: 24px;
+        line-height: 1.3;
+      }
+
+      h3 {
+        margin: 24px 0 10px;
+        font-size: 18px;
+      }
+
+      p {
+        margin: 0 0 14px;
+      }
+
+      .lead {
+        max-width: 820px;
+        color: var(--muted);
+        font-size: 18px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+
+      .card {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        padding: 22px;
+      }
+
+      .quote {
+        border-left: 4px solid var(--accent);
+        background: var(--soft);
+        padding: 14px 18px;
+        color: #38352f;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", monospace;
+        font-size: 14px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: var(--paper);
+        border: 1px solid var(--line);
+      }
+
+      th,
+      td {
+        border-bottom: 1px solid var(--line);
+        padding: 14px 12px;
+        text-align: left;
+        vertical-align: top;
+        font-size: 14px;
+      }
+
+      th {
+        color: var(--muted);
+        font-weight: 700;
+        background: #faf7f1;
+      }
+
+      tr:last-child td {
+        border-bottom: 0;
+      }
+
+      .tag {
+        display: inline-block;
+        margin: 0 6px 6px 0;
+        padding: 2px 8px;
+        border: 1px solid var(--line);
+        background: #fff;
+        color: var(--muted);
+        font-size: 12px;
+        white-space: nowrap;
+      }
+
+      .good {
+        color: #176b4d;
+        font-weight: 700;
+      }
+
+      .risk {
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      .section-note {
+        color: var(--muted);
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(216, 86, 60, 0.35);
+      }
+
+      a:hover {
+        border-bottom-color: var(--accent);
+      }
+
+      .doc-table td:first-child {
+        width: 18%;
+        font-weight: 700;
+      }
+
+      ol,
+      ul {
+        margin: 8px 0 0;
+        padding-left: 22px;
+      }
+
+      li {
+        margin: 6px 0;
+      }
+
+      @media (max-width: 860px) {
+        main {
+          padding: 32px 18px 56px;
+        }
+
+        h1 {
+          font-size: 31px;
+        }
+
+        .grid {
+          grid-template-columns: 1fr;
+        }
+
+        table {
+          display: block;
+          overflow-x: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>faceless-explainer 工作流复盘</h1>
+        <p class="lead">
+          本文用于复盘这次“玉伯 / YouMind”视频制作：标准流程本来如何设计、每一步依赖什么、产出什么、质量门检查什么，以及这次为什么“流程完整”但成片仍然没有达到高质量发布级。
+        </p>
+      </header>
+
+      <section>
+        <h2>一、标准流程的核心定位</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>它适合做什么</h3>
+            <p>
+              faceless-explainer 的输入是文章、笔记、主题或 brief；输出是无真人出镜的解释型视频。
+            </p>
+            <p>
+              画面不依赖网站截图或真实产品界面，而是用文字排版、抽象图形、图解、数据可视化来解释内容。
+            </p>
+          </div>
+          <div class="card">
+            <h3>它不适合做什么</h3>
+            <p>
+              它不是产品宣传片流程，不是网站录屏流程，也不是把已有视频重新包装的流程。
+            </p>
+            <p>
+              如果用户给的是产品站、PR、访谈视频或已有音频，应该走其他 skill，而不是强塞进 faceless-explainer。
+            </p>
+          </div>
+        </div>
+        <p class="quote">
+          原话：Input is arbitrary text. Output is a faceless explainer video: no captured website, no product screenshots — every visual is invented by the LLM.
+        </p>
+      </section>
+
+      <section>
+        <h2>二、标准流程总览</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>阶段</th>
+              <th>依赖</th>
+              <th>动作</th>
+              <th>产物</th>
+              <th>标准 / 要求</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Step 0.0 brief</td>
+              <td>用户输入</td>
+              <td>确认主题、角度、时长、画幅、语言</td>
+              <td>锁定 brief</td>
+              <td>必须先问一轮，不能跳过</td>
+            </tr>
+            <tr>
+              <td>Step 0 init</td>
+              <td>brief</td>
+              <td>初始化 HyperFrames 项目</td>
+              <td><code>hyperframes.json</code></td>
+              <td>所有产物放进项目目录</td>
+            </tr>
+            <tr>
+              <td>Step 1 scaffold</td>
+              <td>原始文本</td>
+              <td>生成 synthetic capture 包</td>
+              <td><code>tokens.json</code>、<code>visible-text.txt</code></td>
+              <td>不是网页抓取，不使用真实截图</td>
+            </tr>
+            <tr>
+              <td>Step 2 scriptwriting</td>
+              <td>文本包</td>
+              <td>子 agent 写旁白脚本，选择风格 preset</td>
+              <td><code>narrator_scripts.json</code></td>
+              <td>每场 1-2 句，约 20 词以内</td>
+            </tr>
+            <tr>
+              <td>Step 2b design-system</td>
+              <td>脚本风格 preset</td>
+              <td>生成设计系统</td>
+              <td><code>design.html</code>、<code>chunks/</code></td>
+              <td>确定性生成，不由 agent 自由发挥</td>
+            </tr>
+            <tr>
+              <td>Step 3 audio</td>
+              <td>脚本</td>
+              <td>生成语音和转写</td>
+              <td><code>audio_meta.json</code></td>
+              <td>语音和 transcript 完成才继续</td>
+            </tr>
+            <tr>
+              <td>Step 4 visual-design</td>
+              <td>脚本、音频、设计系统</td>
+              <td>子 agent 规划视觉</td>
+              <td><code>section_plan.md</code></td>
+              <td>画面必须是 typography / abstract graphics / diagram / data-viz</td>
+            </tr>
+            <tr>
+              <td>Step 5 prep</td>
+              <td>视觉方案、脚本、音频</td>
+              <td>合并为执行规格</td>
+              <td><code>group_spec.json</code></td>
+              <td>计算 scene、group、duration、transition</td>
+            </tr>
+            <tr>
+              <td>Step 5.5 captions</td>
+              <td>group_spec、transcript</td>
+              <td>生成字幕组和字幕 composition</td>
+              <td><code>caption_groups.json</code>、<code>captions.html</code></td>
+              <td>确定性脚本生成，不交给子 agent</td>
+            </tr>
+            <tr>
+              <td>Step 6 scenes</td>
+              <td>group_spec、设计系统</td>
+              <td>N 个 scene worker 并行写画面</td>
+              <td><code>scene_*.html</code>、<code>group_w*.html</code></td>
+              <td>worker 自检 keepout 和 overlap</td>
+            </tr>
+            <tr>
+              <td>Step 7 assemble</td>
+              <td>所有 composition</td>
+              <td>组装 index、注入转场、检查 SFX / video</td>
+              <td><code>index.html</code></td>
+              <td>timeline、转场、媒体挂载必须合法</td>
+            </tr>
+            <tr>
+              <td>Step 7 preflight</td>
+              <td>index</td>
+              <td>跑 lint / validate / inspect / overlap / caption keepout</td>
+              <td><code>finalize_brief.json</code></td>
+              <td>机器能判断的问题都进 brief</td>
+            </tr>
+            <tr>
+              <td>Step 7 finalize</td>
+              <td>finalize_brief</td>
+              <td>修问题，看一次 contact sheet，渲染</td>
+              <td><code>renders/video.mp4</code></td>
+              <td>不是逐帧 QA，只做 lean pass</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>三、这次实际选择复盘</h2>
+        <p class="section-note">
+          下面不是标准流程说明，而是这次“玉伯 / YouMind”项目在每一步实际做过的选择。它能解释为什么我们虽然跑通了流程，但最后仍然出现了“流程完整、创意质量不够”的问题。
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>步骤</th>
+              <th>当时可选项</th>
+              <th>实际选择</th>
+              <th>选择原因</th>
+              <th>后果 / 复盘</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>路由判断</td>
+              <td>faceless-explainer / product-launch-video / general-video</td>
+              <td>选择 faceless-explainer</td>
+              <td>用户明确要求“按照 faceless-explainer 标准产线”，输入也更像一篇人物 / 商业认知文章，而不是产品官网宣传。</td>
+              <td>方向基本成立。但文章里有 YouMind 产品信息，容易滑向产品片；后续视觉如果不加约束，就会变成泛泛的商业解释视频。</td>
+            </tr>
+            <tr>
+              <td>素材获取</td>
+              <td>用 Chrome 抓微信文章 / 用户粘贴全文 / 只用摘要</td>
+              <td>最终使用用户粘贴的全文</td>
+              <td>Chrome 获取微信文章不稳定；用户直接给了完整文本，信息完整且可控。</td>
+              <td>文本源可靠，但失去了原文排版、图片、标题层级等上下文。faceless 路线本来不依赖真实截图，所以可以接受。</td>
+            </tr>
+            <tr>
+              <td>Step 0.0 brief</td>
+              <td>重新确认主题、角度、时长、画幅、语言 / 按默认推进</td>
+              <td>按默认推进：中文、横屏、解释型短片</td>
+              <td>用户说“按默认来”，并要求尽快按标准流程做成视频。</td>
+              <td>效率高，但创作 brief 不够硬：没有提前锁定“受众是谁、片子要打中的情绪是什么、发布平台是什么”。这是质量隐患。</td>
+            </tr>
+            <tr>
+              <td>Step 0 init</td>
+              <td>复用已有项目 / 初始化新项目</td>
+              <td>新建 <code>videos/yubo-demystification-explainer/</code></td>
+              <td>这是一个新主题，且要独立验证 faceless-explainer 流程。</td>
+              <td>目录清晰，产物完整；后续复盘也比较容易。</td>
+            </tr>
+            <tr>
+              <td>Step 1 scaffold</td>
+              <td>合成 faceless capture 包 / 做网页截图资产包</td>
+              <td>合成 <code>visible-text.txt</code> 和 synthetic tokens</td>
+              <td>faceless-explainer 明确要求不抓网站、不用产品截图。</td>
+              <td>符合标准流程。代价是画面只能靠抽象图形和文字表达，不能借真实产品界面增强具体感。</td>
+            </tr>
+            <tr>
+              <td>Step 2 scriptwriting</td>
+              <td>强钩子传播稿 / 忠实文章结构 / 产品宣传稿</td>
+              <td>选择“故事解释 + 概念解释”：<code>story-explainer with concept-explainer</code>，9 个 scene</td>
+              <td>原文是一篇人物和创业认知文章，最自然的结构是沿着“祛魅、产品观、PMF、体积、飞轮、诚实”展开。</td>
+              <td>准确性较好，但传播钩子偏弱。标准 scriptwriting 能生成顺稿，不保证爆款开头。</td>
+            </tr>
+            <tr>
+              <td>Step 2 风格选择</td>
+              <td>block-frame / capsule / claude / pin-and-paper / scatterbrain</td>
+              <td>选择 <code>pin-and-paper</code></td>
+              <td>文本气质偏克制、诚实、反包装，纸张笔记风比较贴合。</td>
+              <td>风格匹配，但也容易变成“黄纸 + 线框 + 标签”的模板感。后续需要 style frame 审批来打破惯性。</td>
+            </tr>
+            <tr>
+              <td>Step 3 audio</td>
+              <td>标准 <code>audio.mjs</code> 分 scene TTS / Seed Audio 单条全片音频</td>
+              <td>按用户要求使用 Seed Audio 生成单条全片音频</td>
+              <td>用户明确要求“千万不要分段生成”，并希望 Seed Audio 一次性生成完整旁白、背景氛围和节奏。</td>
+              <td>声音连贯性更好，但偏离标准音频链路。为兼容 HyperFrames，又补了 <code>seed-audio-full-track.mjs</code>、<code>inject-full-track-audio.mjs</code> 等脚本。</td>
+            </tr>
+            <tr>
+              <td>音频转写</td>
+              <td>HyperFrames transcription / 本地 Whisper / 不做 transcript</td>
+              <td>最终用本地 Python Whisper 转写并归一化</td>
+              <td>HyperFrames CLI transcription 路径遇到本机 <code>whisper</code> 兼容性问题；不能没有 transcript，因为字幕和节奏需要它。</td>
+              <td>功能上补齐了 transcript，但这是一次工程绕路。复盘上说明：音频改成 Seed Audio 后，transcript 适配必须成为正式步骤。</td>
+            </tr>
+            <tr>
+              <td>Step 4 visual-design</td>
+              <td>忠实文章段落图解 / 更强 MG 隐喻 / 产品界面化表达</td>
+              <td>选择 faceless 抽象图解：气泡、仪表、版本尺、阶梯、分数卡、PMF 气球、体积几何、飞轮</td>
+              <td>这最符合 faceless-explainer 的“invented visuals”要求，也避免真实产品截图。</td>
+              <td>结构完整，但画面偏“解释图表”，不是足够 motion-first 的 MG。视觉没有提前经过 style frame 和 storyboard 审批。</td>
+            </tr>
+            <tr>
+              <td>Step 5 prep</td>
+              <td>每 scene 独立 / 连续场景分组</td>
+              <td>分成 6 个 worker：1-2、4-5、8-9 合并，其余独立；总时长约 75 秒</td>
+              <td>连续场景共享同一视觉对象，有利于减少割裂感。</td>
+              <td>工程分组合理。但如果前置视觉设计不够强，分组只能保证连续，不能自动保证好看。</td>
+            </tr>
+            <tr>
+              <td>Step 5.5 captions</td>
+              <td>标准 caption 脚本 / 自定义中文适配 / 不加字幕</td>
+              <td>保留字幕，并做中文 transcript / caption 适配</td>
+              <td>中文 explainer 没字幕会明显降低可看性；但标准 grouper 对中文不如英文自然。</td>
+              <td>字幕可用，但这类中文项目应该把“中文断句、字幕节奏、字幕行长”当成正式质量门，而不是临时补丁。</td>
+            </tr>
+            <tr>
+              <td>Step 6 scenes</td>
+              <td>严格复用设计系统 / 每场自由发挥 / 引入外部素材</td>
+              <td>严格复用设计系统，不引入真实产品截图和人物图片</td>
+              <td>符合 faceless-explainer 标准，也能减少版权和素材依赖。</td>
+              <td>工程稳定，但画面同质化。faceless 不等于只能用模板图形；它仍然需要导演级视觉策略。</td>
+            </tr>
+            <tr>
+              <td>Step 7 preflight</td>
+              <td>只跑机器门 / 加人工导演审片</td>
+              <td>机器门 + contact sheet 复查</td>
+              <td>这是标准流程里的 finalize 方式：先修机器发现的问题，再做一次 lean contact-sheet look。</td>
+              <td>能保证技术可交付，但不能充分保证传播性、审美、信息节奏。我们后面发现的问题，多数属于机器门看不出来的问题。</td>
+            </tr>
+            <tr>
+              <td>最终输出</td>
+              <td>一次交付 / 继续做质量版 / 回到前置重做</td>
+              <td>产出多个版本，最后保留 <code>video-faceless-quality.mp4</code></td>
+              <td>第一次成片质量不足，所以继续做了质量修正和 review contact sheet。</td>
+              <td>最终比初版好，但仍暴露出一个根本问题：如果前面没有 brief、旁白、style frame、storyboard 审批，后面修成片会很被动。</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>四、visual-design 相关文档索引</h2>
+        <p class="section-note">
+          这次成片质量问题主要集中在“旁白如何变成画面”和“画面如何变成运动”。下面这些文档共同决定了 visual-design 的上游判断、动画规则、工程实现和最终质量门。
+        </p>
+        <table class="doc-table">
+          <thead>
+            <tr>
+              <th>类别</th>
+              <th>文档</th>
+              <th>为什么相关</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>faceless 主流程</td>
+              <td>
+                <a href="../../reference-docs/skills/faceless-explainer/SKILL.md">faceless-explainer / SKILL.md</a>
+              </td>
+              <td>定义完整 faceless-explainer 管线：scriptwriting、design-system、audio、visual-design、prep、captions、scenes、finalize。</td>
+            </tr>
+            <tr>
+              <td>faceless visual-design</td>
+              <td>
+                <a href="../../reference-docs/skills/faceless-explainer/agents/visual-design.md">agents/visual-design.md</a>
+              </td>
+              <td>Phase 3 的直接 subagent prompt，规定输出 <code>section_plan.md</code>，也是这次 visual-design 实际遵循的入口。</td>
+            </tr>
+            <tr>
+              <td>faceless visual-design</td>
+              <td>
+                <a href="../../reference-docs/skills/faceless-explainer/phases/visual-design/guide.md">phases/visual-design/guide.md</a>
+              </td>
+              <td>规定 Film Direction、Scene blocks、Continuity、Transition、PrimarySubjectTimeline、faceless visual register 等核心规则。</td>
+            </tr>
+            <tr>
+              <td>faceless visual-design</td>
+              <td>
+                <a href="../../reference-docs/skills/faceless-explainer/phases/visual-design/effects-catalog.md">effects-catalog.md</a>
+              </td>
+              <td>visual-design 从这里选择每个 scene 的动画 effect 组合，是旁白到动画规则的映射层。</td>
+            </tr>
+            <tr>
+              <td>faceless design rules</td>
+              <td>
+                <a href="../../reference-docs/skills/faceless-explainer/phases/visual-design/rules/typography.md">typography.md</a>
+                ·
+                <a href="../../reference-docs/skills/faceless-explainer/phases/visual-design/rules/color-system.md">color-system.md</a>
+                ·
+                <a href="../../reference-docs/skills/faceless-explainer/phases/visual-design/rules/composition.md">composition.md</a>
+                ·
+                <a href="../../reference-docs/skills/faceless-explainer/phases/visual-design/rules/motion-language.md">motion-language.md</a>
+              </td>
+              <td>faceless 自带的视觉规则包。它们有不少质量建议，但很多属于 soft guidance，不一定形成硬质量门。</td>
+            </tr>
+            <tr>
+              <td>HyperFrames 总入口</td>
+              <td>
+                <a href="../../reference-docs/skills/hyperframes/SKILL.md">hyperframes / SKILL.md</a>
+              </td>
+              <td>定义 HyperFrames 的整体制作方法：design system、prompt expansion、plan、layout before animation、composition contract。</td>
+            </tr>
+            <tr>
+              <td>Creative 总入口</td>
+              <td>
+                <a href="../../reference-docs/skills/hyperframes-creative/SKILL.md">hyperframes-creative / SKILL.md</a>
+              </td>
+              <td>非动画创意方向入口。它明确要求非平凡视频优先阅读 house-style 和 video-composition。</td>
+            </tr>
+            <tr>
+              <td>Creative 核心参考</td>
+              <td>
+                <a href="../../reference-docs/skills/hyperframes-creative/references/house-style.md">house-style.md</a>
+                ·
+                <a href="../../reference-docs/skills/hyperframes-creative/references/video-composition.md">video-composition.md</a>
+                ·
+                <a href="../../reference-docs/skills/hyperframes-creative/references/beat-direction.md">beat-direction.md</a>
+              </td>
+              <td>最直接影响“是否像 PPT / 是否像真正 MG / 每个 beat 是否是一个视觉世界”的三份文档。这次没有被充分硬接入。</td>
+            </tr>
+            <tr>
+              <td>Creative 辅助参考</td>
+              <td>
+                <a href="../../reference-docs/skills/hyperframes-creative/references/narration.md">narration.md</a>
+                ·
+                <a href="../../reference-docs/skills/hyperframes-creative/references/prompt-expansion.md">prompt-expansion.md</a>
+                ·
+                <a href="../../reference-docs/skills/hyperframes-creative/references/design-adherence.md">design-adherence.md</a>
+                ·
+                <a href="../../reference-docs/skills/hyperframes-creative/references/motion-principles.md">motion-principles.md</a>
+              </td>
+              <td>分别影响旁白钩子、提示扩展、设计一致性和高层 motion guardrails。</td>
+            </tr>
+            <tr>
+              <td>Animation 总入口</td>
+              <td>
+                <a href="../../reference-docs/skills/hyperframes-animation/SKILL.md">hyperframes-animation / SKILL.md</a>
+              </td>
+              <td>定义动画知识入口：atomic rules、blueprints、transitions、techniques、GSAP / Lottie / Three.js 等 runtime。</td>
+            </tr>
+            <tr>
+              <td>Animation 规则</td>
+              <td>
+                <a href="../../reference-docs/skills/hyperframes-animation/rules-index.md">rules-index.md</a>
+                ·
+                <a href="../../reference-docs/skills/hyperframes-animation/blueprints-index.md">blueprints-index.md</a>
+                ·
+                <a href="../../reference-docs/skills/hyperframes-animation/techniques.md">techniques.md</a>
+              </td>
+              <td>scene worker 实现动画时应该参考的规则、预设蓝图和更广义的 motion design 技术。</td>
+            </tr>
+            <tr>
+              <td>Animation 转场</td>
+              <td>
+                <a href="../../reference-docs/skills/hyperframes-animation/transitions/overview.md">transitions/overview.md</a>
+                ·
+                <a href="../../reference-docs/skills/hyperframes-animation/transitions/catalog.md">transitions/catalog.md</a>
+                ·
+                <a href="../../reference-docs/skills/hyperframes-animation/transitions/TRANSITION-REGISTRY.md">TRANSITION-REGISTRY.md</a>
+              </td>
+              <td>决定镜头之间如何衔接。faceless visual-design 只把它作为 transition anchor，而没有强制做完整转场审稿。</td>
+            </tr>
+            <tr>
+              <td>Scene 实现</td>
+              <td>
+                <a href="../../reference-docs/skills/faceless-explainer/agents/hyperframes-scene.md">agents/hyperframes-scene.md</a>
+              </td>
+              <td>scene worker 的实现 prompt。它把 <code>section_plan.md</code> 里的视觉意图转成具体 HTML / CSS / GSAP。</td>
+            </tr>
+            <tr>
+              <td>Finalize 质量门</td>
+              <td>
+                <a href="../../reference-docs/skills/faceless-explainer/agents/hyperframes-finalize.md">agents/hyperframes-finalize.md</a>
+              </td>
+              <td>最终修复和渲染 prompt。它能修机器发现的问题，但不是完整导演审片。</td>
+            </tr>
+            <tr>
+              <td>本项目产物</td>
+              <td>
+                <a href="section_plan.md">section_plan.md</a>
+                ·
+                <a href="group_spec.json">group_spec.json</a>
+                ·
+                <a href="finalize_brief.json">finalize_brief.json</a>
+              </td>
+              <td>这次实际生成的 visual-design 计划、执行规格和最终质量门 brief。复盘时应优先对照这些实际产物。</td>
+            </tr>
+            <tr>
+              <td>本项目画面</td>
+              <td>
+                <a href="#composition-files-excluded">group_w1.html</a>
+                ·
+                <a href="#composition-files-excluded">scene_3.html</a>
+                ·
+                <a href="#composition-files-excluded">group_w3.html</a>
+                ·
+                <a href="#composition-files-excluded">scene_6.html</a>
+                ·
+                <a href="#composition-files-excluded">scene_7.html</a>
+                ·
+                <a href="#composition-files-excluded">group_w6.html</a>
+              </td>
+              <td>这次真正被渲染进视频的视觉 composition。判断 visual-design 是否成功，最终要回到这些文件和渲染截图。</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>五、标准流程内置的质量保障</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>机器质量门</h3>
+            <p>
+              这些门能保证视频工程上不坏：不缺文件、不炸时间线、不遮字幕、不明显重叠、不溢出、能渲染。
+            </p>
+            <p>
+              <span class="tag">lint</span>
+              <span class="tag">validate</span>
+              <span class="tag">inspect</span>
+              <span class="tag">overlap</span>
+              <span class="tag">caption keep-out</span>
+              <span class="tag">transition verify</span>
+              <span class="tag">render verify</span>
+            </p>
+          </div>
+          <div class="card">
+            <h3>创意质量门</h3>
+            <p>
+              标准流程里只有轻量创意检查：scriptwriting、visual-design、scene worker、finalize 的一次 contact sheet。
+            </p>
+            <p class="risk">
+              这能避免明显坏片，但不能保证片子高级、好看、传播性强。
+            </p>
+          </div>
+        </div>
+        <p class="quote">
+          原话：preflight does everything the agent does not need to judge.
+        </p>
+        <p class="quote">
+          原话：Only contrast and cramped-container remain eye-owned.
+        </p>
+        <p class="quote">
+          原话：ONE snapshot call at scene midpoints + group-internal seam mids, one read of the contact sheet. No per-frame QA walkthrough.
+        </p>
+      </section>
+
+      <section>
+        <h2>六、这次流程执行中的问题</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>问题</th>
+              <th>表现</th>
+              <th>原因</th>
+              <th>影响</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>音频流程被改造</td>
+              <td>使用 Seed Audio 单条全片音频，而不是标准 audio.mjs 分段流程</td>
+              <td>用户明确要求不能分段生成</td>
+              <td>合理，但已经不是原封不动标准流程</td>
+            </tr>
+            <tr>
+              <td>中文字幕不适配</td>
+              <td>标准 caption grouper 对中文分词不可靠</td>
+              <td>原脚本偏英文 token 逻辑</td>
+              <td>需要额外写中文 caption 脚本</td>
+            </tr>
+            <tr>
+              <td>视觉风格模板化</td>
+              <td>全片黄纸、线框、标签风格高度一致</td>
+              <td>设计系统稳定，但 scene 创意差异不够</td>
+              <td>流程完整，但成片不够高级</td>
+            </tr>
+            <tr>
+              <td>MG 表达偏图表</td>
+              <td>很多画面是在“说明”，不是用运动本身解释观点</td>
+              <td>visual-design 没有被强制做 motion-first 设计</td>
+              <td>视频感弱，传播性不足</td>
+            </tr>
+            <tr>
+              <td>最终 QA 太轻</td>
+              <td>机器门全过，但审美问题仍存在</td>
+              <td>标准流程只要求一次 contact sheet lean pass</td>
+              <td>能交付，但未必值得发布</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>七、复盘结论</h2>
+        <div class="card">
+          <p>
+            <span class="good">faceless-explainer 是一个自动成片工程管线。</span>
+            它擅长把文本变成结构完整、可渲染、技术门通过的视频。
+          </p>
+          <p>
+            <span class="risk">但它不是完整的导演级创意制作流程。</span>
+            它不强制做旁白审稿、style frame 审批、storyboard 审批、动态分镜审稿、逐句视听对齐、最终导演审片。
+          </p>
+          <p>
+            所以这次成片的问题不是“流程没跑”，而是“标准流程本身的创意质量保障偏轻”。
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h2>八、建议升级后的流程</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>新增关卡</th>
+              <th>位置</th>
+              <th>要解决的问题</th>
+              <th>产物</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>旁白审稿</td>
+              <td>Step 2 之后</td>
+              <td>确认结构、语气、钩子、传播性</td>
+              <td>locked narration</td>
+            </tr>
+            <tr>
+              <td>style frame 审批</td>
+              <td>Step 4 之前或之后</td>
+              <td>确认美术方向，不让整片落入模板感</td>
+              <td>1-3 张关键风格帧</td>
+            </tr>
+            <tr>
+              <td>storyboard / beats 审批</td>
+              <td>Step 4 之后</td>
+              <td>确认每段画面是否准确表达旁白</td>
+              <td>分镜表 / 节拍表</td>
+            </tr>
+            <tr>
+              <td>animatic 审批</td>
+              <td>Step 6 之前</td>
+              <td>确认节奏、转场、信息递进</td>
+              <td>低保真动态分镜</td>
+            </tr>
+            <tr>
+              <td>成片导演审稿</td>
+              <td>Step 7 之后</td>
+              <td>检查审美、传播性、视听同步，而不只是技术门</td>
+              <td>revision list</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>九、Visual Design 重做记录</h2>
+        <div class="card">
+          <p>
+            这次重做没有重新生成旁白，而是从 Step 4 visual-design 开始重走后续流程：
+            保留单条 Seed Audio 全片音频和 transcript 字幕，替换视觉设计与 HyperFrames 实现。
+          </p>
+          <p>
+            新方向叫“诚实工作台 / X-ray notebook”：用暖纸背景、黑色结构线和一条红色主线贯穿全片。
+            目标是让画面像一个连续的 explainer 世界，而不是多个 worker 各自生成的卡片拼贴。
+          </p>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>环节</th>
+              <th>这次选择</th>
+              <th>产物</th>
+              <th>当前判断</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>视觉方向</td>
+              <td>单一视觉世界，红色主线贯穿 9 个 beat</td>
+              <td><a href="section_plan.creative-v2.md">section_plan.creative-v2.md</a></td>
+              <td>方向比旧版统一，但仍是第一轮 style frame 级别</td>
+            </tr>
+            <tr>
+              <td>HyperFrames 实现</td>
+              <td>单个 composition 替代多 worker 场景拼接</td>
+              <td><a href="#composition-files-excluded">#composition-files-excluded</a></td>
+              <td>减少风格断裂，便于统一调色和节奏</td>
+            </tr>
+            <tr>
+              <td>主入口</td>
+              <td>index.html 只挂载 creative_v2 + 原音频 + 字幕</td>
+              <td><a href="#composition-files-excluded">index.html</a></td>
+              <td>可在 HyperFrames Studio 直接预览新版</td>
+            </tr>
+            <tr>
+              <td>字幕</td>
+              <td>保留 transcript 驱动，但去掉纸片卡片样式</td>
+              <td><a href="#composition-files-excluded">#composition-files-excluded</a></td>
+              <td>比旧字幕更干净，但分组粒度仍偏碎</td>
+            </tr>
+            <tr>
+              <td>渲染输出</td>
+              <td>standard quality mp4</td>
+              <td><a href="#composition-files-excluded">renders/yubo-demystification-creative-v2.mp4</a></td>
+              <td>可播放审片</td>
+            </tr>
+            <tr>
+              <td>抽帧审稿</td>
+              <td>每 5 秒抽一帧生成 contact sheet</td>
+              <td><a href="#composition-files-excluded">renders/yubo-demystification-creative-v2-contact-sheet.jpg</a></td>
+              <td>统一性提升，但视觉冲击力仍不足</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="card">
+          <p>
+            自动质量门结果：<span class="good">lint 0 error / validate 0 error / inspect 0 layout issue。</span>
+          </p>
+          <p>
+            人工审稿判断：新版已经解决了“风格各自为政”的问题，但还没有达到发布级。
+            主要问题是视觉主体仍偏克制，像线稿演示稿，缺少更强的封面级关键帧和更丰富的 motion texture。
+          </p>
+          <p>
+            下一步如果继续提升，应该不是再盲目生成一版，而是先定 2-3 张关键 style frame：
+            开场“祛魅”、中段“好看优先”、结尾“诚实产品”。这三张立住后，再扩展整片。
+          </p>
+        </div>
+      </section>
+    
+<section id="composition-files-excluded" style="max-width:960px;margin:32px auto;padding:18px 22px;border:2px solid #171615;background:#fffdf8;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,system-ui,sans-serif;">
+  <strong>说明：</strong>公开发布包按要求排除了 HyperFrames composition 工程入口、composition 文件和 render 文件；本页保留复盘内容与相关规范链接。
+</section>
+</main>
+  </body>
+</html>

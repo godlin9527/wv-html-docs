@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Loop Engineering 开头分镜</title>
+  <style>
+    :root {
+      --bg: #faf7ef;
+      --paper: #fffdf7;
+      --ink: #181818;
+      --muted: #6f6a61;
+      --line: #ded8cd;
+      --accent: #d95f45;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+      line-height: 1.62;
+    }
+
+    main {
+      width: min(1760px, calc(100vw - 56px));
+      margin: 0 auto;
+      padding: 36px 0 80px;
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      font-size: 38px;
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 54px 0 18px;
+      font-size: 28px;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 0 0 14px;
+      font-size: 18px;
+    }
+
+    .workflow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin: 18px 0 22px;
+      color: var(--muted);
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .workflow span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.66);
+      padding: 3px 10px;
+    }
+
+    blockquote {
+      margin: 16px 0 34px;
+      border-left: 4px solid var(--line);
+      padding: 8px 0 8px 18px;
+      color: var(--muted);
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    figure {
+      margin: 0 0 22px;
+    }
+
+    figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--paper);
+    }
+
+    figcaption {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: rgba(255, 255, 255, 0.48);
+      table-layout: fixed;
+    }
+
+    th,
+    td {
+      border-top: 1px solid var(--line);
+      padding: 14px 16px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 17px;
+    }
+
+    th {
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+    }
+
+    td:first-child,
+    th:first-child {
+      width: 58px;
+    }
+
+    td:nth-child(2),
+    th:nth-child(2) {
+      width: 48%;
+    }
+
+    td:nth-child(3),
+    th:nth-child(3) {
+      width: auto;
+    }
+
+    .notes {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 46px;
+    }
+
+    .note-block {
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
+    }
+
+    .note-block h2 {
+      margin-top: 0;
+    }
+
+    ul {
+      margin: 10px 0 0;
+      padding-left: 1.2em;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    @media (max-width: 980px) {
+      main {
+        width: min(100% - 28px, 1760px);
+        padding-top: 22px;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+
+      .notes {
+        grid-template-columns: 1fr;
+      }
+
+      table {
+        display: block;
+        overflow-x: auto;
+        table-layout: auto;
+      }
+
+      th,
+      td {
+        min-width: 150px;
+      }
+
+      td:nth-child(3),
+      th:nth-child(3) {
+        width: auto;
+        min-width: 260px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Loop Engineering 开头分镜</h1>
+
+    <p>这份分镜使用新的 AI 六格图工作流：</p>
+    <div class="workflow" aria-label="当前工作流">
+      <span>旁白 / 节拍</span>
+      <b>-&gt;</b>
+      <span>六格分镜图</span>
+      <b>-&gt;</b>
+      <span>审稿</span>
+      <b>-&gt;</b>
+      <span>静态动态分镜</span>
+      <b>-&gt;</b>
+      <span>HTML/SVG 动作预演</span>
+      <b>-&gt;</b>
+      <span>正式 HyperFrames 动画</span>
+    </div>
+
+    <p>当前范围：只做开头样片，结尾到这句：</p>
+    <blockquote>这就是 Loop Engineering 要打破的模式。</blockquote>
+
+    <section>
+      <h2>段落 01：开头 0:00-0:20</h2>
+      <figure>
+        <img src="assets/generated/storyboards/contact-sheets/opening-01-06-lite-v02.png" alt="开头 01-06 六格分镜图" />
+        <figcaption>开头 01-06 六格分镜图，Lite v02。原图尺寸：1376 x 768。</figcaption>
+      </figure>
+
+      <table>
+        <thead>
+          <tr>
+            <th>镜格</th>
+            <th>旁白</th>
+            <th>画面语义</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>01</td>
+            <td>Harness Engineering 还没整明白呢，Loop Engineering 又火了。</td>
+            <td>新词压过旧词。</td>
+          </tr>
+          <tr>
+            <td>02</td>
+            <td>我们先把它叫作“循环工程”。</td>
+            <td>不新增画面事件。保持 Loop Engineering 红色标签定格，给观众半秒读懂；中文名只在旁白里说，不上屏。</td>
+          </tr>
+          <tr>
+            <td>03</td>
+            <td>这两年，AI 圈造词的速度，比模型更新还快。</td>
+            <td>大量术语标签快速堆在 Loop Engineering 背后。</td>
+          </tr>
+          <tr>
+            <td>04</td>
+            <td>那这一次，又在关注什么问题呢？</td>
+            <td>承接拍。术语噪音快速退淡，Loop Engineering 留在中心，准备从“词”变成“循环”。</td>
+          </tr>
+          <tr>
+            <td>05</td>
+            <td>别急，先看你现在怎么和 AI 协作。</td>
+            <td>Loop 从文字变成一个干净的闭合循环，画面只保留“人”和“AI”两个角色。</td>
+          </tr>
+          <tr>
+            <td>06</td>
+            <td>你左手开着 Codex，右手开着 Claude Code。</td>
+            <td>旁白提到具体工具，但画面不画品牌：只用一个人面对一个 AI 节点，左右手各牵出一条输入线，表示多个会话压力汇到同一个人身上。</td>
+          </tr>
+        </tbody>
+      </table>
+      <p><strong>制作备注：</strong>不是每句旁白都配一个新动画。02、04 是停顿和承接拍，核心动画只落在 01 新词压旧词、03 术语噪音、05 Loop 变循环、06 引入人和 AI。第一格旧词略被裁切，最终需要 HTML 控制文字；05-06 不再画具体产品窗口，统一复刻成一个人、一个 AI、一个循环。</p>
+    </section>
+
+    <section>
+      <h2>段落 02：旧循环断开 20:32-31:60</h2>
+      <figure>
+        <img src="assets/generated/storyboards/contact-sheets/opening-07-12-lite-v02.png" alt="开头 07-12 六格分镜图" />
+        <figcaption>开头 07-12 六格分镜图，Lite v02。原图尺寸：1376 x 768。</figcaption>
+      </figure>
+
+      <table>
+        <thead>
+          <tr>
+            <th>镜格</th>
+            <th>旁白</th>
+            <th>画面语义</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>07</td>
+            <td>你以为自己雇了一群 AI 员工。</td>
+            <td>同一个 AI 节点分裂出几个半透明分身，像“团队”错觉；不要出现多个品牌窗口。</td>
+          </tr>
+          <tr>
+            <td>08</td>
+            <td>实际上，被绑在电脑面前动弹不得的，是你。</td>
+            <td>几条线从 AI 分身回拉到人身上，形成“人被调度”的束缚感；画面核心仍是一个人和一个 AI 循环。</td>
+          </tr>
+          <tr>
+            <td>09</td>
+            <td>你一会儿给 Codex 派个新活。</td>
+            <td>人把第一张提示词卡片推向 AI，卡片沿循环上半段前进。</td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>一会儿又要给 Claude Code 下一步指示。</td>
+            <td>结果卡片回到人，人又把第二张提示词卡片推回 AI，表现“一轮接一轮”而不是两个具体工具。</td>
+          </tr>
+          <tr>
+            <td>11</td>
+            <td>它们每跑完一轮，都要等你写下一轮的提示词。</td>
+            <td>循环在人的位置暂停，AI 端等待；提示词卡片只有在人再次推动后才继续转动。</td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td>所以问题不是没有“循环”。问题是：人被困在了循环里。</td>
+            <td>闭合循环收紧成围住人的环，AI 在环外或右侧等待；重点是“人被困在循环里”。</td>
+          </tr>
+        </tbody>
+      </table>
+      <p><strong>制作备注：</strong>第 7 格人类节点有多余符号，复刻时删除；08-12 统一为一个人、一个 AI、一个循环，不再画具体工具窗口；12 很适合作为进入 Boris / Peter / Addy 的转场。</p>
+    </section>
+
+    <section class="notes">
+      <div class="note-block">
+        <h2>当前决定</h2>
+        <p>使用这两张 Lite v02 六格分镜图，作为新版开头分镜的视觉参考。</p>
+        <p>AI 图不直接作为最终动画画面。静态动态分镜阶段，可以裁切这些格子，或重生成单帧 PNG。到了动作预演和正式动画阶段，再把通过审稿的画面复刻成 HTML/CSS/SVG。</p>
+      </div>
+
+      <div class="note-block">
+        <h2>待解决问题</h2>
+        <ul>
+          <li>即使禁止，AI 仍然可能加角标或镜格编号。</li>
+          <li>主要英文文字可能变成全大写，或被轻微改写。</li>
+          <li>需要精确文字的镜头，最终必须由 HTML 控制，不能信任生图模型。</li>
+          <li>Lite 速度足够快，后续优先多生成几个变体，而不是花一分钟等 Pro。</li>
+          <li>第一格旧词略被裁切，第七格人类节点有多余符号，复刻时需要手动修正。</li>
+          <li>下一步不继续追求生图完美，而是把通过审稿的结构复刻成可控 HTML/SVG。</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

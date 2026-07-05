@@ -1,0 +1,685 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lesson 01 Storyboard - 从静态设计到 Motion Graphic</title>
+  <style>
+    :root {
+      --paper: #f6f1e7;
+      --ink: #171717;
+      --muted: #6f6a61;
+      --line: #27231f;
+      --accent: #d75b3e;
+      --blue: #265e77;
+      --yellow: #e8b843;
+      --panel: #fffaf0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background:
+        linear-gradient(rgba(23, 23, 23, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(23, 23, 23, 0.045) 1px, transparent 1px),
+        var(--paper);
+      background-size: 28px 28px;
+      color: var(--ink);
+      font-family: "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    .page {
+      width: 1440px;
+      margin: 0 auto;
+      padding: 56px 54px 72px;
+    }
+
+    .header {
+      display: grid;
+      grid-template-columns: 1fr 430px;
+      gap: 42px;
+      align-items: end;
+      border-bottom: 4px solid var(--ink);
+      padding-bottom: 26px;
+      margin-bottom: 34px;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 58px;
+      line-height: 0.95;
+      letter-spacing: 0;
+    }
+
+    .meta {
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .legend {
+      display: flex;
+      gap: 18px;
+      margin-top: 18px;
+      font-size: 16px;
+      color: var(--ink);
+    }
+
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .swatch {
+      width: 24px;
+      height: 14px;
+      border: 2px solid var(--ink);
+      display: inline-block;
+    }
+
+    .swatch.accent { background: var(--accent); }
+    .swatch.blue { background: var(--blue); }
+    .swatch.yellow { background: var(--yellow); }
+
+    .beat {
+      display: grid;
+      grid-template-columns: 210px 1fr;
+      gap: 24px;
+      margin: 28px 0;
+      padding-bottom: 28px;
+      border-bottom: 2px solid rgba(23, 23, 23, 0.2);
+    }
+
+    .beat:last-child {
+      border-bottom: 0;
+    }
+
+    .beat-info {
+      padding-top: 12px;
+    }
+
+    .beat-no {
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .beat-title {
+      margin: 10px 0 12px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 30px;
+      line-height: 1.08;
+    }
+
+    .beat-copy {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .frames {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .frame {
+      position: relative;
+      height: 202px;
+      background: var(--panel);
+      border: 3px solid var(--ink);
+      overflow: hidden;
+      box-shadow: 8px 8px 0 rgba(23, 23, 23, 0.11);
+    }
+
+    .frame::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 12px;
+      top: 10px;
+      z-index: 20;
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--muted);
+    }
+
+    .caption {
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      bottom: 10px;
+      z-index: 20;
+      min-height: 28px;
+      padding-top: 8px;
+      border-top: 2px solid rgba(23, 23, 23, 0.2);
+      font-size: 13px;
+      line-height: 1.35;
+      color: var(--muted);
+    }
+
+    .card {
+      position: absolute;
+      width: 178px;
+      height: 108px;
+      left: 86px;
+      top: 48px;
+      background: #fffaf0;
+      border: 3px solid var(--ink);
+      box-shadow: 5px 5px 0 rgba(23, 23, 23, 0.18);
+    }
+
+    .card.small {
+      width: 132px;
+      height: 88px;
+    }
+
+    .card.left {
+      left: 42px;
+    }
+
+    .card.right {
+      left: auto;
+      right: 36px;
+    }
+
+    .card.tilt {
+      transform: rotate(-4deg);
+    }
+
+    .card .title {
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      width: 92px;
+      height: 12px;
+      background: var(--ink);
+    }
+
+    .card .bar {
+      position: absolute;
+      left: 14px;
+      top: 44px;
+      width: 92px;
+      height: 18px;
+      border: 3px solid var(--ink);
+      background: var(--yellow);
+    }
+
+    .card .num {
+      position: absolute;
+      right: 16px;
+      top: 34px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 34px;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .card .dot {
+      position: absolute;
+      left: 18px;
+      bottom: 18px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--blue);
+      border: 2px solid var(--ink);
+    }
+
+    .card .line {
+      position: absolute;
+      left: 42px;
+      bottom: 25px;
+      width: 82px;
+      height: 3px;
+      background: var(--ink);
+    }
+
+    .big-word {
+      position: absolute;
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 800;
+      font-size: 42px;
+      line-height: 0.92;
+      color: var(--ink);
+    }
+
+    .label {
+      position: absolute;
+      padding: 4px 8px;
+      border: 2px solid var(--ink);
+      background: var(--paper);
+      font-size: 13px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .shape {
+      position: absolute;
+      border: 3px solid var(--ink);
+      background: transparent;
+    }
+
+    .circle {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--blue);
+    }
+
+    .rect {
+      width: 76px;
+      height: 38px;
+      background: var(--yellow);
+    }
+
+    .line-shape {
+      width: 100px;
+      height: 0;
+      border-width: 0 0 4px 0;
+      background: transparent;
+    }
+
+    .arrow {
+      position: absolute;
+      width: 88px;
+      height: 34px;
+      border-bottom: 4px solid var(--ink);
+      transform-origin: left center;
+    }
+
+    .arrow::after {
+      content: "";
+      position: absolute;
+      right: -3px;
+      bottom: -10px;
+      width: 18px;
+      height: 18px;
+      border-right: 4px solid var(--ink);
+      border-bottom: 4px solid var(--ink);
+      transform: rotate(-45deg);
+    }
+
+    .motion-arrow {
+      position: absolute;
+      height: 0;
+      border-bottom: 3px dashed var(--accent);
+      z-index: 10;
+    }
+
+    .motion-arrow::after {
+      content: "";
+      position: absolute;
+      right: -3px;
+      top: -6px;
+      width: 12px;
+      height: 12px;
+      border-right: 3px solid var(--accent);
+      border-bottom: 3px solid var(--accent);
+      transform: rotate(-45deg);
+    }
+
+    .timeline {
+      position: absolute;
+      left: 34px;
+      right: 34px;
+      bottom: 50px;
+      height: 6px;
+      background: var(--ink);
+    }
+
+    .block {
+      position: absolute;
+      height: 22px;
+      border: 2px solid var(--ink);
+      bottom: 58px;
+    }
+
+    .playhead {
+      position: absolute;
+      width: 4px;
+      height: 80px;
+      background: var(--accent);
+      bottom: 36px;
+    }
+
+    .split {
+      position: absolute;
+      top: 32px;
+      bottom: 46px;
+      left: 50%;
+      width: 3px;
+      background: var(--ink);
+    }
+
+    .stage-label {
+      position: absolute;
+      top: 36px;
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--muted);
+    }
+
+    .mini-card {
+      position: absolute;
+      width: 88px;
+      height: 58px;
+      border: 3px solid var(--ink);
+      background: #fffaf0;
+    }
+
+    .mini-card::before {
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      width: 42px;
+      height: 8px;
+      background: var(--ink);
+    }
+
+    .mini-card::after {
+      content: "";
+      position: absolute;
+      left: 10px;
+      bottom: 12px;
+      width: 52px;
+      height: 12px;
+      border: 2px solid var(--ink);
+      background: var(--yellow);
+    }
+
+    .layer {
+      position: absolute;
+      width: 148px;
+      height: 74px;
+      border: 3px solid var(--ink);
+      background: rgba(255, 250, 240, 0.86);
+      box-shadow: 4px 4px 0 rgba(23, 23, 23, 0.13);
+    }
+
+    .layer-name {
+      position: absolute;
+      left: 10px;
+      top: 8px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .ghost {
+      opacity: 0.32;
+    }
+
+    .mark {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border-left: 3px solid var(--ink);
+      border-top: 3px solid var(--ink);
+    }
+
+    .mark.br {
+      border-left: 0;
+      border-top: 0;
+      border-right: 3px solid var(--ink);
+      border-bottom: 3px solid var(--ink);
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="header">
+      <div>
+        <h1>Lesson 01 Storyboard<br />从静态设计到 Motion Graphic</h1>
+      </div>
+      <div class="meta">
+        黑白线框分镜 v1。每个 beat 用三格表达：开始、变化、落点。重点检查同一张信息卡片是否贯穿全片。
+        <div class="legend">
+          <span><i class="swatch accent"></i>注意力 / 强调</span>
+          <span><i class="swatch blue"></i>主运动元素</span>
+          <span><i class="swatch yellow"></i>信息承载面</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="beat">
+      <div class="beat-info">
+        <div class="beat-no">Beat 01 / 0-10s</div>
+        <h2 class="beat-title">静态设计稿出现</h2>
+        <p class="beat-copy">先让观众认识主角：一张由基础图形组成的信息卡片。</p>
+      </div>
+      <div class="frames">
+        <div class="frame" data-label="开始">
+          <div class="mark" style="left:18px;top:18px"></div>
+          <div class="mark br" style="right:18px;bottom:42px"></div>
+          <div class="big-word ghost" style="left:92px;top:60px">GRAPHIC</div>
+          <div class="caption">空画布：先建立设计稿语境</div>
+        </div>
+        <div class="frame" data-label="变化">
+          <div class="card tilt">
+            <div class="title"></div><div class="bar"></div><div class="num">01</div><div class="dot"></div><div class="line"></div>
+          </div>
+          <div class="motion-arrow" style="left:56px;top:100px;width:70px"></div>
+          <div class="caption">信息卡片浮现，仍然是静态设计</div>
+        </div>
+        <div class="frame" data-label="落点">
+          <div class="card">
+            <div class="title"></div><div class="bar"></div><div class="num">01</div><div class="dot"></div><div class="line"></div>
+          </div>
+          <div class="label" style="left:62px;top:32px">静态信息卡片</div>
+          <div class="caption">旁白：MG 的起点往往是一张图形设计</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="beat">
+      <div class="beat-info">
+        <div class="beat-no">Beat 02 / 10-22s</div>
+        <h2 class="beat-title">拆成基础材料</h2>
+        <p class="beat-copy">点、线、面、文字、数字和箭头从同一张卡片中分离出来。</p>
+      </div>
+      <div class="frames">
+        <div class="frame" data-label="开始">
+          <div class="card">
+            <div class="title"></div><div class="bar"></div><div class="num">01</div><div class="dot"></div><div class="line"></div>
+          </div>
+          <div class="caption">主角保持完整，准备拆解</div>
+        </div>
+        <div class="frame" data-label="变化">
+          <div class="card ghost">
+            <div class="title"></div><div class="bar"></div><div class="num">01</div><div class="dot"></div><div class="line"></div>
+          </div>
+          <div class="shape circle" style="left:52px;top:74px"></div>
+          <div class="shape rect" style="left:144px;top:52px"></div>
+          <div class="shape line-shape" style="left:236px;top:86px"></div>
+          <div class="arrow" style="left:116px;top:112px;transform:rotate(12deg)"></div>
+          <div class="big-word" style="left:254px;top:50px;font-size:34px;color:var(--accent)">01</div>
+          <div class="motion-arrow" style="left:138px;top:126px;width:118px;transform:rotate(-9deg)"></div>
+          <div class="caption">元素离开卡片，但关系还看得见</div>
+        </div>
+        <div class="frame" data-label="落点">
+          <div class="shape circle" style="left:54px;top:58px"></div>
+          <div class="label" style="left:42px;top:94px">点</div>
+          <div class="shape line-shape" style="left:132px;top:72px"></div>
+          <div class="label" style="left:154px;top:94px">线</div>
+          <div class="shape rect" style="left:244px;top:54px"></div>
+          <div class="label" style="left:252px;top:104px">面</div>
+          <div class="big-word" style="left:58px;top:128px;font-size:24px">文字</div>
+          <div class="big-word" style="left:168px;top:124px;font-size:34px;color:var(--accent)">数字</div>
+          <div class="arrow" style="left:260px;top:126px;transform:scale(.72)"></div>
+          <div class="caption">复杂感来自组织方式，不是素材复杂</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="beat">
+      <div class="beat-info">
+        <div class="beat-no">Beat 03 / 22-36s</div>
+        <h2 class="beat-title">静态 vs 动态</h2>
+        <p class="beat-copy">同一张卡片的两种组织方式：一次性呈现，或按顺序出现。</p>
+      </div>
+      <div class="frames">
+        <div class="frame" data-label="开始">
+          <div class="split"></div>
+          <div class="stage-label" style="left:58px">静态</div>
+          <div class="stage-label" style="right:58px">动态</div>
+          <div class="mini-card" style="left:54px;top:86px"></div>
+          <div class="mini-card ghost" style="right:54px;top:86px"></div>
+          <div class="caption">先建立左右对比关系</div>
+        </div>
+        <div class="frame" data-label="变化">
+          <div class="split"></div>
+          <div class="stage-label" style="left:58px">一次看完</div>
+          <div class="stage-label" style="right:50px">按顺序看</div>
+          <div class="mini-card" style="left:54px;top:86px"></div>
+          <div class="shape circle" style="right:128px;top:78px"></div>
+          <div class="shape rect" style="right:78px;top:108px"></div>
+          <div class="motion-arrow" style="right:52px;top:92px;width:112px;transform:rotate(28deg)"></div>
+          <div class="caption">右侧元素按观看路径依次出现</div>
+        </div>
+        <div class="frame" data-label="落点">
+          <div class="split"></div>
+          <div class="big-word" style="left:44px;top:74px;font-size:30px">看什么</div>
+          <div class="big-word" style="right:42px;top:64px;font-size:30px;text-align:right">先看什么<br />后看什么</div>
+          <div class="caption">核心句：动态设计把信息放进时间里</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="beat">
+      <div class="beat-info">
+        <div class="beat-no">Beat 04 / 36-51s</div>
+        <h2 class="beat-title">Motion 的功能</h2>
+        <p class="beat-copy">运动不负责炫技，负责引导、强调、连接和建立节奏。</p>
+      </div>
+      <div class="frames">
+        <div class="frame" data-label="开始">
+          <div class="card">
+            <div class="title"></div><div class="bar"></div><div class="num">01</div><div class="dot"></div><div class="line"></div>
+          </div>
+          <div class="caption">回到同一张卡片，不换案例</div>
+        </div>
+        <div class="frame" data-label="变化">
+          <div class="shape circle" style="left:56px;top:64px"></div>
+          <div class="motion-arrow" style="left:80px;top:78px;width:190px"></div>
+          <div class="shape line-shape" style="left:132px;top:106px;width:156px"></div>
+          <div class="arrow" style="left:214px;top:92px;transform:rotate(10deg)"></div>
+          <div class="big-word" style="right:52px;top:52px;font-size:42px;color:var(--accent)">01</div>
+          <div class="caption">圆点引导，线条连接，箭头指向，数字强调</div>
+        </div>
+        <div class="frame" data-label="落点">
+          <div class="label" style="left:44px;top:48px">引导注意力</div>
+          <div class="label" style="left:182px;top:80px">建立关系</div>
+          <div class="label" style="left:72px;top:124px">强调重点</div>
+          <div class="label" style="left:226px;top:134px">制造节奏</div>
+          <div class="motion-arrow" style="left:58px;top:92px;width:248px;transform:rotate(15deg)"></div>
+          <div class="caption">Motion 是信息功能，不只是视觉装饰</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="beat">
+      <div class="beat-info">
+        <div class="beat-no">Beat 05 / 51-63s</div>
+        <h2 class="beat-title">基础运动语法</h2>
+        <p class="beat-copy">用同一个元素演示位移、缩放、旋转、透明度、线条绘制和缓动。</p>
+      </div>
+      <div class="frames">
+        <div class="frame" data-label="开始">
+          <div class="shape circle" style="left:162px;top:80px"></div>
+          <div class="label" style="left:128px;top:122px">一个圆点</div>
+          <div class="caption">从一个元素开始，不增加复杂素材</div>
+        </div>
+        <div class="frame" data-label="变化">
+          <div class="shape circle" style="left:44px;top:68px"></div>
+          <div class="motion-arrow" style="left:70px;top:82px;width:66px"></div>
+          <div class="shape circle" style="left:152px;top:62px;width:38px;height:38px"></div>
+          <div class="shape rect" style="left:230px;top:68px;transform:rotate(18deg)"></div>
+          <div class="shape line-shape" style="left:84px;top:134px;width:186px"></div>
+          <div class="caption">移动、放大、旋转、绘制同时被示意出来</div>
+        </div>
+        <div class="frame" data-label="落点">
+          <div class="timeline"></div>
+          <div class="block" style="left:50px;width:64px;background:var(--blue)"></div>
+          <div class="block" style="left:128px;width:72px;background:var(--yellow)"></div>
+          <div class="block" style="left:216px;width:84px;background:var(--accent)"></div>
+          <div class="playhead" style="left:204px"></div>
+          <div class="big-word" style="left:56px;top:50px;font-size:28px">何时发生</div>
+          <div class="big-word" style="right:58px;top:92px;font-size:28px">为什么发生</div>
+          <div class="caption">动作不难，难点是时机和理由</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="beat">
+      <div class="beat-info">
+        <div class="beat-no">Beat 06 / 63-78s</div>
+        <h2 class="beat-title">拆解一个案例</h2>
+        <p class="beat-copy">回到开头那张卡片，用层次方式拆解：图形、结构、运动和意义。</p>
+      </div>
+      <div class="frames">
+        <div class="frame" data-label="开始">
+          <div class="card">
+            <div class="title"></div><div class="bar"></div><div class="num">01</div><div class="dot"></div><div class="line"></div>
+          </div>
+          <div class="caption">同一个案例重新出现</div>
+        </div>
+        <div class="frame" data-label="变化">
+          <div class="layer" style="left:68px;top:42px"><span class="layer-name">Graphic</span></div>
+          <div class="layer" style="left:92px;top:66px"><span class="layer-name">Structure</span></div>
+          <div class="layer" style="left:116px;top:90px"><span class="layer-name">Motion</span></div>
+          <div class="layer" style="left:140px;top:114px"><span class="layer-name">Meaning</span></div>
+          <div class="caption">卡片被拆成可分析的四层</div>
+        </div>
+        <div class="frame" data-label="落点">
+          <div class="label" style="left:44px;top:46px">有哪些元素？</div>
+          <div class="label" style="left:196px;top:72px">谁先出现？</div>
+          <div class="label" style="left:70px;top:110px">谁负责引导？</div>
+          <div class="label" style="left:218px;top:136px">去掉运动会怎样？</div>
+          <div class="caption">从概念进入分析方法</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="beat">
+      <div class="beat-info">
+        <div class="beat-no">Beat 07 / 78-90s</div>
+        <h2 class="beat-title">本课练习</h2>
+        <p class="beat-copy">用最少素材做一个 5-10 秒动态信息画面，验证理解。</p>
+      </div>
+      <div class="frames">
+        <div class="frame" data-label="开始">
+          <div class="shape circle" style="left:54px;top:70px"></div>
+          <div class="shape line-shape" style="left:126px;top:84px"></div>
+          <div class="shape rect" style="left:242px;top:62px"></div>
+          <div class="big-word" style="left:108px;top:120px;font-size:28px">文字</div>
+          <div class="caption">只给基础材料</div>
+        </div>
+        <div class="frame" data-label="变化">
+          <div class="card ghost">
+            <div class="title"></div><div class="bar"></div><div class="num">?</div><div class="dot"></div><div class="line"></div>
+          </div>
+          <div class="motion-arrow" style="left:48px;top:70px;width:230px;transform:rotate(18deg)"></div>
+          <div class="caption">学生需要决定顺序、节奏和注意力路径</div>
+        </div>
+        <div class="frame" data-label="落点">
+          <div class="big-word" style="left:46px;top:42px;font-size:34px">练习</div>
+          <div class="label" style="left:46px;top:92px">一个信息</div>
+          <div class="label" style="left:156px;top:92px">基础图形</div>
+          <div class="label" style="left:46px;top:132px">2-3 种颜色</div>
+          <div class="label" style="left:182px;top:132px">5-10 秒</div>
+          <div class="caption">收束：少即是练习，不是限制创作</div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

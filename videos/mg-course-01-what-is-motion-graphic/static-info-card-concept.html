@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Static Info Card Concept</title>
+  <style>
+    :root {
+      --paper: #f6f1e7;
+      --card: #fffaf0;
+      --ink: #171717;
+      --muted: #6e695f;
+      --red: #d75b3e;
+      --blue: #265e77;
+      --yellow: #f2c84b;
+      --green: #6f8b65;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        linear-gradient(rgba(23, 23, 23, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(23, 23, 23, 0.045) 1px, transparent 1px),
+        var(--paper);
+      background-size: 32px 32px;
+      color: var(--ink);
+      font-family: "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    .canvas {
+      width: 1600px;
+      height: 980px;
+      margin: 0 auto;
+      padding: 58px 68px;
+      display: grid;
+      grid-template-columns: 980px 1fr;
+      gap: 46px;
+      align-items: start;
+    }
+
+    .title {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      border-bottom: 5px solid var(--ink);
+      padding-bottom: 22px;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 64px;
+      line-height: 0.95;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      width: 430px;
+      color: var(--muted);
+      font-size: 20px;
+      line-height: 1.45;
+    }
+
+    .stage {
+      position: relative;
+      height: 700px;
+      border: 4px solid var(--ink);
+      background:
+        radial-gradient(circle at 78% 18%, rgba(215, 91, 62, 0.13), transparent 24%),
+        radial-gradient(circle at 14% 84%, rgba(38, 94, 119, 0.13), transparent 24%),
+        rgba(255, 250, 240, 0.48);
+      overflow: hidden;
+      box-shadow: 14px 14px 0 rgba(23, 23, 23, 0.1);
+    }
+
+    .stage::before {
+      content: "STATIC GRAPHIC";
+      position: absolute;
+      right: 30px;
+      top: 28px;
+      color: rgba(23, 23, 23, 0.08);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 86px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .info-card {
+      position: absolute;
+      left: 105px;
+      top: 105px;
+      width: 650px;
+      height: 430px;
+      background: var(--card);
+      border: 5px solid var(--ink);
+      box-shadow: 18px 18px 0 rgba(23, 23, 23, 0.14);
+      padding: 44px 46px;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .kicker::before {
+      content: "";
+      width: 34px;
+      height: 16px;
+      background: var(--red);
+      border: 3px solid var(--ink);
+    }
+
+    .card-heading {
+      margin: 24px 0 0;
+      width: 390px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 62px;
+      line-height: 0.92;
+      letter-spacing: 0;
+    }
+
+    .metric {
+      position: absolute;
+      right: 44px;
+      top: 100px;
+      width: 162px;
+      height: 150px;
+      border-left: 5px solid var(--ink);
+      padding-left: 26px;
+    }
+
+    .metric-number {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 76px;
+      line-height: 0.85;
+      font-weight: 800;
+      color: var(--red);
+    }
+
+    .metric-label {
+      margin-top: 12px;
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .chart {
+      position: absolute;
+      left: 46px;
+      bottom: 52px;
+      width: 340px;
+      height: 116px;
+      border-left: 4px solid var(--ink);
+      border-bottom: 4px solid var(--ink);
+    }
+
+    .bar {
+      position: absolute;
+      left: 22px;
+      height: 24px;
+      border: 3px solid var(--ink);
+    }
+
+    .bar.one {
+      bottom: 70px;
+      width: 118px;
+      background: var(--blue);
+    }
+
+    .bar.two {
+      bottom: 36px;
+      width: 184px;
+      background: var(--yellow);
+    }
+
+    .bar.three {
+      bottom: 2px;
+      width: 268px;
+      background: var(--red);
+    }
+
+    .path-dot {
+      position: absolute;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 4px solid var(--ink);
+      background: var(--blue);
+    }
+
+    .dot-a { left: 426px; bottom: 136px; }
+    .dot-b { left: 496px; bottom: 94px; background: var(--yellow); }
+    .dot-c { left: 570px; bottom: 138px; background: var(--red); }
+
+    .connector {
+      position: absolute;
+      height: 0;
+      border-bottom: 4px solid var(--ink);
+      transform-origin: left center;
+    }
+
+    .conn-a {
+      left: 448px;
+      bottom: 138px;
+      width: 78px;
+      transform: rotate(31deg);
+    }
+
+    .conn-b {
+      left: 518px;
+      bottom: 108px;
+      width: 82px;
+      transform: rotate(-31deg);
+    }
+
+    .arrow {
+      position: absolute;
+      right: 56px;
+      bottom: 60px;
+      width: 150px;
+      height: 48px;
+      border-bottom: 5px solid var(--ink);
+    }
+
+    .arrow::after {
+      content: "";
+      position: absolute;
+      right: -2px;
+      bottom: -13px;
+      width: 24px;
+      height: 24px;
+      border-right: 5px solid var(--ink);
+      border-bottom: 5px solid var(--ink);
+      transform: rotate(-45deg);
+    }
+
+    .tag {
+      position: absolute;
+      right: 44px;
+      bottom: 128px;
+      border: 3px solid var(--ink);
+      padding: 8px 12px;
+      font-size: 18px;
+      font-weight: 900;
+      background: var(--paper);
+    }
+
+    .callout {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--ink);
+    }
+
+    .callout::before {
+      content: "";
+      width: 72px;
+      border-bottom: 3px dashed var(--red);
+    }
+
+    .callout.heading { left: 40px; top: 78px; }
+    .callout.number { right: 96px; top: 250px; }
+    .callout.chart { left: 78px; bottom: 78px; }
+    .callout.path { right: 66px; bottom: 246px; }
+
+    .notes {
+      padding-top: 4px;
+    }
+
+    .notes h2 {
+      margin: 0 0 24px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 42px;
+      line-height: 1;
+    }
+
+    .note {
+      border-top: 3px solid var(--ink);
+      padding: 20px 0 22px;
+    }
+
+    .note strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 23px;
+    }
+
+    .note p {
+      margin: 0;
+      font-size: 19px;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+
+    .principle {
+      margin-top: 18px;
+      padding: 24px 26px;
+      border: 4px solid var(--ink);
+      background: var(--card);
+      box-shadow: 10px 10px 0 rgba(23, 23, 23, 0.11);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 33px;
+      line-height: 1.12;
+      font-weight: 800;
+    }
+  </style>
+</head>
+<body>
+  <main class="canvas">
+    <header class="title">
+      <h1>静态信息卡<br />到底长什么样？</h1>
+      <div class="subtitle">
+        它不是 UI 卡片，也不是普通 PPT 文本框。它更像一张小型信息海报：有层级、有数据、有方向、有阅读路径。
+      </div>
+    </header>
+
+    <section class="stage">
+      <div class="info-card">
+        <div class="kicker">Lesson 01</div>
+        <h2 class="card-heading">What makes graphics move?</h2>
+        <div class="metric">
+          <div class="metric-number">4</div>
+          <div class="metric-label">basic visual elements</div>
+        </div>
+        <div class="chart">
+          <div class="bar one"></div>
+          <div class="bar two"></div>
+          <div class="bar three"></div>
+        </div>
+        <div class="path-dot dot-a"></div>
+        <div class="path-dot dot-b"></div>
+        <div class="path-dot dot-c"></div>
+        <div class="connector conn-a"></div>
+        <div class="connector conn-b"></div>
+        <div class="tag">attention path</div>
+        <div class="arrow"></div>
+      </div>
+      <div class="callout heading">标题层级</div>
+      <div class="callout number">关键数字</div>
+      <div class="callout chart">承载信息的图形</div>
+      <div class="callout path">可动画化的观看路径</div>
+    </section>
+
+    <aside class="notes">
+      <h2>它要满足四件事</h2>
+      <div class="note">
+        <strong>1. 它先是一张平面设计</strong>
+        <p>静止时也应该成立：有主标题、重点数字、图形结构和视觉层级。</p>
+      </div>
+      <div class="note">
+        <strong>2. 它由基础图形组成</strong>
+        <p>点、线、矩形、箭头、文字、数字和色块都能被拆出来。</p>
+      </div>
+      <div class="note">
+        <strong>3. 它天然可以被动画化</strong>
+        <p>标题可以进入，数字可以强调，柱状图可以增长，路径可以被画出。</p>
+      </div>
+      <div class="note">
+        <strong>4. 它服务一个清楚信息</strong>
+        <p>这张卡片只讲一件事：基础图形如何通过时间和运动形成表达。</p>
+      </div>
+      <div class="principle">
+        静态信息卡 = 可以被拆解、排序、运动化的一张信息海报。
+      </div>
+    </aside>
+  </main>
+</body>
+</html>
