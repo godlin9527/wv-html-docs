@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ahrefs SEO Course 全片拉片</title>
+  <style>
+    :root {
+      --bg: #f6f3ec;
+      --paper: #fffdf8;
+      --ink: #171717;
+      --muted: #6f675e;
+      --line: #ddd6ca;
+      --accent: #f3a62d;
+      --blue: #1352d6;
+      --orange: #d95c43;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        linear-gradient(rgba(20, 20, 20, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(20, 20, 20, 0.035) 1px, transparent 1px),
+        var(--bg);
+      background-size: 28px 28px;
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      line-height: 1.58;
+    }
+    main {
+      width: min(1420px, calc(100vw - 44px));
+      margin: 0 auto;
+      padding: 44px 0 86px;
+    }
+    header {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 34px;
+      align-items: end;
+      border-bottom: 4px solid var(--ink);
+      padding-bottom: 28px;
+      margin-bottom: 30px;
+    }
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(42px, 6vw, 82px);
+      line-height: 0.96;
+      font-weight: 950;
+      letter-spacing: 0;
+    }
+    h2 {
+      margin: 54px 0 18px;
+      font-size: 31px;
+      line-height: 1.2;
+    }
+    h3 {
+      margin: 0 0 10px;
+      font-size: 21px;
+      line-height: 1.25;
+    }
+    p { margin: 0 0 12px; }
+    a { color: var(--blue); font-weight: 850; }
+    .lead {
+      max-width: 860px;
+      font-size: 22px;
+      font-weight: 800;
+    }
+    .meta {
+      display: grid;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 750;
+    }
+    .meta div {
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+    }
+    .note {
+      background: var(--ink);
+      color: #fff;
+      padding: 22px 26px;
+      margin: 28px 0;
+      display: grid;
+      grid-template-columns: 0.78fr 1.22fr;
+      gap: 22px;
+      align-items: start;
+    }
+    .note strong {
+      color: #ffe06a;
+      font-size: 22px;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin: 18px 0;
+    }
+    .card, .media, table {
+      background: var(--paper);
+      border: 3px solid var(--ink);
+      box-shadow: 8px 8px 0 rgba(23, 23, 23, 0.11);
+    }
+    .card { padding: 18px; }
+    .media {
+      padding: 14px;
+      margin: 20px 0;
+    }
+    .media img, .media video, iframe {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: #000;
+    }
+    iframe {
+      aspect-ratio: 16 / 9;
+      border: 0;
+    }
+    .caption {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 750;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0 42px;
+    }
+    th, td {
+      border-bottom: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      padding: 15px 16px;
+      vertical-align: top;
+      text-align: left;
+    }
+    th {
+      background: var(--ink);
+      color: #fff;
+      font-size: 15px;
+    }
+    td:first-child {
+      width: 122px;
+      color: var(--orange);
+      font-weight: 900;
+      white-space: nowrap;
+    }
+    ul { margin: 0; padding-left: 1.1em; }
+    li { margin: 0 0 8px; }
+    .pill {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #fff1cc;
+      border: 1px solid #f2c15c;
+      font-size: 13px;
+      font-weight: 850;
+      color: #8a5300;
+      margin-right: 6px;
+    }
+    .small { color: var(--muted); font-size: 14px; }
+    @media (max-width: 920px) {
+      main { width: min(100vw - 28px, 760px); padding-top: 28px; }
+      header, .note, .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      table { display: block; overflow-x: auto; }
+      th, td { min-width: 220px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>Ahrefs SEO Course 全片拉片</h1>
+        <p class="lead">这不是单纯的录屏教程，也不是纯 MG。它的核心模式是：蓝色课程页搭结构，真实网页和工具录屏给证据，少量高亮层控制视线。它很适合学习“教程型 explainer”如何把复杂知识讲稳。</p>
+      </div>
+      <div class="meta">
+        <div>原片：<a href="https://www.youtube.com/watch?v=xsVTqzratPs">Complete SEO Course for Beginners: Learn to Rank #1 in Google</a></div>
+        <div>发布方：Ahrefs</div>
+        <div>全片长度：约 1 小时 57 分钟</div>
+        <div>拉片方式：全片 30 秒 1 帧粗抽帧；选取 18:30-20:30 做 1 秒 1 帧细拉片</div>
+      </div>
+    </header>
+
+    <section class="note">
+      <strong>先粗后细</strong>
+      <p>这次最重要的方法论不是某个高亮效果，而是拉片顺序：先看全片结构，再选代表片段精看。否则很容易把 2 分钟里的“网页高亮”误判成整部片子的唯一风格。</p>
+    </section>
+
+    <section>
+      <h2>全片粗抽帧</h2>
+      <p>下面每张图按 30 秒抽一帧。粗看可以先不读细节，只看画面类型怎样轮换：蓝底课程页、真实网页、Ahrefs 工具界面、Google SERP、简单图解和章节重置。</p>
+      <div class="grid-2">
+        <div class="media">
+          <img src="full_coarse_30s/coarse-sheet-01.jpg" alt="0:00-20:30 全片粗抽帧" />
+          <div class="caption">0:00-20:30：开场、SEO 定义、关键词研究与搜索意图。蓝底课程页和真实界面开始交替。</div>
+        </div>
+        <div class="media">
+          <img src="full_coarse_30s/coarse-sheet-02.jpg" alt="21:00-41:30 全片粗抽帧" />
+          <div class="caption">21:00-41:30：关键词研究工具操作密集，表格、SERP、蓝底总结页形成稳定节奏。</div>
+        </div>
+        <div class="media">
+          <img src="full_coarse_30s/coarse-sheet-03.jpg" alt="42:00-1:02:30 全片粗抽帧" />
+          <div class="caption">42:00-1:02:30：On-page SEO。网页样例、图表、工具界面与概念页交替。</div>
+        </div>
+        <div class="media">
+          <img src="full_coarse_30s/coarse-sheet-04.jpg" alt="1:03:00-1:23:30 全片粗抽帧" />
+          <div class="caption">1:03:00-1:23:30：Link Building。开始出现更多插画、邮件编辑器、真实页面和流程图。</div>
+        </div>
+        <div class="media">
+          <img src="full_coarse_30s/coarse-sheet-05.jpg" alt="1:24:00-1:44:30 全片粗抽帧" />
+          <div class="caption">1:24:00-1:44:30：外链拓展和邮件示例。真实工作界面与蓝底教学页继续循环。</div>
+        </div>
+        <div class="media">
+          <img src="full_coarse_30s/coarse-sheet-06.jpg" alt="1:45:00-1:56:30 全片粗抽帧" />
+          <div class="caption">1:45:00-1:56:30：Technical SEO 和收尾。更多技术概念被压成蓝底简图，最后回到课程封面。</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>全片模式</h2>
+      <div class="grid-3">
+        <article class="card">
+          <h3>1. 蓝底课程页是骨架</h3>
+          <p>几乎每个概念、章节、总结都会回到 Ahrefs 标志性的蓝底页。它像课程里的黑板：承接定义、清单、章节名和阶段性结论。</p>
+        </article>
+        <article class="card">
+          <h3>2. 真实界面是证据</h3>
+          <p>Google 结果页、Ahrefs 工具、网页文章、邮件编辑器都不是装饰，而是让观众相信：这个判断来自真实工作场景。</p>
+        </article>
+        <article class="card">
+          <h3>3. 标注层只在关键处出现</h3>
+          <p>橙黄色关键词块、行级高亮、局部遮罩和截图放大，只承担“看这里”的功能。它不抢主体，也不把真实 UI 重做成 MG。</p>
+        </article>
+      </div>
+      <div class="grid-3">
+        <article class="card">
+          <h3>4. 图解负责降维</h3>
+          <p>当真实界面太复杂，画面会切成图标、天平、清单、卡片、流程箭头，把判断规则临时抽象出来。</p>
+        </article>
+        <article class="card">
+          <h3>5. 节奏靠“回到蓝底”重置</h3>
+          <p>长时间录屏之后切回蓝底页，观众知道一段结束、下一段开始。这比一路录屏更不累。</p>
+        </article>
+        <article class="card">
+          <h3>6. 旁白是主线，画面是证据链</h3>
+          <p>它不追求每句话都有新动画，而是每个判断都有对应画面。信息推进靠论证顺序，不靠视觉花活。</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>粗颗粒段落表</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>时间段</th>
+            <th>内容模块</th>
+            <th>主要画面类型</th>
+            <th>可学习的设计方法</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>0:00-8:00</td>
+            <td>开场与 SEO 基础定义</td>
+            <td>真人开场、蓝底课程页、少量示意图和真实页面。</td>
+            <td>先用真人建立可信度，再用课程页定结构；定义类内容不急着录屏。</td>
+          </tr>
+          <tr>
+            <td>8:00-31:00</td>
+            <td>关键词研究与搜索需求</td>
+            <td>Ahrefs 工具表格、Google 结果页、蓝底清单、简单图标。</td>
+            <td>真实工具界面负责“怎么做”，蓝底页负责“为什么这么做”。</td>
+          </tr>
+          <tr>
+            <td>31:00-41:30</td>
+            <td>关键词难度和搜索意图判断</td>
+            <td>SERP 表格、局部遮罩、高亮、图表和总结页。</td>
+            <td>复杂判断用同一界面反复标注，避免每个点都换画面。</td>
+          </tr>
+          <tr>
+            <td>41:30-59:30</td>
+            <td>On-page SEO</td>
+            <td>网页样例、图表、Ahrefs 页面、蓝底概念页。</td>
+            <td>网页证据与蓝底规则交替，让概念不飘，也不被网页细节淹没。</td>
+          </tr>
+          <tr>
+            <td>59:30-1:30:30</td>
+            <td>Link Building</td>
+            <td>蓝底解释、搜索结果、文章页面、邮件编辑器、简单插画。</td>
+            <td>流程型内容会加入更多“场景化界面”，例如邮件和联系人，而不只是工具表格。</td>
+          </tr>
+          <tr>
+            <td>1:30:30-1:44:30</td>
+            <td>Blogger outreach</td>
+            <td>邮件文本、Gmail、网页、蓝底清单、少量角色插画。</td>
+            <td>文本密集段落要用高亮和分段截图，不能只把一整封邮件摊给观众。</td>
+          </tr>
+          <tr>
+            <td>1:44:30-1:56:30</td>
+            <td>Technical SEO 与收尾</td>
+            <td>蓝底概念页、浏览器窗口、工具界面、最终封面。</td>
+            <td>技术概念先抽象成简图，再回到工具验证；最后用封面式画面收束。</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>选段细拉片：18:30-20:30</h2>
+      <div class="grid-2">
+        <div class="media">
+          <iframe src="https://www.youtube.com/embed/xsVTqzratPs?start=1110" title="Ahrefs SEO course"></iframe>
+          <div class="caption">YouTube 原片嵌入，从 18:30 开始。</div>
+        </div>
+        <div class="media">
+          <video src="source-1110-1230.mp4" controls></video>
+          <div class="caption">本地截取片段，仅用于逐帧学习分析。</div>
+        </div>
+      </div>
+      <div class="media">
+        <img src="contact-1110-1230-1s.jpg" alt="Ahrefs 18:30-20:30 逐秒抽帧总览" />
+        <div class="caption">18:30-20:30：前半段是 SERP / Ahrefs 表格录屏，后半段切到蓝底课程章节页。这个片段适合细看“录屏标注如何服务判断”。</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>细拉片表</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>时间</th>
+            <th>旁白语义</th>
+            <th>画面动作</th>
+            <th>标注设计</th>
+            <th>可复用方法</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>18:30-18:39</td>
+            <td>判断 “how to swing a golf club” 的内容格式，结果几乎都是 how-to。</td>
+            <td>停留在 SERP overview 表格，多个标题里的 “How to” 被橙黄色小块标出。</td>
+            <td>关键词级高亮。只标同一词组，让观众一眼看出模式重复。</td>
+            <td>用 DOM 文本匹配或后期坐标跟踪，批量生成 highlight span。</td>
+          </tr>
+          <tr>
+            <td>18:39-18:43</td>
+            <td>访问其中一个排名页面，验证它确实是步骤型内容。</td>
+            <td>从 Ahrefs 表格切到网页页面，显示 golf 教程正文和图示。</td>
+            <td>不加额外高亮，只用页面本身证明“这是 step-by-step 教程”。</td>
+            <td>真实网页可以作为证据镜头，不必每次都加标注。</td>
+          </tr>
+          <tr>
+            <td>18:43-18:59</td>
+            <td>回到 SERP，判断 content angle：beginner / basic 是常见角度。</td>
+            <td>返回表格，标题中的 beginner / basic 等词被局部高亮。</td>
+            <td>关键词高亮从 “How to” 换到 “beginner/basic”，强调分析维度切换。</td>
+            <td>同一界面、同一标注样式，只替换高亮词，观众会理解“维度变了”。</td>
+          </tr>
+          <tr>
+            <td>18:59-19:16</td>
+            <td>进入 “golf clubs”：SERP 全是电商分类页，所以用户更像在购物。</td>
+            <td>表格切换到另一个 query，搜索结果列表更新。</td>
+            <td>前几行出现淡黄色行级高亮，强调“这些结果属于同一类型”。</td>
+            <td>判断对象从词变成整条结果类型时，高亮也从词级升级成行级。</td>
+          </tr>
+          <tr>
+            <td>19:16-19:47</td>
+            <td>继续讲 content format 不适用于电商分类页，再看 content angle。</td>
+            <td>画面保持 SERP 表格，局部词高亮与行级高亮交替出现。</td>
+            <td>同一张表上不断切换注意力，降低认知切换成本。</td>
+            <td>教程类视频不必每句换镜头。标注对象变化，信息就会推进。</td>
+          </tr>
+          <tr>
+            <td>19:47-20:15</td>
+            <td>第三个查询 “golf bags”：SERP 是混合型。</td>
+            <td>表格再次切换 query，并用行级高亮区分不同类型结果。</td>
+            <td>淡黄色大块把“混合 SERP”这个抽象判断变成可视区域。</td>
+            <td>在 HyperFrames 里可用半透明矩形 overlay，和页面滚动/缩放同轨运动。</td>
+          </tr>
+          <tr>
+            <td>20:15-20:30</td>
+            <td>结束本节，进入下一课：Keyword Research。</td>
+            <td>硬切蓝底课程章节页，橙色标题和项目条目出现。</td>
+            <td>从真实 UI 切回品牌化 slide，用颜色和字体建立章节边界。</td>
+            <td>长表格后需要视觉 reset，否则观众疲劳。</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>细拉片接触表</h2>
+      <div class="grid-2">
+        <div class="media">
+          <img src="contact-0-30-1s.jpg" alt="18:30-19:00 contact sheet" />
+          <div class="caption">18:30-19:00：关键词高亮 + 短暂网页证据镜头。</div>
+        </div>
+        <div class="media">
+          <img src="contact-30-60-1s.jpg" alt="19:00-19:30 contact sheet" />
+          <div class="caption">19:00-19:30：切换 query，行级高亮表达结果类型。</div>
+        </div>
+        <div class="media">
+          <img src="contact-60-90-1s.jpg" alt="19:30-20:00 contact sheet" />
+          <div class="caption">19:30-20:00：混合 SERP 判断，行块和词块交替出现。</div>
+        </div>
+        <div class="media">
+          <img src="contact-90-120-1s.jpg" alt="20:00-20:30 contact sheet" />
+          <div class="caption">20:00-20:30：章节切换，蓝底课程页重置视觉节奏。</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>对制作的启发</h2>
+      <div class="grid-3">
+        <article class="card">
+          <h3>不要只学高亮块</h3>
+          <p>高亮块只是结果。真正该学的是：旁白每推进一个判断，画面就给一个证据；判断粒度变了，标注粒度也变。</p>
+        </article>
+        <article class="card">
+          <h3>录屏不是低级替代品</h3>
+          <p>当主题依赖真实工具、网页或数据，录屏比重绘 UI 更可信。关键是要有后期标注层和章节 reset。</p>
+        </article>
+        <article class="card">
+          <h3>MG 的作用是整理注意力</h3>
+          <p>这类教程的 motion 不需要一直炫。该稳定时稳定，该高亮时高亮，该切章节时果断切。</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>复刻流程建议</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>步骤</th>
+            <th>做法</th>
+            <th>质量标准</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1. 全片粗拉片</td>
+            <td>先按 30 秒或 1 分钟抽帧，识别整部片子的画面类型、章节结构和重复机制。</td>
+            <td>能说清楚“全片靠什么模式跑”，而不是只描述一个局部特效。</td>
+          </tr>
+          <tr>
+            <td>2. 选代表片段</td>
+            <td>挑一个最能代表该模式的 1-3 分钟片段，按 1 秒抽帧，必要时再按 0.5 秒抽帧。</td>
+            <td>片段里必须能看到镜头如何进入、推进、退出和重置。</td>
+          </tr>
+          <tr>
+            <td>3. 拆画面层</td>
+            <td>区分底层录屏/截图、标注层、字幕层、章节页、图解层。</td>
+            <td>每一层的职责要明确：证据、注意力、语义兜底、章节边界。</td>
+          </tr>
+          <tr>
+            <td>4. 拆运动节奏</td>
+            <td>记录什么时候稳定、什么时候高亮、什么时候切换界面、什么时候回到课程页。</td>
+            <td>不要把“动得多”当成好。好的教程片经常是该停的时候停。</td>
+          </tr>
+          <tr>
+            <td>5. 转成模板</td>
+            <td>沉淀为可复用模板：课程章节页、真实界面容器、词级高亮、行级高亮、局部放大、证据切换。</td>
+            <td>复刻时不必重做全片风格，只需复用这几种稳定组件。</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="small">本页只用于学习分析，视频版权归原发布方 Ahrefs 所有。</p>
+    </section>
+  </main>
+</body>
+</html>
