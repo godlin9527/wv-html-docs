@@ -1,0 +1,282 @@
+{
+  "imgs": [
+    {
+      "alt": "",
+      "h": 96,
+      "i": 0,
+      "rect": {
+        "h": 35,
+        "w": 74,
+        "x": 32,
+        "y": 32
+      },
+      "src": "data:image/png;base64,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",
+      "w": 205
+    },
+    {
+      "alt": "football",
+      "h": 48,
+      "i": 1,
+      "rect": {
+        "h": 0,
+        "w": 0,
+        "x": 0,
+        "y": 0
+      },
+      "src": "https://fe-platform.xhscdn.com/platform/104101l0320so64n6nk062u7au7rdm9g007pkcqvqmd668?imageView2/2/format/webp",
+      "w": 48
+    },
+    {
+      "alt": "football",
+      "h": 48,
+      "i": 2,
+      "rect": {
+        "h": 24,
+        "w": 24,
+        "x": 32,
+        "y": 184
+      },
+      "src": "https://fe-platform.xhscdn.com/platform/104101l0321829dg07k06jn2ge0jp60000000007dp7iga.png?imageView2/2/format/webp",
+      "w": 48
+    },
+    {
+      "alt": "worldcup",
+      "h": 60,
+      "i": 3,
+      "rect": {
+        "h": 0,
+        "w": 0,
+        "x": 0,
+        "y": 0
+      },
+      "src": "https://fe-platform.xhscdn.com/platform/104101l03210hgobqnu062u7au7rdm9g007pkcqst0kbve?imageView2/2/w/198/format/webp",
+      "w": 198
+    },
+    {
+      "alt": "worldcup",
+      "h": 60,
+      "i": 4,
+      "rect": {
+        "h": 20,
+        "w": 66,
+        "x": 64,
+        "y": 183
+      },
+      "src": "https://fe-platform.xhscdn.com/platform/104101l03210hgoi2nu062u7au7rdm9g007pkcqtn1j2u4?imageView2/2/w/198/format/webp",
+      "w": 198
+    },
+    {
+      "alt": "",
+      "h": 360,
+      "i": 5,
+      "rect": {
+        "h": 24,
+        "w": 24,
+        "x": 32,
+        "y": 520
+      },
+      "src": "https://sns-avatar-qc.xhscdn.com/avatar/1040g2jo31ik0s1fg0c005nes03og9a964b93feo?imageView2/2/w/360/format/webp",
+      "w": 360
+    },
+    {
+      "alt": "",
+      "h": 120,
+      "i": 6,
+      "rect": {
+        "h": 0,
+        "w": 0,
+        "x": 0,
+        "y": 0
+      },
+      "src": "https://sns-avatar-qc.xhscdn.com/avatar/1040g2jo31fl1gsq2g40049mmbftcr46vum9nk9o?imageView2/2/w/120/format/webp|imageMogr2/strip",
+      "w": 120
+    },
+    {
+      "alt": "",
+      "h": 120,
+      "i": 7,
+      "rect": {
+        "h": 40,
+        "w": 40,
+        "x": 832.6640625,
+        "y": 113
+      },
+      "src": "https://sns-avatar-qc.xhscdn.com/avatar/1040g2jo31fl1gsq2g40049mmbftcr46vum9nk9o?imageView2/2/w/120/format/webp|imageMogr2/strip",
+      "w": 120
+    },
+    {
+      "alt": "",
+      "h": 48,
+      "i": 8,
+      "rect": {
+        "h": 16,
+        "w": 16,
+        "x": 841.1640625,
+        "y": 325.203125
+      },
+      "src": "https://picasso-static.xiaohongshu.com/fe-platform/09c136c01bac91a3eb7284b6e107e4714d7c06da.png",
+      "w": 48
+    },
+    {
+      "alt": "",
+      "h": 120,
+      "i": 9,
+      "rect": {
+        "h": 40,
+        "w": 40,
+        "x": 832.6640625,
+        "y": 456.296875
+      },
+      "src": "https://sns-avatar-qc.xhscdn.com/avatar/1040g2jo31p4mo9e5jc6g5pr6og863pu2uujcl00?imageView2/2/w/120/format/jpg|imageMogr2/strip",
+      "w": 120
+    },
+    {
+      "alt": "",
+      "h": 120,
+      "i": 10,
+      "rect": {
+        "h": 24,
+        "w": 24,
+        "x": 884.6640625,
+        "y": 740.3125
+      },
+      "src": "https://sns-avatar-qc.xhscdn.com/avatar/1040g2jo31lgb3iadku0g5o6bf3og9dvdmonvd68?imageView2/2/w/120/format/jpg|imageMogr2/strip",
+      "w": 120
+    },
+    {
+      "alt": "",
+      "h": 120,
+      "i": 11,
+      "rect": {
+        "h": 40,
+        "w": 40,
+        "x": 832.6640625,
+        "y": 895.9140625
+      },
+      "src": "https://sns-avatar-qc.xhscdn.com/avatar/1040g2jo320ptlrtu68004a5tvclv4n33e8mk73g?imageView2/2/w/120/format/jpg|imageMogr2/strip",
+      "w": 120
+    },
+    {
+      "alt": "",
+      "h": 120,
+      "i": 12,
+      "rect": {
+        "h": 24,
+        "w": 24,
+        "x": 884.6640625,
+        "y": 1003.515625
+      },
+      "src": "https://sns-avatar-qc.xhscdn.com/avatar/1040g2jo32194sski7a6g5p3bgrjqafi1eleae2g?imageView2/2/w/120/format/jpg|imageMogr2/strip",
+      "w": 120
+    },
+    {
+      "alt": "",
+      "h": 120,
+      "i": 13,
+      "rect": {
+        "h": 40,
+        "w": 40,
+        "x": 832.6640625,
+        "y": 1146.71875
+      },
+      "src": "https://sns-avatar-qc.xhscdn.com/avatar/1040g2jo31s6fnfufle005ndfprv08ke7cnc2cu8?imageView2/2/w/120/format/jpg|imageMogr2/strip",
+      "w": 120
+    },
+    {
+      "alt": "",
+      "h": 200,
+      "i": 14,
+      "rect": {
+        "h": 16,
+        "w": 16,
+        "x": 1028.46875,
+        "y": 1231.5234375
+      },
+      "src": "https://picasso-static.xiaohongshu.com/fe-platform/1b81c5ec3f7006f6b8baf7c006773f5f9d1ab6d7.png",
+      "w": 200
+    },
+    {
+      "alt": "",
+      "h": 120,
+      "i": 15,
+      "rect": {
+        "h": 40,
+        "w": 40,
+        "x": 832.6640625,
+        "y": 1330.125
+      },
+      "src": "https://sns-avatar-qc.xhscdn.com/avatar/1040g2jo31q9giookga6g5n9g3kblm6frb0phrbo?imageView2/2/w/120/format/jpg|imageMogr2/strip",
+      "w": 120
+    },
+    {
+      "alt": "",
+      "h": 200,
+      "i": 16,
+      "rect": {
+        "h": 16,
+        "w": 16,
+        "x": 1032.2578125,
+        "y": 1375.7265625
+      },
+      "src": "https://picasso-static.xiaohongshu.com/fe-platform/219fe9d7e40b14dd7a6712203143bb1f9972bc5c.png",
+      "w": 200
+    },
+    {
+      "alt": "",
+      "h": 120,
+      "i": 17,
+      "rect": {
+        "h": 24,
+        "w": 24,
+        "x": 884.6640625,
+        "y": 1458.328125
+      },
+      "src": "https://sns-avatar-qc.xhscdn.com/avatar/1040g2jo31q9giookga6g5n9g3kblm6frb0phrbo?imageView2/2/w/120/format/jpg|imageMogr2/strip",
+      "w": 120
+    },
+    {
+      "alt": "",
+      "h": 200,
+      "i": 18,
+      "rect": {
+        "h": 16,
+        "w": 16,
+        "x": 978.7890625,
+        "y": 1484.328125
+      },
+      "src": "https://picasso-static.xiaohongshu.com/fe-platform/219fe9d7e40b14dd7a6712203143bb1f9972bc5c.png",
+      "w": 200
+    },
+    {
+      "alt": "",
+      "h": 1408,
+      "i": 19,
+      "rect": {
+        "h": 160,
+        "w": 120,
+        "x": 920.6640625,
+        "y": 1510.9296875
+      },
+      "src": "https://sns-webpic-qc.xhscdn.com/202607061007/c0edbd91deaf2a545287e6728b7098cd/comment/1040g4b8321gnhaqhnodg5n9g3kblm6fr0mdturg!nc_n_webp_mw_1",
+      "w": 640
+    }
+  ],
+  "text": "首页\n点点\nai\nRED\n直播\n发布\n通知\n我\n\n沪ICP备13030189号 | 营业执照 | 2024沪公网安备31010102002533号 | 增值电信业务经营许可证：沪B2-20150021 | 医疗器械网络交易服务第三方平台备案：(沪)网械平台备字[2019]第00006号 | 互联网药品信息服务资格证书：(沪)-经营性-2023-0144 | 违法不良信息举报电话：4006676810 | 上海市互联网举报中心 | 网上有害信息举报专区 | 自营经营者信息 | 网络文化经营许可证：沪网文(2024)1344-086号 | 个性化推荐算法 网信算备310101216601302230019号\n\n© 2014-2026\n\n行吟信息科技（上海）有限公司\n\n地址：上海市黄浦区马当路388号C座\n\n电话：9501-3888\n\n更多\n关于我们\n\n沪ICP备13030189号 | 营业执照 | 2024沪公网安备31010102002533号 | 增值电信业务经营许可证：沪B2-20150021 | 医疗器械网络交易服务第三方平台备案：(沪)网械平台备字[2019]第00006号 | 互联网药品信息服务资格证书：(沪)-经营性-2023-0144 | 违法不良信息举报电话：4006676810 | 上海市互联网举报中心 | 网上有害信息举报专区 | 自营经营者信息 | 网络文化经营许可证：沪网文(2024)1344-086号 | 个性化推荐算法 网信算备310101216601302230019号\n\n© 2014-2026\n\n行吟信息科技（上海）有限公司\n\n地址：上海市黄浦区马当路388号C座\n\n电话：9501-3888\n\n张咋啦\n关注\n如何一年在Twitter涨粉7万：我做内容的方法\n分享我做X的方法。（这个视频的动画和剪辑都会Claude Code做的）\n\t\n#Twitter #内容创作\n猜你想搜\nx是什么样的社交软件\n编辑于 06-17 美国\n共 216 条评论\nAI优先的耀棠\n昨天读了李诞的自媒体工作手册，也说到一个类似的观点。如果在我们在内容创作的时候，总是想着粉丝是否关注我，内容是否爆，这个数据怎么样，那这个创作分享的过程就变成是一个工作，是一个，痛苦的工作，很快就失去了创作跟分享的热情。博主说到的这个要怀着对别人有用，跟用户一起成长，这是一个 party，一起去讨论，一起去分享，一起去收获的这种想法的。我觉得是跟前面读到的这本书的内容是有异曲同工之妙的。 By the way, 昨天在飞书的直播看到你。\n06-19广东\n203\n2\n爱打网球的小玉酱\n@野生Anita\n06-20广东\n1\n回复\n展开 1 条回复\n爱穿6cm鲸鱼cross的中年男人\n感觉 人的高质量的输出变得更加重要了！\n06-18北京\n65\n1\n再创业是小狗\n当 AI 输出越来越完美，人的瑕疵也变得弥足珍贵\n06-18上海\n25\n回复\n维生素bb\nai辅助写论文中，关于粗糙真实比精致空洞更重要深有体悟！ai时代自己的“真”想法更重要，要在技术加持和包装前反复拷打自己的逻辑，而不是交给ai生成一堆看似正确丰富的东西\n48分钟前北京\n赞\n回复\n路博丨超级路播\n请问 zara 姐，是飞书组织进化论之前的主持人 zara 吗 之前很喜欢那档播客\n06-17福建\n2\n1\n路博丨超级路播\n找到啦！粉上加粉了\n06-17福建\n2\n回复\npinpin\n而我的x 简直没法……\n昨天 22:40上海\n赞\n回复\nSucarrie\n老师，下面的这个是怎么做的？\n06-17广东\n6\n3\n张咋啦\n作者\nClaude Code做的HTML\n06-18美国\n13\n回复\n展开 2 条回复\n进击的coco\n确实，在AI应用广泛和水贴泛滥的时候做一个活人，展示活人感的深度思考尤为重要🤔\n昨天 19:26北京\n赞\n回复\n射一颗星星给你\n变现了多少？\n昨天 20:55浙江\n赞\n回复\n泽泽泽\n@问一问 我要逐字稿\n06-17浙江\n赞\n1\n问一问\n好的，这段视频的逐字稿内容较长，我为你梳理了其中的核心方法论：\n视频主要分享了在 X（原 Twitter）上一年涨粉 7 万的核心方法，强调真诚分享和建立影响力，而非依赖 AI 或投机取巧。核心是将平台视为一个“派对”（party），而不是“舞台”（stage），先参与对话，再建立连接。\n具体方法分为四点：\n调教算法：通过点赞、转发、收藏高质量内容，以及对垃圾信息选择“不感兴趣”，来优化你的信息流（feed），让它成为你真正想参与的“圈子”。\n真诚回复： 不要用 AI 机器人批量回复 。回复是加入已有对话，只有提供有价值、真诚的评论，才可能被原作者注意到并反向互动，从而获得算法推荐。\n高频发帖：将发帖变成一种“条件反射”。作者分享了三个习惯：\nLe",
+  "videos": [
+    {
+      "duration": 381.458,
+      "h": 1440,
+      "i": 0,
+      "paused": true,
+      "poster": "",
+      "rect": {
+        "h": 616,
+        "w": 462,
+        "x": 345.6640625,
+        "y": 89
+      },
+      "src": "blob:https://www.xiaohongshu.com/45f63d34-90e3-4400-bc25-e5ded5c5a55a",
+      "w": 1080
+    }
+  ]
+}
