@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>低素材 AI 工作型 Explainer 拉片</title>
+  <style>
+    :root {
+      --bg: #f7f3ea;
+      --paper: #fffdf8;
+      --ink: #171615;
+      --muted: #6d675f;
+      --line: #ded6c8;
+      --accent: #dc5b43;
+      --green: #1b7f5c;
+      --blue: #315f9f;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        linear-gradient(rgba(23,22,21,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(23,22,21,.035) 1px, transparent 1px),
+        var(--bg);
+      background-size: 24px 24px;
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      line-height: 1.58;
+    }
+    .wrap {
+      width: min(1280px, calc(100% - 56px));
+      margin: 0 auto;
+      padding: 48px 0 80px;
+    }
+    header {
+      border: 3px solid var(--ink);
+      background: var(--paper);
+      padding: 30px 34px;
+      box-shadow: 8px 8px 0 rgba(23, 22, 21, .12);
+      margin-bottom: 28px;
+    }
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(34px, 5vw, 62px);
+      line-height: .98;
+      letter-spacing: -.03em;
+      font-weight: 900;
+    }
+    h2 {
+      font-size: 28px;
+      margin: 0 0 16px;
+      line-height: 1.2;
+    }
+    h3 {
+      font-size: 20px;
+      margin: 0 0 10px;
+    }
+    p { margin: 0 0 12px; }
+    a { color: inherit; text-decoration-thickness: 2px; }
+    .lead {
+      max-width: 900px;
+      font-size: 19px;
+      color: var(--muted);
+    }
+    .section {
+      background: rgba(255, 253, 248, .88);
+      border: 2px solid var(--ink);
+      padding: 28px;
+      margin: 26px 0;
+      box-shadow: 5px 5px 0 rgba(23, 22, 21, .1);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .card {
+      border: 2px solid var(--ink);
+      background: #fffaf0;
+      padding: 18px;
+    }
+    .metric {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 8px 16px;
+      margin: 14px 0 0;
+      font-size: 15px;
+    }
+    .metric b { color: var(--accent); }
+    .tagrow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 12px 0 2px;
+    }
+    .tag {
+      border: 1.5px solid var(--ink);
+      padding: 4px 8px;
+      background: #fff;
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .verdict {
+      font-size: 22px;
+      font-weight: 900;
+      line-height: 1.35;
+      margin: 10px 0 0;
+    }
+    .verdict.good { color: var(--green); }
+    .verdict.mid { color: var(--blue); }
+    .sheet {
+      width: 100%;
+      display: block;
+      border: 2px solid var(--ink);
+      background: white;
+      cursor: zoom-in;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--paper);
+      font-size: 15px;
+    }
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 13px 12px;
+      vertical-align: top;
+      text-align: left;
+    }
+    th {
+      color: var(--accent);
+      font-size: 13px;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+    }
+    td:first-child {
+      width: 150px;
+      font-weight: 850;
+    }
+    .note {
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .score {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .score div {
+      border: 1.5px solid var(--ink);
+      background: #fff;
+      padding: 12px;
+    }
+    .score b {
+      display: block;
+      font-size: 26px;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      background: rgba(0,0,0,.82);
+      z-index: 20;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 96vw;
+      max-height: 92vh;
+      background: #fff;
+    }
+    @media (max-width: 900px) {
+      .wrap { width: min(100% - 28px, 1280px); padding-top: 24px; }
+      header, .section { padding: 20px; }
+      .grid, .score { grid-template-columns: 1fr; }
+      .metric { grid-template-columns: 1fr; }
+      table { font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <h1>低素材 AI 工作型 Explainer 拉片</h1>
+      <p class="lead">这次看两条更接近“工作型低素材 explainer”的英文案例：一个讲 Claude Cowork，一个讲 Claude Skills。重点不是评价内容对错，而是判断它们的画面组织方式、素材密度、可复刻性，以及对 HyperFrames 模板化生产的启发。</p>
+    </header>
+
+    <section class="section">
+      <h2>先给结论</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>更像“工作方法观点视频”</h3>
+          <p><a href="https://www.youtube.com/watch?v=yqidwQZL2ao">Stop Prompting AI. Do This Instead (Claude Cowork)</a></p>
+          <p>真人口播占比很高，视觉上靠少量 Claude UI、简单插画和大字卡片补充观点。它的强项是“人味”和说服力，不是纯画面可复刻性。</p>
+          <p class="verdict mid">适合学选题、话术和观点包装；不适合作为低成本纯 MG 模板的第一参考。</p>
+        </div>
+        <div class="card">
+          <h3>更像“教程型低素材模板”</h3>
+          <p><a href="https://www.youtube.com/watch?v=O6tQ6V_P8a0">Claude Skills Explained Simply (Master in 7 Minutes)</a></p>
+          <p>结构更清楚：标题卡、问题卡、定义卡、录屏、风险提示、选择卡。画面大多可以用 HTML/CSS/SVG 和少量截屏复刻。</p>
+          <p class="verdict good">更值得拆成 HyperFrames 模板：talking-head 可选，核心画面可独立成立。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>案例 01：Stop Prompting AI. Do This Instead</h2>
+      <p class="note">来源：Darius Lukas，YouTube，约 8:20。粗抽帧：每 20 秒一张。</p>
+      <img class="sheet" src="stop-prompting-ai/contact-sheet.jpg" alt="Stop Prompting AI contact sheet" data-full="stop-prompting-ai/contact-sheet.jpg">
+      <div class="metric">
+        <b>核心观点</b><span>不要从“写提示词”开始，而是让 Claude 先访谈你，找出真正值得自动化或交给 AI 的工作。</span>
+        <b>画面骨架</b><span>真人中景口播为主；少量 UI 截屏、Claude 卡片、手绘风插画、大字标题作为解释节点。</span>
+        <b>素材密度</b><span>低到中。没有大量外部资料，但依赖真人镜头和室内摄影质感。</span>
+        <b>节奏特点</b><span>长段口播推进，视觉节点间隔较远。画面变化主要用来强调概念，不承担完整叙事。</span>
+      </div>
+
+      <h3>粗结构</h3>
+      <table>
+        <thead>
+          <tr><th>段落</th><th>内容功能</th><th>视觉方式</th><th>可借鉴点</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>开场</td>
+            <td>直接反共识：不要从 prompts 开始。</td>
+            <td>真人 + Claude 卡片，左侧列出“frustrating / annoying / bothering”。</td>
+            <td>开场不是解释功能，而是先给观众一个行为纠偏。</td>
+          </tr>
+          <tr>
+            <td>概念区分</td>
+            <td>Claude chat 和 Claude Cowork 的差异。</td>
+            <td>界面局部截图 + 标签切换。</td>
+            <td>把抽象差异变成 UI 状态差异，适合用 HyperFrames 模拟。</td>
+          </tr>
+          <tr>
+            <td>方法展开</td>
+            <td>三步/三招使用 Claude Cowork。</td>
+            <td>真人口播穿插大字卡片和简笔插画。</td>
+            <td>每一个方法点只需要一个非常简单的视觉锚点，不需要复杂场景。</td>
+          </tr>
+          <tr>
+            <td>演示与例子</td>
+            <td>让 Claude 访谈你、找出可自动化的工作。</td>
+            <td>白底对话界面、Claude 输出、任务感插画。</td>
+            <td>“让 AI 先问你问题”这个动作，非常适合做成一组聊天卡片动画。</td>
+          </tr>
+          <tr>
+            <td>收束</td>
+            <td>强调链接、行动建议、产品入口。</td>
+            <td>真人 + 底部提示条。</td>
+            <td>低素材视频不一定要每秒有新画面，结尾可以靠口播完成。</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="score">
+        <div><b>7/10</b>观点包装</div>
+        <div><b>5/10</b>画面可复刻</div>
+        <div><b>6/10</b>低素材程度</div>
+        <div><b>6/10</b>HyperFrames 性价比</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>案例 02：Claude Skills Explained Simply</h2>
+      <p class="note">来源：Tristen O'Brien，YouTube，约 6:59。粗抽帧：每 20 秒一张。</p>
+      <img class="sheet" src="claude-skills/contact-sheet.jpg" alt="Claude Skills contact sheet" data-full="claude-skills/contact-sheet.jpg">
+      <div class="metric">
+        <b>核心观点</b><span>重复输入同一套指令，是在做多余工作；Claude Skills 可以把这类规则保存起来，需要时自动调用。</span>
+        <b>画面骨架</b><span>标题卡、问题卡、定义卡、录屏演示、警示条、对比卡。每类画面都可以模板化。</span>
+        <b>素材密度</b><span>低。主要素材是真人、Claude UI 截图、少量图标和几张卡片。</span>
+        <b>节奏特点</b><span>几乎每个信息段都有明确的视觉状态：问题、定义、步骤、提醒、选择。</span>
+      </div>
+
+      <h3>粗结构</h3>
+      <table>
+        <thead>
+          <tr><th>段落</th><th>内容功能</th><th>视觉方式</th><th>可借鉴点</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>标题钩子</td>
+            <td>“Claude Skills” + 强调它是内置强工具。</td>
+            <td>干净白底，大标题，红色强调词，短标签。</td>
+            <td>非常适合 HyperFrames 做开场：一个中心标题 + 一个视觉印章。</td>
+          </tr>
+          <tr>
+            <td>痛点</td>
+            <td>你反复做同样的事，反复输入同样的要求。</td>
+            <td>白板式卡片：重复任务、响应客户、报价、写邮件。</td>
+            <td>痛点要先画成“重复”，再解释 skill。不是一上来讲定义。</td>
+          </tr>
+          <tr>
+            <td>定义</td>
+            <td>Skill 是保存一次、之后反复使用的一套说明。</td>
+            <td>大字 Definition / A Skill / Saved Once。</td>
+            <td>定义页很克制，只有一两个关键词，字幕和旁白补充细节。</td>
+          </tr>
+          <tr>
+            <td>操作演示</td>
+            <td>设置、目录、安装、创建 skill。</td>
+            <td>真实 Claude UI 截屏 + 鼠标/菜单动作。</td>
+            <td>录屏不必多，但要落到具体 UI，建立可信度。</td>
+          </tr>
+          <tr>
+            <td>风险提示</td>
+            <td>不要随便装任何 skill，注意数据风险。</td>
+            <td>黑黄警示条、红叉、强提示。</td>
+            <td>风险段要换视觉语气，形成节奏断点。</td>
+          </tr>
+          <tr>
+            <td>路径选择</td>
+            <td>用内置 skill 或自己创建。</td>
+            <td>两张对比卡：Use Built-in / Build Your Own。</td>
+            <td>结论最好变成选择题，而不是一串说明。</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="score">
+        <div><b>7/10</b>观点包装</div>
+        <div><b>8/10</b>画面可复刻</div>
+        <div><b>8/10</b>低素材程度</div>
+        <div><b>8/10</b>HyperFrames 性价比</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>对我们最有用的结论</h2>
+      <table>
+        <thead>
+          <tr><th>问题</th><th>结论</th><th>落到我们的视频怎么用</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>是不是每句话都要动画？</td>
+            <td>不用。好的低素材 explainer 是按“信息节点”动，不是按句子动。</td>
+            <td>一句话只负责过渡时，画面可以不变；当概念、动作、关系变化时再动。</td>
+          </tr>
+          <tr>
+            <td>低素材视频靠什么不无聊？</td>
+            <td>靠“画面类型切换”：标题卡、问题卡、定义卡、示意图、真实 UI、对比卡、警示卡。</td>
+            <td>先建立 5-6 种可复用画面模板，而不是每个 beat 单独设计。</td>
+          </tr>
+          <tr>
+            <td>为什么第二条更适合我们？</td>
+            <td>它的视觉不是依赖摄影，而是依赖版式和状态。版式和状态更适合 HTML/CSS/SVG 复刻。</td>
+            <td>Loop Engineering 样片可以采用：大标题钩子 -> 重复劳动图示 -> 定义卡 -> 具体 UI/流程 -> 风险提示。</td>
+          </tr>
+          <tr>
+            <td>真人口播是否必要？</td>
+            <td>不是必要，但小窗真人能增加可信度。纯 faceless 也能做，只是需要更强的视觉节奏。</td>
+            <td>如果不露脸，就要用更明确的“任务卡片、循环箭头、状态标签、UI 截图”替代人物存在感。</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <img alt="">
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = lightbox.querySelector('img');
+    document.querySelectorAll('[data-full]').forEach((image) => {
+      image.addEventListener('click', () => {
+        lightboxImage.src = image.dataset.full;
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+      });
+    });
+    lightbox.addEventListener('click', () => {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      lightboxImage.removeAttribute('src');
+    });
+  </script>
+</body>
+</html>
