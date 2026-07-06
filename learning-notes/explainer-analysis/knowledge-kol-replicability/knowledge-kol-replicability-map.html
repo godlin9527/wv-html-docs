@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>知识型 KOL 视频：复刻性价比地图</title>
+  <style>
+    :root {
+      --bg: #f7f4ed;
+      --paper: #fffdf8;
+      --ink: #171615;
+      --muted: #6e685f;
+      --line: #ded7c8;
+      --accent: #df6046;
+      --green: #2f7a55;
+      --blue: #2d6798;
+      --yellow: #f4d16f;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", system-ui, sans-serif;
+      line-height: 1.62;
+      background:
+        linear-gradient(rgba(23, 22, 21, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(23, 22, 21, 0.035) 1px, transparent 1px),
+        var(--bg);
+      background-size: 28px 28px;
+    }
+    a { color: inherit; }
+    .wrap {
+      width: min(1480px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 42px 0 90px;
+    }
+    header, section {
+      background: var(--paper);
+      border: 3px solid var(--ink);
+      box-shadow: 8px 8px 0 rgba(23, 22, 21, 0.12);
+    }
+    header {
+      padding: 34px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
+      gap: 28px;
+      align-items: start;
+    }
+    section {
+      padding: 30px;
+      margin-top: 34px;
+    }
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(36px, 5.4vw, 76px);
+      line-height: 0.96;
+      letter-spacing: -0.04em;
+      font-weight: 900;
+    }
+    h2 {
+      margin: 0 0 18px;
+      font-size: clamp(26px, 3vw, 42px);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      font-weight: 900;
+    }
+    h3 {
+      margin: 0 0 10px;
+      font-size: 24px;
+      line-height: 1.14;
+    }
+    p { margin: 0 0 12px; }
+    .lead {
+      max-width: 860px;
+      color: var(--muted);
+      font-size: 22px;
+    }
+    .nav {
+      display: grid;
+      gap: 10px;
+    }
+    .nav a {
+      text-decoration: none;
+      border: 2px solid var(--ink);
+      background: #fff;
+      padding: 11px 14px;
+      font-weight: 850;
+      box-shadow: 4px 4px 0 rgba(23, 22, 21, 0.1);
+    }
+    .callout {
+      background: #fff5e7;
+      border-left: 8px solid var(--accent);
+      padding: 16px 18px;
+      font-size: 19px;
+      font-weight: 760;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .card {
+      background: #fff;
+      border: 2px solid var(--ink);
+      padding: 18px;
+      min-height: 180px;
+    }
+    .card strong {
+      font-size: 19px;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .tag {
+      display: inline-block;
+      margin: 0 5px 6px 0;
+      padding: 3px 7px;
+      border: 1.8px solid var(--ink);
+      background: #fff;
+      font-size: 13px;
+      font-weight: 830;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      font-size: 15.5px;
+    }
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 13px 12px;
+      vertical-align: top;
+      text-align: left;
+    }
+    th {
+      border-bottom: 3px solid var(--ink);
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .score {
+      font-weight: 900;
+      white-space: nowrap;
+    }
+    .high { color: var(--green); }
+    .mid { color: #b06b0d; }
+    .low { color: #a83325; }
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .case {
+      border: 2px solid var(--ink);
+      background: #fff;
+      padding: 14px;
+    }
+    .player {
+      aspect-ratio: 16 / 9;
+      background: #111;
+      border: 2px solid var(--ink);
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+    .case-title {
+      font-weight: 900;
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+    .meta {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    ul {
+      margin: 8px 0 0;
+      padding-left: 1.15em;
+    }
+    li { margin-bottom: 6px; }
+    .ranking {
+      counter-reset: rank;
+      display: grid;
+      gap: 12px;
+    }
+    .rank {
+      counter-increment: rank;
+      display: grid;
+      grid-template-columns: 64px minmax(0, 1fr);
+      gap: 16px;
+      align-items: start;
+      border: 2px solid var(--ink);
+      background: #fff;
+      padding: 16px;
+    }
+    .rank::before {
+      content: counter(rank, decimal-leading-zero);
+      color: var(--accent);
+      font-size: 36px;
+      line-height: 1;
+      font-weight: 900;
+      font-family: Georgia, serif;
+    }
+    .small {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 680;
+    }
+    @media (max-width: 980px) {
+      .wrap { width: min(100% - 24px, 760px); padding-top: 18px; }
+      header, .grid, .video-grid { grid-template-columns: 1fr; }
+      header, section { padding: 18px; }
+      table { font-size: 14px; }
+      th, td { padding: 10px 8px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <div>
+        <h1>知识型 KOL 视频：复刻性价比地图</h1>
+        <p class="lead">我们暂时不再只盯“传统 explainer”。换一个角度：知识型 KOL 怎么把观点讲清楚？哪些视频形态普通人也能学，哪些又太依赖真人、素材或复杂制作？</p>
+      </div>
+      <nav class="nav">
+        <a href="#criteria">筛选标准</a>
+        <a href="#types">KOL 形态</a>
+        <a href="#cases">候选案例</a>
+        <a href="#ranking">复刻优先级</a>
+        <a href="#next">下一步</a>
+      </nav>
+    </header>
+
+    <section id="criteria">
+      <h2>这次筛选的标准</h2>
+      <div class="callout">
+        不是找“最精美”的视频，而是找“普通人做工作表达时，最值得复刻”的视频。核心标准是：观点密度高、素材依赖低、视觉系统简单、能用 HTML/SVG/少量贴图复刻。
+      </div>
+      <div class="grid" style="margin-top:18px;">
+        <div class="card">
+          <strong>高性价比</strong>
+          <p>文字卡、图标、简单图表、少量截图、统一字幕和章节卡。适合 HyperFrames。</p>
+        </div>
+        <div class="card">
+          <strong>中等性价比</strong>
+          <p>需要录屏、真实网页、真人口播或少量 b-roll。能学节奏，但不宜照搬。</p>
+        </div>
+        <div class="card">
+          <strong>低性价比</strong>
+          <p>依赖主持人魅力、大量真实素材、复杂角色动画、电影化剪辑。可以学习叙事，不适合自动化复刻。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="types">
+      <h2>知识型 KOL 的几种常见形态</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>形态</th>
+            <th>典型频道/案例</th>
+            <th>画面构成</th>
+            <th>复刻性价比</th>
+            <th>我们该学什么</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>真人观点 + 文字卡</strong></td>
+            <td>Ali Abdaal, Better Ideas, Matt D'Avella</td>
+            <td>真人口播、字幕、少量标题卡、少量生活 b-roll</td>
+            <td class="score mid">中</td>
+            <td>学开头、语气、观点包装；画面可以改成 faceless 卡片。</td>
+          </tr>
+          <tr>
+            <td><strong>工具教程 + 屏幕高亮</strong></td>
+            <td>Ahrefs, Thomas Frank Explains, 秋芝2046</td>
+            <td>录屏、鼠标、框选、高亮、章节卡、对比表</td>
+            <td class="score mid">中</td>
+            <td>学“真实证据 -> 高亮 -> 抽象卡片”的讲解闭环。</td>
+          </tr>
+          <tr>
+            <td><strong>商业案例 + 数据卡</strong></td>
+            <td>Modern MBA, How Money Works, Slidebean</td>
+            <td>图表、Logo、新闻截图、财报数字、少量素材图</td>
+            <td class="score high">中高</td>
+            <td>适合做工作型观点视频：用数据和框架支撑判断。</td>
+          </tr>
+          <tr>
+            <td><strong>faceless 图解叙事</strong></td>
+            <td>CGP Grey, Half as Interesting</td>
+            <td>地图、图标、简单角色、箭头、路径、文字标签</td>
+            <td class="score high">高</td>
+            <td>最接近低素材 explainer，但要控制定制插画复杂度。</td>
+          </tr>
+          <tr>
+            <td><strong>高制作动画科普</strong></td>
+            <td>Kurzgesagt</td>
+            <td>完整插画系统、角色、场景、复杂转场</td>
+            <td class="score low">低</td>
+            <td>只学信息分层和情绪推进，不学制作规格。</td>
+          </tr>
+          <tr>
+            <td><strong>PPT-like 观点卡片</strong></td>
+            <td>创业/管理/效率类小型频道、课程宣传、webinar 切片</td>
+            <td>大标题、关键词、高亮、列表、对比矩阵、简单图标</td>
+            <td class="score high">最高</td>
+            <td>这才是最适合普通人工作表达和 HyperFrames 自动化的方向。</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="cases">
+      <h2>第一批候选案例</h2>
+      <p class="small">这些不是最终定稿案例，而是用来建立复刻判断的样本。播放器若因平台限制无法播放，可点击标题到 YouTube 查看。</p>
+      <div class="video-grid" style="margin-top:18px;">
+        <article class="case">
+          <div class="player"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/c92hhEFCcGw?rel=0&modestbranding=1" title="Thomas Frank productivity" allowfullscreen></iframe></div>
+          <div class="case-title">Thomas Frank - The Easiest Way to Double Your Productivity</div>
+          <div class="meta">真人 + 教程结构 + 屏幕/卡片辅助</div>
+          <p>适合学习“一个具体工作问题如何拆成步骤”。但真人和工具界面仍然很重要，不能直接当 faceless 模板。</p>
+        </article>
+        <article class="case">
+          <div class="player"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/JqE9pTLn8R0?rel=0&modestbranding=1" title="Better Ideas productivity" allowfullscreen></iframe></div>
+          <div class="case-title">Better Ideas - My minimalist productivity setup</div>
+          <div class="meta">真人观点 + 极简生活镜头 + 文字提示</div>
+          <p>适合学习口吻和观点推进。视觉上如果去掉真人，需要补一套更强的文字卡和流程图系统。</p>
+        </article>
+        <article class="case">
+          <div class="player"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/4WaJD0MF4q4?rel=0&modestbranding=1" title="Slidebean startup equity" allowfullscreen></iframe></div>
+          <div class="case-title">Slidebean - How Startup Equity REALLY Works</div>
+          <div class="meta">创业知识 + 图表卡片 + 品牌化演示</div>
+          <p>比较接近“工作型观点表达”：概念、数字、关系图都能用 HTML/SVG 复刻，素材依赖相对可控。</p>
+        </article>
+        <article class="case">
+          <div class="player"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/WcNbIm0fRxk?rel=0&modestbranding=1" title="Modern MBA Casper" allowfullscreen></iframe></div>
+          <div class="case-title">Modern MBA - How Casper Failed</div>
+          <div class="meta">商业案例 + 数据 + 截图/素材</div>
+          <p>叙事和结构强，但通常需要大量公司素材、新闻图和数据图。适合学“商业案例结构”，不适合低成本照搬。</p>
+        </article>
+        <article class="case">
+          <div class="player"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/oAHbLRjF0vo?rel=0&modestbranding=1" title="CGP Grey plane boarding" allowfullscreen></iframe></div>
+          <div class="case-title">CGP Grey - The Fastest Way to Board a Plane</div>
+          <div class="meta">faceless 图解 + 系统模拟</div>
+          <p>非常值得学：一个问题、一组规则、一套简单可重复图形。缺点是动画逻辑需要设计，不只是做漂亮卡片。</p>
+        </article>
+        <article class="case">
+          <div class="player"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/h1Ah4SQGMxM?rel=0&modestbranding=1" title="Half as Interesting Somaliland" allowfullscreen></iframe></div>
+          <div class="case-title">Half as Interesting - Somaliland</div>
+          <div class="meta">faceless 快节奏 + 地图/标签/素材</div>
+          <p>节奏非常适合短知识视频。地图和少量素材图可以复刻，但大量事实点需要强脚本和审校。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="ranking">
+      <h2>按复刻性价比排序</h2>
+      <div class="ranking">
+        <div class="rank">
+          <div>
+            <h3>PPT-like 观点卡片 / Animated Presentation</h3>
+            <p>最适合普通人工作表达。用标题、关键词、对比矩阵、流程图、少量图标就能讲清楚事情。缺点是容易做成死 PPT，需要严格设计信息节奏和运动节奏。</p>
+          </div>
+        </div>
+        <div class="rank">
+          <div>
+            <h3>faceless 图解叙事 / CGP Grey 式简化图形</h3>
+            <p>很适合 HyperFrames：地图、节点、箭头、人物圆点、流程线都能用 SVG/HTML 做。关键难点不是画，而是把概念抽成可运动的系统。</p>
+          </div>
+        </div>
+        <div class="rank">
+          <div>
+            <h3>商业案例 + 数据卡 / Slidebean、Modern MBA 的简化版</h3>
+            <p>适合创业、产品、商业、行业分析。需要少量 Logo、截图、数据表，但比真人采访和复杂 b-roll 更可控。</p>
+          </div>
+        </div>
+        <div class="rank">
+          <div>
+            <h3>工具教程 + 屏幕高亮 / Ahrefs、Thomas Frank、秋芝</h3>
+            <p>当主题本来就是软件教程时非常有效。缺点是录屏占比高，且真实 UI 难自动控制。适合做“局部插入”，不适合作为全片默认形态。</p>
+          </div>
+        </div>
+        <div class="rank">
+          <div>
+            <h3>真人观点 KOL / Ali Abdaal、Better Ideas、Matt D'Avella</h3>
+            <p>最容易火的是人和观点，不是画面模板。可以学 hook、反共识、语气和故事结构，但如果没有真人，必须重新设计视觉承载。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="next">
+      <h2>下一步建议</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>方向</th>
+            <th>为什么先做</th>
+            <th>下一步拉片方式</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>CGP Grey / HAI 类 faceless 图解</strong></td>
+            <td>最接近低素材、系统图形、可用 HTML/SVG 复刻。</td>
+            <td>选 1 条 5-8 分钟视频，全片粗抽帧，再精拉 60-90 秒，看图形如何连续变化。</td>
+          </tr>
+          <tr>
+            <td><strong>Slidebean / Startup 101 类商业卡片</strong></td>
+            <td>更贴近工作表达和观点说明，不太依赖真实镜头。</td>
+            <td>重点拆：标题卡、数据卡、关系图、章节转场。</td>
+          </tr>
+          <tr>
+            <td><strong>真人观点 KOL 的脚本，不学画面</strong></td>
+            <td>这类视频的传播性来自观点包装和语言节奏。</td>
+            <td>只拉旁白结构：开头怎么钩住人，如何提出反常识，如何切章节。</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</body>
+</html>
