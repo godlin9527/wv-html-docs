@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>B 站知识型 KOL：复刻性价比筛选</title>
+  <style>
+    :root {
+      --bg: #f7f4ed;
+      --paper: #fffdf8;
+      --ink: #171615;
+      --muted: #6e685f;
+      --line: #ded7c8;
+      --accent: #df6046;
+      --green: #2f7a55;
+      --amber: #b66b0d;
+      --red: #a63a2d;
+      --blue: #2b6696;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", system-ui, sans-serif;
+      line-height: 1.62;
+      background:
+        linear-gradient(rgba(23, 22, 21, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(23, 22, 21, 0.035) 1px, transparent 1px),
+        var(--bg);
+      background-size: 28px 28px;
+    }
+    a { color: inherit; }
+    .wrap { width: min(1500px, calc(100% - 48px)); margin: 0 auto; padding: 42px 0 88px; }
+    header, section {
+      background: var(--paper);
+      border: 3px solid var(--ink);
+      box-shadow: 8px 8px 0 rgba(23, 22, 21, 0.12);
+    }
+    header {
+      padding: 34px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
+      gap: 28px;
+      align-items: start;
+    }
+    section { padding: 30px; margin-top: 34px; }
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(34px, 5.2vw, 72px);
+      line-height: 0.96;
+      letter-spacing: -0.04em;
+      font-weight: 900;
+    }
+    h2 {
+      margin: 0 0 18px;
+      font-size: clamp(26px, 3vw, 42px);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      font-weight: 900;
+    }
+    h3 { margin: 0 0 8px; font-size: 22px; }
+    p { margin: 0 0 12px; }
+    .lead { max-width: 900px; color: var(--muted); font-size: 22px; }
+    .nav { display: grid; gap: 10px; }
+    .nav a {
+      text-decoration: none;
+      border: 2px solid var(--ink);
+      background: #fff;
+      padding: 11px 14px;
+      font-weight: 850;
+      box-shadow: 4px 4px 0 rgba(23, 22, 21, 0.1);
+    }
+    .callout {
+      background: #fff5e7;
+      border-left: 8px solid var(--accent);
+      padding: 16px 18px;
+      font-size: 19px;
+      font-weight: 760;
+    }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .card { background: #fff; border: 2px solid var(--ink); padding: 18px; min-height: 150px; }
+    .card strong { display: block; font-size: 18px; margin-bottom: 8px; }
+    table { width: 100%; border-collapse: collapse; background: #fff; font-size: 15.5px; }
+    th, td { border-bottom: 1px solid var(--line); padding: 13px 12px; vertical-align: top; text-align: left; }
+    th {
+      border-bottom: 3px solid var(--ink);
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .score { font-weight: 900; white-space: nowrap; }
+    .high { color: var(--green); }
+    .mid { color: var(--amber); }
+    .low { color: var(--red); }
+    .tag {
+      display: inline-block;
+      margin: 0 5px 6px 0;
+      padding: 3px 7px;
+      border: 1.8px solid var(--ink);
+      background: #fff;
+      font-size: 13px;
+      font-weight: 830;
+    }
+    .video-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+    .case { border: 2px solid var(--ink); background: #fff; padding: 14px; }
+    .player { aspect-ratio: 16 / 9; background: #111; border: 2px solid var(--ink); overflow: hidden; margin-bottom: 12px; }
+    iframe { width: 100%; height: 100%; display: block; border: 0; }
+    .case-title { font-size: 18px; font-weight: 900; margin-bottom: 5px; }
+    .meta { color: var(--muted); font-size: 14px; font-weight: 700; margin-bottom: 10px; }
+    .rank { counter-reset: item; display: grid; gap: 12px; }
+    .rank-item {
+      counter-increment: item;
+      display: grid;
+      grid-template-columns: 64px minmax(0, 1fr);
+      gap: 16px;
+      border: 2px solid var(--ink);
+      background: #fff;
+      padding: 16px;
+    }
+    .rank-item::before {
+      content: counter(item, decimal-leading-zero);
+      color: var(--accent);
+      font-family: Georgia, serif;
+      font-size: 36px;
+      line-height: 1;
+      font-weight: 900;
+    }
+    ul { margin: 8px 0 0; padding-left: 1.15em; }
+    li { margin-bottom: 6px; }
+    .small { color: var(--muted); font-size: 14px; font-weight: 680; }
+    @media (max-width: 980px) {
+      .wrap { width: min(100% - 24px, 760px); padding-top: 18px; }
+      header, .grid, .video-grid { grid-template-columns: 1fr; }
+      header, section { padding: 18px; }
+      table { font-size: 14px; }
+      th, td { padding: 10px 8px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <div>
+        <h1>B 站知识型 KOL：复刻性价比筛选</h1>
+        <p class="lead">这页不是“百大名单大全”，而是从 B 站百大/百大级知识区创作者里，筛哪些表达方式值得我们学习和复刻。核心问题：普通人做观点表达、工作汇报、知识讲解时，能不能用 HyperFrames 低成本做出类似效果？</p>
+      </div>
+      <nav class="nav">
+        <a href="#judgement">先说结论</a>
+        <a href="#screening">候选筛选</a>
+        <a href="#priority">优先拉片</a>
+        <a href="#examples">代表样本</a>
+        <a href="#next">下一步</a>
+      </nav>
+    </header>
+
+    <section id="judgement">
+      <h2>先说结论</h2>
+      <div class="callout">
+        B 站知识区百大里，真正适合我们“低素材 faceless / PPT-like / HyperFrames 复刻”的，不一定是最有名的那些。很多百大强在真人人格、外拍、历史素材、采访、梗图和长期选题积累。我们要优先找的是：图解能力强、画面系统简单、素材依赖可控、信息结构清楚的创作者。
+      </div>
+      <div class="grid" style="margin-top:18px;">
+        <div class="card">
+          <strong>最值得学</strong>
+          <p>小约翰可汗、思维实验室、一数、半佛仙人的部分视频。它们都有强叙事或强结构，能拆出图解/卡片/时间线方法。</p>
+        </div>
+        <div class="card">
+          <strong>只能学脚本</strong>
+          <p>小Lin说、罗翔说刑法、宋浩老师、部分真人科普。内容组织好，但画面强依赖真人或讲台。</p>
+        </div>
+        <div class="card">
+          <strong>暂不适合复刻</strong>
+          <p>芳斯塔芙、Chubbyemu、何同学等依赖大量真实素材、实验、外拍或高制作包装的案例。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="screening">
+      <h2>候选筛选表</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>创作者</th>
+            <th>大致类型</th>
+            <th>画面主要靠什么</th>
+            <th>复刻性价比</th>
+            <th>适合学什么</th>
+            <th>风险</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>小约翰可汗</strong></td>
+            <td>历史人物 / 国际政治 / 强叙事</td>
+            <td>旁白、档案图、地图、字幕梗、节奏剪辑</td>
+            <td class="score high">高</td>
+            <td>开头钩子、人物线、地图/时间线、密集标签</td>
+            <td>素材和事实核查压力高，幽默感难复制</td>
+          </tr>
+          <tr>
+            <td><strong>思维实验室</strong></td>
+            <td>国际关系 / 历史政治 / 长叙事</td>
+            <td>地图、资料图、关键字、逻辑推进</td>
+            <td class="score high">高</td>
+            <td>严肃议题的结构化图解、章节推进</td>
+            <td>议题重，素材和立场把控要求高</td>
+          </tr>
+          <tr>
+            <td><strong>一数</strong></td>
+            <td>数学 / 教育</td>
+            <td>板书、几何图、公式、题目拆解</td>
+            <td class="score high">高</td>
+            <td>抽象概念如何用最少图形一步步推导</td>
+            <td>题材偏窄，不一定适合商业/工作表达</td>
+          </tr>
+          <tr>
+            <td><strong>半佛仙人</strong></td>
+            <td>商业 / 消费 / 互联网观点</td>
+            <td>旁白、梗图、截图、标题卡、快速吐槽</td>
+            <td class="score mid">中高</td>
+            <td>反共识标题、段落包袱、口语化观点输出</td>
+            <td>梗图和语气强依赖个人风格，容易学成廉价吐槽</td>
+          </tr>
+          <tr>
+            <td><strong>小Lin说</strong></td>
+            <td>财经 / 商业 / 经济科普</td>
+            <td>真人主持、b-roll、图表、新闻图、卡片</td>
+            <td class="score mid">中</td>
+            <td>反常识问题、生活例子、复杂概念拆成故事</td>
+            <td>真人和素材占比高，视觉复刻成本不低</td>
+          </tr>
+          <tr>
+            <td><strong>历史调研室 / 渤海小吏 / 正直讲史</strong></td>
+            <td>历史讲解</td>
+            <td>地图、文献图、古画、字幕、时间线</td>
+            <td class="score mid">中</td>
+            <td>时间线、势力关系、因果链</td>
+            <td>素材量大，历史事实审核成本高</td>
+          </tr>
+          <tr>
+            <td><strong>罗翔说刑法</strong></td>
+            <td>法律 / 讲座</td>
+            <td>真人讲述、案例、口才</td>
+            <td class="score low">低</td>
+            <td>案例化讲法、冲突和伦理困境</td>
+            <td>画面不是重点，不适合作为 MG 视觉参考</td>
+          </tr>
+          <tr>
+            <td><strong>宋浩老师官方</strong></td>
+            <td>数学课程 / 讲课</td>
+            <td>板书、讲台、公式</td>
+            <td class="score low">低</td>
+            <td>清晰讲课节奏</td>
+            <td>更像课程，不像短视频 explainer</td>
+          </tr>
+          <tr>
+            <td><strong>芳斯塔芙 / Chubbyemu</strong></td>
+            <td>自然科学 / 医学案例</td>
+            <td>真实照片、素材视频、案例叙事、专业图示</td>
+            <td class="score low">低</td>
+            <td>悬疑式知识叙事</td>
+            <td>素材和医学/自然科学事实要求高</td>
+          </tr>
+          <tr>
+            <td><strong>何同学</strong></td>
+            <td>科技 / 产品 / 影像包装</td>
+            <td>实拍、实验、摄影、后期、产品镜头</td>
+            <td class="score low">低</td>
+            <td>创意选题和高概念包装</td>
+            <td>制作门槛太高，不适合作为低成本自动化目标</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="priority">
+      <h2>建议优先拉片顺序</h2>
+      <div class="rank">
+        <div class="rank-item">
+          <div>
+            <h3>小约翰可汗：看强叙事如何用低复杂度图形撑住</h3>
+            <p>不是照搬他的梗，而是学：人物如何登场、地点如何切换、地图和标签如何服务叙事、每隔多久给一次视觉信息点。</p>
+          </div>
+        </div>
+        <div class="rank-item">
+          <div>
+            <h3>思维实验室：看严肃长议题如何章节化</h3>
+            <p>适合研究“长逻辑链怎么被拆成段落”。如果我们以后做 AI、商业、社会议题，这类结构比纯搞笑 KOL 更可迁移。</p>
+          </div>
+        </div>
+        <div class="rank-item">
+          <div>
+            <h3>半佛仙人：看观点型内容如何有攻击性</h3>
+            <p>适合学标题、金句、反共识、段落转折。但视觉不能照搬梗图堆叠，否则会变乱。</p>
+          </div>
+        </div>
+        <div class="rank-item">
+          <div>
+            <h3>一数：看抽象概念如何最小图形化</h3>
+            <p>如果我们要做“概念解释”，一数式推导很值得学：每一帧只新增一个变量或关系。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="examples">
+      <h2>可先看的代表样本</h2>
+      <p class="small">这里先嵌入能检索到的公开 YouTube 镜像样本，后续如果要精拉 B 站原片，可以再用 B 站源下载和抽帧。</p>
+      <div class="video-grid" style="margin-top:18px;">
+        <article class="case">
+          <div class="player"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/IfgiEJc9Mu8?rel=0&modestbranding=1" title="小约翰可汗 sample" allowfullscreen></iframe></div>
+          <div class="case-title">小约翰可汗：硬核狠人类样本</div>
+          <div class="meta">强旁白 + 历史图像 + 地图/标签 + 节奏梗</div>
+          <p>适合学叙事密度和视觉锚点，但需要警惕素材、事实和语气依赖。</p>
+        </article>
+        <article class="case">
+          <div class="player"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/nRQPF3Be9cA?rel=0&modestbranding=1" title="思维实验室 sample" allowfullscreen></iframe></div>
+          <div class="case-title">思维实验室：国际关系长叙事样本</div>
+          <div class="meta">严肃议题 + 地图 + 资料图 + 章节化</div>
+          <p>适合研究“长逻辑如何不散”，比很多娱乐化知识视频更适合做结构参考。</p>
+        </article>
+        <article class="case">
+          <div class="player"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/8MVIDSriQyA?rel=0&modestbranding=1" title="半佛 sample" allowfullscreen></iframe></div>
+          <div class="case-title">半佛仙人：商业观点短样本</div>
+          <div class="meta">口语观点 + 截图/梗图 + 快速段落</div>
+          <p>适合学“观点如何更有传播性”，但视觉上需要重新收敛成更干净的卡片系统。</p>
+        </article>
+        <article class="case">
+          <div class="player"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/Vo8pEe615eQ?rel=0&modestbranding=1" title="小Lin sample" allowfullscreen></iframe></div>
+          <div class="case-title">小Lin说：财经商业讲解样本</div>
+          <div class="meta">真人主持 + 图表 + b-roll + 生活化例子</div>
+          <p>适合学脚本和例子，不适合作为低成本 faceless 视觉模板。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="next">
+      <h2>下一步</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>动作</th>
+            <th>目的</th>
+            <th>产物</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>先精拉小约翰可汗 2-3 分钟</td>
+            <td>看强叙事视频如何用少量视觉元素持续推进</td>
+            <td>逐秒抽帧 + 旁白/画面动作表</td>
+          </tr>
+          <tr>
+            <td>再精拉思维实验室 2-3 分钟</td>
+            <td>看严肃长逻辑如何章节化和地图化</td>
+            <td>章节结构表 + 图形语法表</td>
+          </tr>
+          <tr>
+            <td>最后对比半佛</td>
+            <td>看观点内容如何更有攻击性和传播性</td>
+            <td>标题/金句/转折模板</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</body>
+</html>
