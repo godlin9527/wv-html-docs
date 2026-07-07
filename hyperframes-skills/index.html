@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HyperFrames Skills 地图</title>
+  <style>
+    :root {
+      --bg: #f7f4ed;
+      --paper: #fffdf8;
+      --ink: #171615;
+      --muted: #6d675f;
+      --line: #ded7ca;
+      --accent: #d95c43;
+      --green: #2f8c67;
+      --blue: #315e9f;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: linear-gradient(#fbfaf6, #f2ede3);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      line-height: 1.56;
+    }
+    .wrap {
+      width: min(1180px, calc(100% - 44px));
+      margin: 0 auto;
+      padding: 48px 0 80px;
+    }
+    header {
+      border-bottom: 4px solid var(--ink);
+      padding-bottom: 26px;
+      margin-bottom: 28px;
+    }
+    .kicker {
+      display: inline-block;
+      color: var(--accent);
+      font-weight: 850;
+      letter-spacing: .04em;
+      margin-bottom: 10px;
+    }
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(36px, 6vw, 64px);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      font-weight: 900;
+    }
+    h2 {
+      font-size: 28px;
+      margin: 38px 0 14px;
+      padding-top: 10px;
+      border-top: 2px solid var(--ink);
+    }
+    h3 {
+      margin: 0 0 8px;
+      font-size: 20px;
+      line-height: 1.2;
+    }
+    p { margin: 0; color: var(--muted); font-size: 17px; }
+    a { color: inherit; }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      background: #eee8dc;
+      padding: 2px 6px;
+      border-radius: 5px;
+      font-size: .92em;
+    }
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 26px 0 30px;
+    }
+    .stat {
+      background: var(--paper);
+      border: 2px solid var(--ink);
+      padding: 16px;
+      box-shadow: 4px 4px 0 rgba(23,22,21,.12);
+    }
+    .stat strong {
+      display: block;
+      font-size: 34px;
+      line-height: 1;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 22px 0 0;
+    }
+    .nav a {
+      text-decoration: none;
+      border: 1.5px solid var(--line);
+      background: #fffaf0;
+      padding: 8px 12px;
+      font-weight: 750;
+      color: var(--muted);
+    }
+    .note {
+      background: #fff7e6;
+      border-left: 6px solid var(--accent);
+      padding: 14px 16px;
+      margin: 22px 0;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+    }
+    .card {
+      background: var(--paper);
+      border: 2px solid var(--ink);
+      box-shadow: 4px 4px 0 rgba(23,22,21,.12);
+      padding: 18px;
+      min-height: 190px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .card.core { border-top: 8px solid var(--accent); }
+    .card.workflow { border-top: 8px solid var(--blue); }
+    .card.media { border-top: 8px solid var(--green); }
+    .card.local { border-top: 8px solid #77716a; }
+    .meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 2px;
+    }
+    .tag {
+      font-size: 12px;
+      font-weight: 800;
+      border: 1.5px solid var(--line);
+      color: var(--muted);
+      padding: 3px 7px;
+      background: #f8f2e8;
+    }
+    .tag.official { color: var(--accent); border-color: rgba(217,92,67,.45); }
+    .tag.bundle { color: var(--blue); border-color: rgba(49,94,159,.42); }
+    .tag.local { color: #555; }
+    .desc { font-size: 15px; color: var(--muted); flex: 1; }
+    .links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+    .links a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 800;
+    }
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--paper);
+      border: 2px solid var(--ink);
+      box-shadow: 4px 4px 0 rgba(23,22,21,.12);
+    }
+    .table th, .table td {
+      border-bottom: 1px solid var(--line);
+      padding: 12px 14px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 15px;
+    }
+    .table th {
+      background: #171615;
+      color: #fffdf8;
+      font-size: 14px;
+    }
+    .table tr:last-child td { border-bottom: 0; }
+    footer {
+      margin-top: 42px;
+      padding-top: 20px;
+      border-top: 2px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+    }
+    @media (max-width: 760px) {
+      .summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .wrap { width: min(100% - 28px, 1180px); padding-top: 32px; }
+      .table { display: block; overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <div class="kicker">HYPERFRAMES SKILLS MAP</div>
+      <h1>HyperFrames 官方 Skills 地图</h1>
+      <p>这页把当前项目里可用的 HyperFrames 相关 skills 按角色整理清楚：哪些是基础能力，哪些是视频产线，哪些是素材/媒体能力，哪些是本地扩展。</p>
+      <div class="summary">
+        <div class="stat"><strong>5</strong><p>Codex 插件缓存里的最小官方包</p></div>
+        <div class="stat"><strong>23</strong><p>当前项目中的 HyperFrames 官方/生态 skills</p></div>
+        <div class="stat"><strong>2</strong><p>我们后来增加的本地扩展</p></div>
+        <div class="stat"><strong>25</strong><p>已发布中文 <code>SKILL.zh.md</code></p></div>
+      </div>
+      <nav class="nav">
+        <a href="#definition">口径</a>
+        <a href="#core">基础能力</a>
+        <a href="#creative">创意与动效</a>
+        <a href="#workflows">视频产线</a>
+        <a href="#media">素材与包装</a>
+        <a href="#integrations">迁移与集成</a>
+        <a href="#local">本地扩展</a>
+      </nav>
+    </header>
+
+    <section id="definition">
+      <h2>先说清楚“官方”口径</h2>
+      <div class="note">
+        <p><strong>最严格口径：</strong>Codex 插件缓存 <code>openai-curated-remote/hyperframes/0.1.2</code> 里只有 5 个 skills：<code>hyperframes</code>、<code>hyperframes-cli</code>、<code>hyperframes-registry</code>、<code>website-to-hyperframes</code>、<code>gsap</code>。</p>
+      </div>
+      <p>但当前项目里使用的是更大的 HyperFrames workflow skill bundle。它包含 faceless explainer、product launch、website-to-video、captions、overlays、media、motion graphics 等工作流。下面按当前项目实际可用的技能整理。</p>
+    </section>
+
+    <section id="core">
+      <h2>基础能力</h2>
+      <div class="grid">
+        <article class="card core">
+          <div class="meta"><span class="tag official">基础入口</span><span class="tag">官方/生态</span></div>
+          <h3>hyperframes</h3>
+          <p class="desc">做任何 HyperFrames 视频、动画、标题卡、叠加层、字幕、配音或音频反应视觉时的总入口。负责先判断任务应该走哪条 workflow。</p>
+          <div class="links"><a href="skills/hyperframes/SKILL.zh.md">中文 Skill.md</a></div>
+        </article>
+        <article class="card core">
+          <div class="meta"><span class="tag official">CLI</span><span class="tag">官方/生态</span></div>
+          <h3>hyperframes-cli</h3>
+          <p class="desc">HyperFrames 命令行开发循环：init、lint、validate、inspect、preview、render、transcribe、tts、skills 等。</p>
+          <div class="links"><a href="skills/hyperframes-cli/SKILL.zh.md">中文 Skill.md</a></div>
+        </article>
+        <article class="card core">
+          <div class="meta"><span class="tag official">Composition Contract</span><span class="tag">官方/生态</span></div>
+          <h3>hyperframes-core</h3>
+          <p class="desc">定义 HyperFrames HTML composition 的结构契约：<code>data-*</code> 时间属性、clip、track、子 composition、确定性渲染和校验规则。</p>
+          <div class="links"><a href="skills/hyperframes-core/SKILL.zh.md">中文 Skill.md</a></div>
+        </article>
+        <article class="card core">
+          <div class="meta"><span class="tag official">Registry</span><span class="tag">官方/生态</span></div>
+          <h3>hyperframes-registry</h3>
+          <p class="desc">安装和接入 registry blocks/components，处理 <code>hyperframes add</code>、install location、block wiring 和 <code>hyperframes.json</code>。</p>
+          <div class="links"><a href="skills/hyperframes-registry/SKILL.zh.md">中文 Skill.md</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="creative">
+      <h2>创意、设计与动效</h2>
+      <div class="grid">
+        <article class="card core">
+          <div class="meta"><span class="tag official">Creative Direction</span><span class="tag">官方/生态</span></div>
+          <h3>hyperframes-creative</h3>
+          <p class="desc">非动画层面的创意指导：frame/design spec、配色、字体、旁白、节拍规划、构图模式、品牌与风格决策。</p>
+          <div class="links"><a href="skills/hyperframes-creative/SKILL.zh.md">中文 Skill.md</a></div>
+        </article>
+        <article class="card core">
+          <div class="meta"><span class="tag official">Animation</span><span class="tag">官方/生态</span></div>
+          <h3>hyperframes-animation</h3>
+          <p class="desc">HyperFrames 动画知识库：原子动效、多阶段 scene blueprint、转场、GSAP/Lottie/Three.js/Anime.js/CSS/WAAPI/TypeGPU 等运行时适配。</p>
+          <div class="links"><a href="skills/hyperframes-animation/SKILL.zh.md">中文 Skill.md</a></div>
+        </article>
+        <article class="card core">
+          <div class="meta"><span class="tag official">Seek-safe Motion</span><span class="tag">官方/生态</span></div>
+          <h3>hyperframes-keyframes</h3>
+          <p class="desc">面向可 seek、可渲染的视频动画：GSAP timelines、CSS keyframes、Anime.js、Web Animations API 等关键帧规则。</p>
+          <div class="links"><a href="skills/hyperframes-keyframes/SKILL.zh.md">中文 Skill.md</a></div>
+        </article>
+        <article class="card workflow">
+          <div class="meta"><span class="tag bundle">Motion-first</span><span class="tag">官方/生态</span></div>
+          <h3>motion-graphics</h3>
+          <p class="desc">短而设计主导的 MG：动态字体、数据变化、图形转译、抽象概念表达。适合“motion 本身就是信息”的片子。</p>
+          <div class="links"><a href="skills/motion-graphics/SKILL.zh.md">中文 Skill.md</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="workflows">
+      <h2>视频产线</h2>
+      <div class="grid">
+        <article class="card workflow">
+          <div class="meta"><span class="tag bundle">Text to Video</span><span class="tag">官方/生态</span></div>
+          <h3>faceless-explainer</h3>
+          <p class="desc">把文章、笔记、主题或 brief 做成无真人出镜的解释视频。视觉由文字、抽象图形、图表和 data-viz 生成，不抓网站也不使用产品截图。</p>
+          <div class="links"><a href="skills/faceless-explainer/SKILL.zh.md">中文 Skill.md</a></div>
+        </article>
+        <article class="card workflow">
+          <div class="meta"><span class="tag bundle">Fallback</span><span class="tag">官方/生态</span></div>
+          <h3>general-video</h3>
+          <p class="desc">通用视频创作兜底流程。适合已有音频/视频、长片、多素材、或不符合专用 workflow 的自定义 HyperFrames composition。</p>
+          <div class="links"><a href="skills/general-video/SKILL.zh.md">中文 Skill.md</a></div>
+        </article>
+        <article class="card workflow">
+          <div class="meta"><span class="tag bundle">Product</span><span class="tag">官方/生态</span></div>
+          <h3>product-launch-video</h3>
+          <p class="desc">把产品 URL、脚本或 brief 做成产品发布/推广视频：SaaS promo、功能展示、公司或 app launch。</p>
+          <div class="links"><a href="skills/product-launch-video/SKILL.zh.md">中文 Skill.md</a></div>
+        </article>
+        <article class="card workflow">
+          <div class="meta"><span class="tag bundle">Website</span><span class="tag">官方/生态</span></div>
+          <h3>website-to-video</h3>
+          <p class="desc">把普通网站/URL 变成网站本身的视频 tour、showcase 或社交短片，基于截图和网站品牌资产。</p>
+          <div class="links"><a href="skills/website-to-video/SKILL.zh.md">中文 Skill.md</a></div>
+        </article>
+        <article class="card workflow">
+          <div class="meta"><span class="tag bundle">Music-driven</span><span class="tag">官方/生态</span></div>
+          <h3>music-to-video</h3>
+          <p class="desc">用音乐驱动节奏：歌词视频、幻灯、动态 promo。音乐是时间轴主干，图片/视频素材按 beat grid 切分。</p>
+          <div class="links"><a href="skills/music-to-video/SKILL.zh.md">中文 Skill.md</a></div>
+        </article>
+        <article class="card workflow">
+          <div class="meta"><span class="tag bundle">PR Explainer</span><span class="tag">官方/生态</span></div>
+          <h3>pr-to-video</h3>
+          <p class="desc">把 GitHub PR 变成代码变更解释视频：changelog、feature reveal、bug fix 或 refactor walkthrough。</p>
+          <div class="links"><a href="skills/pr-to-video/SKILL.zh.md">中文 Skill.md</a></div>
+        </article>
+        <article class="card workflow">
+          <div class="meta"><span class="tag bundle">Deck</span><span class="tag">官方/生态</span></div>
+          <h3>slideshow</h3>
+          <p class="desc">制作 HyperFrames slideshow composition：离散 slides、fragment reveal、branching sequence 和 hotspot navigation。</p>
+          <div class="links"><a href="skills/slideshow/SKILL.zh.md">中文 Skill.md</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="media">
+      <h2>素材、音频、字幕与包装</h2>
+      <div class="grid">
+        <article class="card media">
+          <div class="meta"><span class="tag bundle">Media OS</span><span class="tag">官方/生态</span></div>
+          <h3>media-use</h3>
+          <p class="desc">HyperFrames 项目里的统一媒体操作层：BGM、SFX、图片、图标、配音、转写、字幕和背景素材解析成冻结本地文件与 ledger 记录。</p>
+          <div class="links"><a href="skills/media-use/SKILL.zh.md">中文 Skill.md</a></div>
+        </article>
+        <article class="card media">
+          <div class="meta"><span class="tag bundle">Audio</span><span class="tag">官方/生态</span></div>
+          <h3>hyperframes-media</h3>
+          <p class="desc">HyperFrames 音频和媒体资产：TTS、BGM、SFX、多 provider 音频生成与本地 fallback。</p>
+          <div class="links"><a href="skills/hyperframes-media/SKILL.zh.md">中文 Skill.md</a></div>
+        </article>
+        <article class="card media">
+          <div class="meta"><span class="tag bundle">Captions</span><span class="tag">官方/生态</span></div>
+          <h3>embedded-captions</h3>
+          <p class="desc">给 talking-head 视频加嵌入式字幕，包含多种视觉 identity 和不同 caption engine。</p>
+          <div class="links"><a href="skills/embedded-captions/SKILL.zh.md">中文 Skill.md</a></div>
+        </article>
+        <article class="card media">
+          <div class="meta"><span class="tag bundle">Overlays</span><span class="tag">官方/生态</span></div>
+          <h3>graphic-overlays</h3>
+          <p class="desc">在采访/播客/真人视频上叠加设计化图形卡片：标题、lower-third、数据 callout、引用、侧栏、PIP 等。</p>
+          <div class="links"><a href="skills/graphic-overlays/SKILL.zh.md">中文 Skill.md</a></div>
+        </article>
+        <article class="card media">
+          <div class="meta"><span class="tag bundle">Talking Head</span><span class="tag">官方/生态</span></div>
+          <h3>talking-head-recut</h3>
+          <p class="desc">包装 talking-head / interview / podcast 视频，保留原视频，在其上增加动态图形覆盖和字幕，适配多种画幅。</p>
+          <div class="links"><a href="skills/talking-head-recut/SKILL.zh.md">中文 Skill.md</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="integrations">
+      <h2>迁移与集成</h2>
+      <div class="grid">
+        <article class="card workflow">
+          <div class="meta"><span class="tag bundle">Figma</span><span class="tag">官方/生态</span></div>
+          <h3>figma</h3>
+          <p class="desc">把 Figma 内容导入 HyperFrames：渲染资产、品牌 tokens、components、storyboard sections，并把 frames 当成状态重建 motion。</p>
+          <div class="links"><a href="skills/figma/SKILL.zh.md">中文 Skill.md</a></div>
+        </article>
+        <article class="card workflow">
+          <div class="meta"><span class="tag bundle">Remotion</span><span class="tag">官方/生态</span></div>
+          <h3>remotion-to-hyperframes</h3>
+          <p class="desc">把已有 Remotion React composition 迁移成 HyperFrames HTML。仅用于明确要求 port/convert/migrate Remotion 源码的场景。</p>
+          <div class="links"><a href="skills/remotion-to-hyperframes/SKILL.zh.md">中文 Skill.md</a></div>
+        </article>
+        <article class="card workflow">
+          <div class="meta"><span class="tag bundle">Workflow Test</span><span class="tag">官方/生态</span></div>
+          <h3>youcomputer-hyperframes-workflow</h3>
+          <p class="desc">在 YouComputer preview machine 里运行、测试、debug 或比较 HyperFrames workflow skills。</p>
+          <div class="links"><a href="skills/youcomputer-hyperframes-workflow/SKILL.zh.md">中文 Skill.md</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="local">
+      <h2>本地扩展，不算官方</h2>
+      <div class="grid">
+        <article class="card local">
+          <div class="meta"><span class="tag local">本地封装</span></div>
+          <h3>explainer-video</h3>
+          <p class="desc">我们新增的上层 orchestrator skill。作用是统一 explainer 视频路由，避免把 faceless-explainer 标准流程压扁给单个 subagent。</p>
+          <div class="links"><a href="skills/explainer-video/SKILL.zh.md">中文 Skill.md</a></div>
+        </article>
+        <article class="card local">
+          <div class="meta"><span class="tag local">本地音频变体</span></div>
+          <h3>seed-audio-explainer-audio</h3>
+          <p class="desc">我们新增的 Seed Audio explainer 音频 skill。核心约束是一次生成完整全片音频，再用 transcript 驱动动画时间。</p>
+          <div class="links"><a href="skills/seed-audio-explainer-audio/SKILL.zh.md">中文 Skill.md</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>最小官方插件包对照</h2>
+      <table class="table">
+        <thead>
+          <tr><th>插件缓存 skill</th><th>当前项目中的对应关系</th><th>说明</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>hyperframes</code></td><td><code>hyperframes</code></td><td>主入口，当前项目中为更新后的生态版本。</td></tr>
+          <tr><td><code>hyperframes-cli</code></td><td><code>hyperframes-cli</code></td><td>CLI 开发循环。</td></tr>
+          <tr><td><code>hyperframes-registry</code></td><td><code>hyperframes-registry</code></td><td>registry blocks/components。</td></tr>
+          <tr><td><code>website-to-hyperframes</code></td><td><code>website-to-video</code></td><td>当前项目使用更高层的视频工作流命名。</td></tr>
+          <tr><td><code>gsap</code></td><td><code>hyperframes-animation</code> / <code>hyperframes-keyframes</code></td><td>当前项目中 GSAP 内容被纳入更大的动画/关键帧知识体系。</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <footer>
+      <p>来源：当前项目 <code>.agents/skills</code> 中的最新 HyperFrames skills。中文版本为同目录 <code>SKILL.zh.md</code>，已复制到本页面目录以便 GitHub Pages 访问。</p>
+    </footer>
+  </main>
+</body>
+</html>
