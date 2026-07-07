@@ -1,27 +1,25 @@
 ---
 name: explainer-video
-description: Explainer video 工作的薄路由入口。用于创建、重做、比较或审查 explainer 视频，尤其是在 faceless-explainer、既有音频 explainer、presentation-style explainer 或 style-preset 对比之间做选择时使用。
+description: faceless-explainer 的薄适配层。用于创建、重做、比较或审查 faceless explainer 视频，包括标准 faceless-explainer 流程、Seed Audio 单条完整旁白变体，或既有音频 faceless 变体。
 metadata:
   tags: explainer-video, orchestrator, faceless-explainer, hyperframes, workflow
 ---
 
 # Explainer Video
 
-这个 skill 只是一个很薄的路由层。它不定义另一套独立生产流程。
+这个 skill 只是 `faceless-explainer` 的薄适配层。它不定义另一套独立生产流程，也不是 HyperFrames 的通用路由器。
 
-对于文本、主题、文章类 explainer，阅读并遵循 `../faceless-explainer/SKILL.md`；该 skill 是步骤、gate、sub-agent 派发、visual design、字幕、验证、预览和渲染的事实来源。
+始终阅读并遵循 `../faceless-explainer/SKILL.md`；该 skill 是步骤、gate、sub-agent 派发、visual design、字幕、验证、预览和渲染的事实来源。
 
-## Route
+## Supported Modes
 
-生产任何资产前，先选择底层工作流：
+只在以下 faceless 模式中选择一种：
 
-- **文本 / 主题 / 文章 -> faceless narrated explainer**：使用 `../faceless-explainer/SKILL.md`。
-- **文本 / 主题 / 文章 + 用户要求用 Seed Audio 一次生成完整旁白**：使用 `../faceless-explainer/SKILL.md`，只把 Step 3.1 的音频生成替换为 `../seed-audio-explainer-audio/SKILL.md`。
-- **必须保留既有音频，并用发明出来的 faceless 画面与其同步**：把 `../faceless-explainer/SKILL.md` 作为 existing-audio variant 使用。不要生成新旁白。先把用户提供的音频转成 word timings，清理/纠错 transcript，然后用这条音频时间轴驱动 storyboard timing、captions、visual design 和 render。
-- **必须保留既有视频 / 露脸 / 采访 / 录屏画面**：改用 `../talking-head-recut/SKILL.md`、`../graphic-overlays/SKILL.md` 或 `../general-video/SKILL.md`。
-- **产品、网站、PR、音乐驱动、幻灯片或短 motion-first 作品**：路由到对应的 HyperFrames workflow skill。
+- **标准 faceless explainer**：文本 / 主题 / 文章 -> faceless narrated explainer。严格遵循 `../faceless-explainer/SKILL.md`。
+- **Seed Audio 单条完整旁白变体**：遵循 `../faceless-explainer/SKILL.md`，只把 Step 3.1 的音频生成替换为 `../seed-audio-explainer-audio/SKILL.md`。
+- **既有音频 faceless 变体**：保留用户提供的音频。不要生成新旁白。先把音频转成 word timings，清理/纠错 transcript，然后用这条音频时间轴驱动 storyboard timing、captions、visual design 和 render。
 
-如果路线不清楚，阅读 `../hyperframes/SKILL.md`，只问最少必要的路由问题。
+如果用户要做产品、网站、PR、幻灯片、音乐驱动、露脸、采访或录屏素材类 workflow，这个 skill 不处理。告诉用户从 `../hyperframes/SKILL.md` 或对应 workflow skill 开始。
 
 ## Orchestration
 
@@ -30,8 +28,8 @@ metadata:
 如果用户要求 clean session，尽可能启动一个干净的顶层 thread/session。prompt 保持简短：
 
 ```text
-Use explainer-video as the router.
-If routed to faceless, strictly follow faceless-explainer/SKILL.md.
+Use explainer-video.
+Strictly follow faceless-explainer/SKILL.md.
 Input: <source>.
 Style preset: <preset or auto>.
 Special constraints: <existing audio / Seed Audio / transcript / language / aspect>.
@@ -43,4 +41,4 @@ Special constraints: <existing audio / Seed Audio / transcript / language / aspe
 
 ## Deliverables
 
-报告 route、project directory、source path、style preset、关键 planning files、final MP4 path，以及任何对底层 workflow 的有意偏离。
+报告 faceless mode、project directory、source path、style preset、关键 planning files、final MP4 path，以及任何对 `faceless-explainer` 的有意偏离。
